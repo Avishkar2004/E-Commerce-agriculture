@@ -29,7 +29,7 @@ const AmbitionOrganic = () => {
             </a>
             >
             <a className="hover:text-blue-500 text-sm" href="/OrganicProduct">
-              Buy Organic Product{" "}
+              Buy Organic Product
             </a>
             ><a className="text-sm">AMBITION (Crop Supplement)</a>
           </span>

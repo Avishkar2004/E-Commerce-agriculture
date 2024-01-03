@@ -25,27 +25,20 @@ const Chealacop = () => {
         <div className="flex text-sm gap-12 text-gray-500 font-secondary">
           <span className="space-x-2 ml-6">
             <a className="hover:text-blue-500" href="/">
-              Home
+              Home{" "}
             </a>
             >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
-            >
-              Plant Growth Regulator (PGR)
+            <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
+              Buy Micro-nutrients Online{" "}
             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-              HPM SUPER SONATA (PGR)
-            </a>
-            >
+            ><a className="text-sm">Chelacop </a>
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
-          </span>
+          <a
+            href="/micro-nutrients/dhanvarshaOrganic"
+            className=" ml-[60rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+          >
+            &lt; Prev
+          </a>
         </div>
       </div>
 

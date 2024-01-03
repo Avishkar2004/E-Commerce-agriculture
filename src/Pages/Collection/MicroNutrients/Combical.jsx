@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import combical from "../../../Components/micronutrientPhoto/combical.avif";
 import combical2 from "./combical-new_380x.webp";
@@ -29,24 +28,17 @@ const Combical = () => {
               Home
             </a>
             >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
-            >
-              Plant Growth Regulator (PGR)
+            <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
+              Buy Micro-nutrients Online{" "}
             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-              HPM SUPER SONATA (PGR)
-            </a>
-            >
+            ><a className="text-sm">Aries Agro Combical </a>
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a
+            href="/micro-nutrients/agromminFoliar"
+            className=" ml-[57rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+          >
             Next >
-          </span>
+          </a>
         </div>
       </div>
 
@@ -176,7 +168,5 @@ const Combical = () => {
     </div>
   );
 };
-
-
 
 export default Combical;

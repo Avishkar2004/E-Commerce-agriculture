@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import agromminFoliar from "../../../Components/micronutrientPhoto/AgrominFoliarSpray.avif";
 import agromminFoliar2 from "./AgrominFoliarSpray_500x.webp";
@@ -29,24 +28,17 @@ const AgromminFoliar = () => {
               Home
             </a>
             >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
-            >
-              Plant Growth Regulator (PGR)
+            <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
+              Buy Micro-nutrients Online{" "}
             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-              HPM SUPER SONATA (PGR)
-            </a>
-            >
+            ><a className="text-sm">Agromin Foliar </a>
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a
+            href="/micro-nutrients/allwinTopPlus"
+            className=" ml-[58rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+          >
             Next >
-          </span>
+          </a>
         </div>
       </div>
 
@@ -177,6 +169,4 @@ const AgromminFoliar = () => {
   );
 };
 
-
-
-export default AgromminFoliar
+export default AgromminFoliar;

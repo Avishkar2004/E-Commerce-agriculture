@@ -29,6 +29,7 @@ import Stabilizer from "../Pages/Collection/PGRProduct/Stabilizer";
 import Taboli from "../Pages/Collection/PGRProduct/Taboli";
 import Kasub from "../Pages/Collection/PGRProduct/Kasub";
 import Dhanvarsha from "../Pages/Collection/PGRProduct/DhanvarshaOrganic";
+import Dhanvarsha2 from "../Pages/Collection/MicroNutrients/DhanvarshaOrganic";
 import Atomic from "../Pages/Collection/PGRProduct/Atomic";
 import Theeta from "../Pages/Collection/OrganicProduct/Theeta";
 import SonataOrganic from "../Pages/Collection/OrganicProduct/SonataOrganic";
@@ -194,7 +195,7 @@ const AppRoutes = () => {
         <Route path="/micro-nutrients/surplus" component={Surplus} />
         <Route
           path="/micro-nutrients/dhanvarshaOrganic"
-          component={Dhanvarsha}
+          component={Dhanvarsha2}
         />
         <Route path="/micro-nutrients/surplus" component={Surplus} />
         <Route path="/micro-nutrients/chealacop" component={Chealacop} />

@@ -28,24 +28,17 @@ const Mobomin2Micro = () => {
               Home
             </a>
             >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
-            >
-              Plant Growth Regulator (PGR)
+            <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
+              Buy Micro-nutrients Online{" "}
             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-              HPM SUPER SONATA (PGR)
-            </a>
-            >
+            ><a className="text-sm">Mobomin </a>
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a
+            href="/micro-nutrients/AgrominMax"
+            className=" ml-[60rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+          >
             Next >
-          </span>
+          </a>
         </div>
       </div>
 
@@ -175,6 +168,5 @@ const Mobomin2Micro = () => {
     </div>
   );
 };
-
 
 export default Mobomin2Micro;
