@@ -62,6 +62,8 @@ import FantacPlus from "../Pages/Collection/MicroNutrients/FantacPlus";
 import Prozinc from "../Pages/Collection/MicroNutrients/Prozinc";
 import Surplus from "../Pages/Collection/MicroNutrients/Surplus";
 import Chealacop from "../Pages/Collection/MicroNutrients/Chealacop";
+import TheetaInsect from '../Pages/Collection/Insecticides/TheetaInsect'
+import InsecticideKaka from '../Pages/Collection/Insecticides/InsecticideKaka'
 import Confidor from "../Pages/Collection/Insecticides/Confidor";
 import Pegasus from "../Pages/Collection/Insecticides/Pegasus";
 import Titamide from "../Pages/Collection/Insecticides/Titamide";
@@ -205,8 +207,8 @@ const AppRoutes = () => {
         {/* Micro nutrients end */}
 
         {/* Insectide Start */}
-        <Route path="/Insecticide/theetaInsect" component={Theeta} />
-        <Route path="/Insecticide/kaka" component={Kaka} />
+        <Route path="/Insecticide/theetaInsect" component={TheetaInsect} />
+        <Route path="/Insecticide/kaka" component={InsecticideKaka} />
         <Route path="/Insecticide/confidor" component={Confidor} />
         <Route path="/Insecticide/pegasus" component={Pegasus} />
         <Route path="/Insecticide/titamide" component={Titamide} />

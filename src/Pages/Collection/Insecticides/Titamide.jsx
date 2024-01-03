@@ -28,24 +28,17 @@ const Titamide = () => {
               Home
             </a>
             >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
-            >
-              Plant Growth Regulator (PGR)
+            <a className="hover:text-blue-500 text-sm" href="/Insecticide">
+              Buy Insecticides{" "}
             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-              HPM SUPER SONATA (PGR)
-            </a>
-            >
+            ><a className="text-sm">TATAMIDA </a>>
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a
+            href="/Insecticide/oberon"
+            className=" ml-[65rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+          >
             Next >
-          </span>
+          </a>
         </div>
       </div>
 

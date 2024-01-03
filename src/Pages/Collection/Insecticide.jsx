@@ -108,7 +108,7 @@ const insecticide = () => {
             </ul>
           </div>
         </div>
-
+        {/* for Insecticide route  */}
         {/* Right Column - Photo */}
         <div className="w-3/4 mt-10 bg-white ml-10  ">
           {/* Center the image */}

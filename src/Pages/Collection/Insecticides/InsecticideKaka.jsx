@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import pegasus from "../../../Components/BestInsecticides/Pegasus.avif";
-import pegasus2 from "./pegasus.webp";
+import kaka from "../../../Components/OrganicProducts/Kaka.avif";
+import kaka2 from "./kaka-front_600x.webp";
 import SearchIcon from "@mui/icons-material/Search";
 import StarIcon from "@mui/icons-material/Star";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -9,7 +9,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from "../../Description";
 
-const Pegasus = () => {
+const InsecticideKaka = () => {
   const [count, setCount] = useState(1);
 
   const handleIncrement = () => {
@@ -29,13 +29,13 @@ const Pegasus = () => {
             </a>
             >
             <a className="hover:text-blue-500 text-sm" href="/Insecticide">
-              Buy Insecticides
+              Buy Insecticides{" "}
             </a>
-            ><a className="text-sm">Pegasus </a>>
+            ><a className="text-sm">KAKA (Biostimulant)</a>
           </span>
           <a
-            href="/Insecticide/titamide"
-            className=" ml-[65rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+            href="/Insecticide/pegasus"
+            className=" ml-[58rem] pl-16 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
             Next >
           </a>
@@ -47,11 +47,11 @@ const Pegasus = () => {
         <div className="w-1/2 bg-white text-center ml-12 border-r-2 border-l-2 border-t-2 border-b-2">
           <img
             className="h-28 border-2 border-blue-500"
-            src={pegasus}
+            src={kaka}
             alt="Planofix pesticide"
           />
           <img
-            src={pegasus2}
+            src={kaka2}
             alt="Planofix pesticide"
             className="h-[31rem] object-cover mx-auto  overflow-hidden"
           />
@@ -169,4 +169,4 @@ const Pegasus = () => {
   );
 };
 
-export default Pegasus;
+export default InsecticideKaka;
