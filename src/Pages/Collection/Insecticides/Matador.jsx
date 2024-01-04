@@ -30,22 +30,19 @@ const Matador = () => {
             >
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
+              href="/Insecticide"
             >
-              Plant Growth Regulator (PGR)
-            </a>
+              Buy Insecticides of Leading Brands Online             </a>
             >
             <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
+              className="text-sm"
             >
-              HPM SUPER SONATA (PGR)
-            </a>
+              Matador Syngenta            </a>
             >
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
-          </span>
+          <a href="/Insecticide/ekalux" className=" ml-[51rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+            &lt; Prev
+          </a>
         </div>
       </div>
 
@@ -55,11 +52,11 @@ const Matador = () => {
           <img
             className="h-28 border-2 border-blue-500"
             src={matador}
-            alt="Planofix pesticide"
+            alt="Planofix Insecticide"
           />
           <img
             src={matador2}
-            alt="Planofix pesticide"
+            alt="Planofix Insecticide"
             className="h-[31rem] object-cover mx-auto  overflow-hidden"
           />
 

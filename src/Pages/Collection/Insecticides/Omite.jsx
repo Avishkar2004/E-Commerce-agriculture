@@ -30,22 +30,19 @@ const Omite = () => {
             >
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
+              href="/Insecticide"
             >
-              Plant Growth Regulator (PGR)
-            </a>
+              Buy Insecticides of Leading Brands Online             </a>
             >
             <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
+              className="text-sm"
             >
-              HPM SUPER SONATA (PGR)
-            </a>
+              Omite Propargite 75 %            </a>
             >
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a href="/Insecticide/kingdoxa" className=" ml-[50rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next >
-          </span>
+          </a>
         </div>
       </div>
 

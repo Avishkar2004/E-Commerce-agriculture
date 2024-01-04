@@ -29,13 +29,13 @@ const Pegasus = () => {
             </a>
             >
             <a className="hover:text-blue-500 text-sm" href="/Insecticide">
-              Buy Insecticides
+              Buy Insecticides of Leading Brands Online
             </a>
             ><a className="text-sm">Pegasus </a>>
           </span>
           <a
             href="/Insecticide/titamide"
-            className=" ml-[65rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+            className=" ml-[55rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
             Next >
           </a>

@@ -29,13 +29,13 @@ const InsecticideKaka = () => {
             </a>
             >
             <a className="hover:text-blue-500 text-sm" href="/Insecticide">
-              Buy Insecticides{" "}
+              Buy Insecticides of Leading Brands Online
             </a>
             ><a className="text-sm">KAKA (Biostimulant)</a>
           </span>
           <a
             href="/Insecticide/pegasus"
-            className=" ml-[58rem] pl-16 font-secondary cursor-pointer hover:text-blue-500 text-base"
+            className=" ml-[51rem]  font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
             Next >
           </a>

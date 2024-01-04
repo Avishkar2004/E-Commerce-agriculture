@@ -32,8 +32,7 @@ const Confidor = () => {
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
-              Plant Growth Regulator (PGR)
-            </a>
+Buy Insecticides of Leading Brands Online             </a>
             >
             <a
               className="hover:text-blue-500 text-sm"

@@ -30,22 +30,18 @@ const Kingdoxa = () => {
             >
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
-            >
-              Plant Growth Regulator (PGR)
-            </a>
+              href="/Insecticide"
+            >Buy Insecticides of Leading Brands Online             </a>
             >
             <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
+              className="text-sm"
             >
-              HPM SUPER SONATA (PGR)
-            </a>
+              king Doxa            </a>
             >
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a href="/Insecticide/osheen" className=" ml-[55rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next >
-          </span>
+          </a>
         </div>
       </div>
 
