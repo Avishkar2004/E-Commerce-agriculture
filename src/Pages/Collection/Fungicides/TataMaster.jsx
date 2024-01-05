@@ -19,6 +19,10 @@ const TataMaster = () => {
   const handleDecrement = () => {
     setCount(count - 1);
   };
+
+  const handleRefresh = (e) => {
+    e.preventDefault()
+  }
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <div className="space-x-52 ml-12 mt-4 mb-4">
@@ -30,22 +34,19 @@ const TataMaster = () => {
             >
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
+              href="/fungicides"
             >
-              Plant Growth Regulator (PGR)
-            </a>
+              Buy Fungicides Online            </a>
             >
             <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
+              className="text-sm"
             >
-              HPM SUPER SONATA (PGR)
-            </a>
+              TATA MASTER            </a>
             >
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a href="/fungicides/contafplus" className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next >
-          </span>
+          </a>
         </div>
       </div>
 

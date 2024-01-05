@@ -30,22 +30,18 @@ const Sivic = () => {
             >
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
+              href="/fungicides"
             >
-              Plant Growth Regulator (PGR)
-            </a>
+              Buy Fungicide Online            </a>
             >
             <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
+              className="text-sm"
             >
-              HPM SUPER SONATA (PGR)
-            </a>
+              Sivic Systemic Fungicides            </a>
             >
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
-          </span>
+          <a href="/fungicides/conika" className=" ml-[57rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+            &lt; Prev          </a>
         </div>
       </div>
 

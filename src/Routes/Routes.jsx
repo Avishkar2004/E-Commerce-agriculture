@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "../Pages/Header";
-import Navigation from "../Pages/Navigation";
 import Collection from "../Pages/Collection";
 import Sliders from "../Pages/Slider";
 import Product from "../Pages/Product";
@@ -112,12 +111,12 @@ import HydropPro from "../Pages/Collection/Products/HydropPro";
 import Trishool from "../Pages/Collection/Products/Trishool";
 import Zincomix from "../Pages/Collection/Products/Zincomix";
 import Payment from "../Pages/Payment";
+import KasubFungi from "../Pages/Collection/Fungicides/KasubFungi";
 // import CreditCard from "../Pages/CreditCard";
 const AppRoutes = () => {
   return (
     <Router>
       <Header />
-      <Navigation />
       <Collection />
       <Switch>
         {/* PGR Start */}
@@ -249,7 +248,7 @@ const AppRoutes = () => {
         <Route path="/fungicides/flickSuper" component={FlickSuper} />
         <Route path="/fungicides/baan" component={Baan} />
         <Route path="/fungicides/safety" component={Safety} />
-        <Route path="/fungicides/kasub" component={Kasub} />
+        <Route path="/fungicides/kasubfungi" component={KasubFungi} />
         <Route path="/fungicides/conika" component={Conika} />
         <Route path="/fungicides/sivic" component={Sivic} />
         <Route path="/fungicides" component={TopFungi} />
@@ -267,11 +266,11 @@ const AppRoutes = () => {
         <Route path="/product/hydropPro" component={HydropPro} />
         <Route path="/product/trishool" component={Trishool} />
         <Route path="/product/zincomix" component={Zincomix} />
-      <Route path="/payment" component={Payment} />
+        <Route path="/payment" component={Payment} />
 
       </Switch>
       {/* <Route path="/payment/creditcard" component={CreditCard} /> */}
-      
+
 
       <Route
         render={({ location }) => {

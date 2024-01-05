@@ -30,22 +30,19 @@ const ContafPlus = () => {
             >
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
+              href="/fungicides"
             >
-              Plant Growth Regulator (PGR)
-            </a>
+              Buy Fungicides Online            </a>
             >
             <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
+              className="text-sm"
             >
-              HPM SUPER SONATA (PGR)
-            </a>
+              Tata Contaf Plus            </a>
             >
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a href="/fungicides/roko" className=" ml-[59.5rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next >
-          </span>
+          </a>
         </div>
       </div>
 
