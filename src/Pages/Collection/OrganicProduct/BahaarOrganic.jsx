@@ -27,17 +27,20 @@ const BahaarOrganic = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
+
             <a className="hover:text-blue-500 text-sm" href="/OrganicProduct">
               Buy Organic Product{" "}
             </a>
-            ><a className="text-sm">TATA Bahaar</a>
+            &gt;
+            <span className="text-sm">TATA Bahaar</span>
           </span>
           <a
             href="/OrganicProduct/activeplus"
             className=" ml-[56rem] pl-20 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
+
           </a>
         </div>
       </div>

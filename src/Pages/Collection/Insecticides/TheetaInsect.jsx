@@ -27,16 +27,16 @@ const TheetaInsect = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/Insecticide">
               Buy Insecticides of Leading Brands Online </a>
-            ><a className="text-sm">THEETA (Insecticide... )</a>
+            &gt;<span className="text-sm">THEETA (Insecticide... )</span>
           </span>
           <a
             href="/Insecticide/kaka"
             className=" ml-[51rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

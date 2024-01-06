@@ -27,17 +27,17 @@ const Nutriclick = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Nutriclick </a>
+            &gt;<span className="text-sm">Nutriclick </span>
           </span>
           <a
             href="/micro-nutrients/combical"
-            className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+            className=" ml-[61rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

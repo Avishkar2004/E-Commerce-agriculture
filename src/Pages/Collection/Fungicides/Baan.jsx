@@ -27,21 +27,13 @@ const Baan = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/fungicides"
-            >
-              Buy Fungicides Online       </a>
-            >
-            <a
-              className="text-sm"
-            >
-              Baan            </a>
-            >
+            &gt;
+            <a className="hover:text-blue-500 text-sm" href="/fungicides">Buy Fungicides Online</a>
+            &gt;
+            <span className="text-sm">Baan</span>
           </span>
           <a href="/fungicides/safety" className=" ml-[63rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

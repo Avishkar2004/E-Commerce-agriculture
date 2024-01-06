@@ -9,7 +9,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from "../../Description";
 
-const AriesBoron = () => {
+const AriesBoronMicro = () => {
   const [count, setCount] = useState(1);
 
   const handleIncrement = () => {
@@ -27,17 +27,17 @@ const AriesBoron = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Aries Boron 20</a>
+            &gt;<span className="text-sm">Aries Boron 20</span>
           </span>
           <a
             href="/micro-nutrients/chelafer"
-            className=" ml-[57rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+            className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>
@@ -169,4 +169,4 @@ const AriesBoron = () => {
   );
 };
 
-export default AriesBoron;
+export default AriesBoronMicro;

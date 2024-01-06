@@ -27,21 +27,17 @@ const Tatablitox = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/fungicides"
             >
               Buy Fungicides Online            </a>
-            >
-            <a
-              className="text-sm"
-            >
-              BLITOX Contact Fungicide            </a>
-            >
+            &gt;
+            <span className="text-sm">BLITOX Contact Fungicide</span>
           </span>
           <a href="/fungicides/tatamaster" className=" ml-[56rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

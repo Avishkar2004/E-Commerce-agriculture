@@ -27,23 +27,22 @@ const Taboli = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
+            &gt;
+            <span
+              className="text-sm"
             >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-Taboli            </a>
-            
+              Taboli            </span>
+
           </span>
-          <a href="/Plantgrowthregulator/kasub" className=" ml-[53rem] pl-28 font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+          <a href="/Plantgrowthregulator/kasub" className=" ml-[54rem] pl-28 font-secondary cursor-pointer hover:text-blue-500 text-base">
+            Next &gt;
           </a>
         </div>
       </div>

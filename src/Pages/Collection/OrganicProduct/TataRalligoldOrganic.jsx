@@ -27,13 +27,16 @@ const TataRalligoldOrganic = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
+
             <a className="text-sm" href="/OrganicProduct">
-            Buy Organic Product            </a>
-            ><a className="text-sm">TATA RALLIGOLD </a>
+              Buy Organic Product            </a>
+            &gt;
+            <span className="text-sm">TATA RALLIGOLD </span>
           </span>
           <a href="/OrganicProduct/ambition" className=" ml-[54rem] pl-16 font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next             &gt;
+
           </a>
         </div>
       </div>

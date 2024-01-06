@@ -27,17 +27,17 @@ const AllwinGoldSuper = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Allwin Gold Super </a>
+            &gt;<span className="text-sm">Allwin Gold Super </span>
           </span>
           <a
             href="/micro-nutrients/agromingold"
             className=" ml-[58rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

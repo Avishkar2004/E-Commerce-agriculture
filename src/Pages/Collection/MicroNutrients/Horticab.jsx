@@ -27,14 +27,14 @@ const Horticab = () => {
             <a className="hover:text-blue-500" href="/">
               Home{" "}
             </a>
-            ><a className="text-sm">Buy Micro-nutrients Online </a>>
-            <a className="hover:text-blue-500 text-sm">Horticab </a>
+            &gt;<span className="text-sm">Buy Micro-nutrients Online </span>&gt;
+            <span className="hover:text-blue-500 text-sm">Horticab </span>
           </span>
           <a
             href="/micro-nutrients/mnchel"
-            className=" ml-[60rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+            className=" ml-[61rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

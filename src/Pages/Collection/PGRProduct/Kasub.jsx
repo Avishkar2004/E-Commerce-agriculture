@@ -27,20 +27,20 @@ const Kasub = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
-            ><a className="text-sm">KASU-B ( Antibiotic )</a>
+            &gt;<span className="text-sm">KASU-B ( Antibiotic )</span>
           </span>
           <a
             href="/Plantgrowthregulator/dhanvarsha"
             className=" ml-[53rem] pl-8 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

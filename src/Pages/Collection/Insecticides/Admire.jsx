@@ -27,22 +27,21 @@ const Admire = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Insecticide"
             >
               Buy Insecticides of Leading Brands Online             </a>
-            >
-            <a
+            &gt;
+            <span
               className="text-sm"
             >
               Admire Systemic Insecticide
-            </a>
-            >
+            </span>
           </span>
           <a href="/Insecticide/hamla" className=" ml-[48rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

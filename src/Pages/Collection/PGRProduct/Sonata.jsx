@@ -32,20 +32,22 @@ const Sonata = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
-              Plant Growth Regulator (PGR) >
+              Plant Growth Regulator (PGR) &gt;
+
             </a>
-            <a className="text-sm">HPM SUPER SONATA (PGR)</a>
+            <span className="text-sm">HPM SUPER SONATA (PGR)</span>
           </span>
           <a
             href="/Plantgrowthregulator/planofix"
             className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
+
           </a>
         </div>
       </div>

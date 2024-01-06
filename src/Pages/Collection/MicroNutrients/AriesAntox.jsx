@@ -27,17 +27,17 @@ const AriesAntox = () => {
             <a className="hover:text-blue-500" href="/">
               Home{" "}
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Aries Antox </a>
+            &gt;<span className="text-sm">Aries Antox </span>
           </span>
           <a
             href="/micro-nutrients/horticab"
             className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

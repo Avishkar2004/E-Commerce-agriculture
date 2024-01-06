@@ -20,9 +20,7 @@ const TataMaster = () => {
     setCount(count - 1);
   };
 
-  const handleRefresh = (e) => {
-    e.preventDefault()
-  }
+
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <div className="space-x-52 ml-12 mt-4 mb-4">
@@ -31,21 +29,16 @@ const TataMaster = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
-              href="/fungicides"
-            >
+              href="/fungicides">
               Buy Fungicides Online            </a>
-            >
-            <a
-              className="text-sm"
-            >
-              TATA MASTER            </a>
-            >
+            &gt;
+            <span className="text-sm">TATA MASTER</span>
           </span>
           <a href="/fungicides/contafplus" className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

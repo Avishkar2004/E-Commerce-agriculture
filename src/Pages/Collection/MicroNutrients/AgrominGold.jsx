@@ -27,25 +27,19 @@ const AgrominGold = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
+              href="/micro-nutrients"
             >
-              Plant Growth Regulator (PGR)
-            </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-              HPM SUPER SONATA (PGR)
-            </a>
-            >
+              Buy Micro-nutrients Online            </a>
+            &gt;
+            <span className="text-sm">
+              Agromin Gold </span>
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
-          </span>
+          <a href="/micro-nutrients/ariesboron" className=" ml-[58rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+            Next &gt;
+          </a>
         </div>
       </div>
 

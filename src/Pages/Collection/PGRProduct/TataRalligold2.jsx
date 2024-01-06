@@ -27,20 +27,20 @@ const TataRalligold2 = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
-            ><a className="text-sm">LIHOCIN </a>
+            &gt;<span className="text-sm">TATA RALLIGOLD </span>
           </span>
           <a
             href="/Plantgrowthregulator/lihocin"
-            className=" ml-[56rem] pl-12 font-secondary cursor-pointer hover:text-blue-500 text-base"
+            className=" ml-[54rem] pl-12 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

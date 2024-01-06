@@ -27,22 +27,22 @@ const Lihocin = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
-            >
-            <a
+            &gt;
+            <span
               className="text-sm"
             >
-LIHOCIN            </a>
+LIHOCIN            </span>
             
           </span>
           <a href="/Plantgrowthregulator/floramax" className=" ml-[54rem] pl-24 font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

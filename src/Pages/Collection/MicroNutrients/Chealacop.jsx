@@ -27,11 +27,11 @@ const Chealacop = () => {
             <a className="hover:text-blue-500" href="/">
               Home{" "}
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Chelacop </a>
+            &gt;<span className="text-sm">Chelacop </span>
           </span>
           <a
             href="/micro-nutrients/dhanvarshaOrganic"

@@ -27,17 +27,17 @@ const FantacPlus = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">FANTAC Plus </a>
+            &gt;<span className="text-sm">FANTAC Plus </span>
           </span>
           <a
             href="/micro-nutrients/prozinc"
             className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

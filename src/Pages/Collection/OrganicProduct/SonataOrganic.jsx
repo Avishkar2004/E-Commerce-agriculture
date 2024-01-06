@@ -27,17 +27,20 @@ const SonataOrganic = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
+
             <a className="hover:text-blue-500 text-sm" href="/OrganicProduct">
               Buy Organic Product
             </a>
-            ><a className="text-sm">HPM SUPER SONATA (PGR)</a>>
+            &gt;
+            <span className="text-sm">HPM SUPER SONATA (PGR)</span>
           </span>
           <a
             href="/OrganicProduct/kaka"
             className=" ml-[53rem] pl-6 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
+
           </a>
         </div>
       </div>

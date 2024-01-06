@@ -27,17 +27,17 @@ const TagBumper = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
-            ><a className="text-sm">TAG BUMPER GOLD </a>
+            &gt;<span className="text-sm">Tag Bumper Gold </span>
           </span>
-          <a href="/Plantgrowthregulator/double" className=" ml-[53rem] pl-10 font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+          <a href="/Plantgrowthregulator/double" className=" ml-[54rem] pl-10 font-secondary cursor-pointer hover:text-blue-500 text-base">
+            Next &gt;
           </a>
         </div>
       </div>

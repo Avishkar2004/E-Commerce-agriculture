@@ -27,20 +27,20 @@ const Dhanvarsha = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               href="/Plantgrowthregulator  "
               className="hover:text-blue-500 text-sm"
             >
               Plant Growth Regulator (PGR)
             </a>
-            ><a className="text-sm">DHANVARSHA </a>
+            &gt;<span className="text-sm">DHANVARSHA </span>
           </span>
           <a
             href="/Plantgrowthregulator/atomic"
             className=" ml-[53rem] pl-20 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

@@ -27,21 +27,16 @@ const Osheen = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
+
             <a
               className="hover:text-blue-500 text-sm"
               href="/Insecticide"
             >
-              Buy Insecticides of Leading Brands Online             </a>
-            >
-            <a
-              className="text-sm"
-            >
-              Osheen (Systemic Insecticide )           </a>
-            >
+              Buy Insecticides of Leading Brands Online</a>&gt;<span className="text-sm">Osheen (Systemic Insecticide )</span>
           </span>
           <a href="/Insecticide/jump" className=" ml-[47rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

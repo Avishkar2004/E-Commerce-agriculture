@@ -27,18 +27,15 @@ const Matador = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Insecticide"
             >
               Buy Insecticides of Leading Brands Online             </a>
-            >
-            <a
-              className="text-sm"
-            >
-              Matador Syngenta            </a>
-            >
+            &gt;
+            <span className="text-sm">Matador Syngenta            </span>
+            &gt;
           </span>
           <a href="/Insecticide/ekalux" className=" ml-[51rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             &lt; Prev

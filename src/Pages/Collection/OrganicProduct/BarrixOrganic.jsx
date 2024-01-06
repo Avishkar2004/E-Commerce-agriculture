@@ -27,17 +27,17 @@ const BarrixOrganic = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a href="/OrganicProduct" className="text-sm">
               Buy Organic Product{" "}
             </a>
-            ><a className="text-sm">Barrix Root Charger</a>
+            &gt;<span className="text-sm">Barrix Root Charger</span>
           </span>
           <a
             href="/OrganicProduct/tataralligold"
             className=" ml-[55rem] pl-20 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

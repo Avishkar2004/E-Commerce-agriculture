@@ -27,21 +27,17 @@ const Ulala = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Insecticide"
             >
               Buy Insecticides of Leading Brands Online             </a>
-            >
-            <a
-              className="text-sm"
-            >
-              Ulala Insecticide            </a>
-            >
+            &gt;
+            <span className="text-sm">Ulala Insecticide</span>
           </span>
           <a href="/Insecticide/movento" className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

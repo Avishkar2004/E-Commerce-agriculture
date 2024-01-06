@@ -27,17 +27,20 @@ const AmbitionOrganic = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
+
             <a className="hover:text-blue-500 text-sm" href="/OrganicProduct">
               Buy Organic Product
             </a>
-            ><a className="text-sm">AMBITION (Crop Supplement)</a>
+            &gt;
+            <span className="text-sm">AMBITION (Crop Supplement)</span>
           </span>
           <a
             href="/OrganicProduct/barrixcatch"
             className=" ml-[56rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
+
           </a>
         </div>
       </div>

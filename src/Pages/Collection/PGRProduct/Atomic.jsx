@@ -27,8 +27,10 @@ const Atomic = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            ><a className="text-sm">Plant Growth Regulator (PGR)</a>>
-            <a className="hover:text-blue-500 text-sm">Atomic</a>
+            &gt;
+            <a href="/Plantgrowthregulator" className="hover:text-blue-500 text-sm">Plant Growth Regulator (PGR)</a>&gt;
+
+            <span className="text-sm">Atomic</span>
           </span>
           <a
             href="/Plantgrowthregulator/dhanvarsha"

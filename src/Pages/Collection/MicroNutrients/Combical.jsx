@@ -27,17 +27,17 @@ const Combical = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Aries Agro Combical </a>
+            &gt;<span className="text-sm">Aries Agro Combical </span>
           </span>
           <a
             href="/micro-nutrients/agromminFoliar"
             className=" ml-[57rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

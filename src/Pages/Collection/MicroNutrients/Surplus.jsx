@@ -27,17 +27,17 @@ const Surplus = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">SURPLUS </a>
+            &gt;<span className="text-sm">SURPLUS </span>
           </span>
           <a
             href="/micro-nutrients/dhanvarshaOrganic"
             className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

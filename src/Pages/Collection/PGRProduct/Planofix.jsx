@@ -26,20 +26,21 @@ const Planofix = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
-            ><a className="text-sm">PLANOFIX (PGR)</a>
+            &gt;
+            <span className="text-sm">PLANOFIX (PGR)</span>
           </span>
           <a
             href="/Plantgrowthregulator/cuttingAid"
             className=" ml-[57rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

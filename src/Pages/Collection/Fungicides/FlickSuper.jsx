@@ -27,21 +27,17 @@ const FlickSuper = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/fungicides"
             >
               Buy Fungicides Online            </a>
-            >
-            <a
-              className="text-sm"
-            >
-              FlickSuper            </a>
-            >
+            &gt;
+            <span className="text-sm">FlickSuper</span>
           </span>
           <a href="/fungicides/baan" className=" ml-[60rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

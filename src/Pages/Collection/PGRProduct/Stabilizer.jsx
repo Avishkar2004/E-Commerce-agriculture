@@ -27,20 +27,20 @@ const Stabilizer = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
-            ><a className="text-sm">STABILIZER-95</a>
+            &gt;<span className="text-sm">STABILIZER-95</span>
           </span>
           <a
             href="/Plantgrowthregulator/taboli"
             className=" ml-[53rem] pl-16 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

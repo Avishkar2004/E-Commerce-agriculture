@@ -27,17 +27,17 @@ const BoneMeal = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/OrganicProduct">
               Buy Organic Product{" "}
             </a>
-            ><a className="text-sm">Bone Meal </a>
+            &gt;<span className="text-sm">Bone Meal </span>
           </span>
           <a
             href="/OrganicProduct/soil"
             className=" ml-[56rem] pl-24 font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

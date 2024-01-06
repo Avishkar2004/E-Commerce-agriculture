@@ -47,7 +47,6 @@ import Mobomin2Micro from "../Pages/Collection/MicroNutrients/Mobomin2Micro";
 import AgrominMax from "../Pages/Collection/MicroNutrients/AgrominMax";
 import AllwinGoldSuper from "../Pages/Collection/MicroNutrients/AllwinGoldSuper";
 import AgrominGold from "../Pages/Collection/MicroNutrients/AgrominGold";
-import AriesBoron from "../Pages/Collection/MicroNutrients/AriesBoron";
 import Chelafer from "../Pages/Collection/MicroNutrients/Chelafer";
 import Nutriclick from "../Pages/Collection/MicroNutrients/Nutriclick";
 import Combical from "../Pages/Collection/MicroNutrients/Combical";
@@ -112,7 +111,7 @@ import Trishool from "../Pages/Collection/Products/Trishool";
 import Zincomix from "../Pages/Collection/Products/Zincomix";
 import Payment from "../Pages/Payment";
 import KasubFungi from "../Pages/Collection/Fungicides/KasubFungi";
-// import CreditCard from "../Pages/CreditCard";
+import AriesBoronMicro from "../Pages/Collection/MicroNutrients/AriesBoronMicro";
 const AppRoutes = () => {
   return (
     <Router>
@@ -138,7 +137,6 @@ const AppRoutes = () => {
         <Route path="/Plantgrowthregulator/dhanvarsha" component={Dhanvarsha} />
         <Route path="/Plantgrowthregulator/atomic" component={Atomic} />
         <Route path="/Plantgrowthregulator" component={PlantGrowthRegulator} />
-        {/* PGR Done */}
 
         {/* Organic start */}
         <Route path="/OrganicProduct/theeta" component={Theeta} />
@@ -165,7 +163,7 @@ const AppRoutes = () => {
         <Route path="/OrganicProduct/soil" component={VermicompostOrganic} />
 
         <Route path="/OrganicProduct" component={Organicproduct} />
-        {/* Organic End */}
+
 
         {/* Micor nutrients start */}
         <Route path="/micro-nutrients/mobomin2" component={Mobomin2Micro} />
@@ -175,7 +173,7 @@ const AppRoutes = () => {
           component={AllwinGoldSuper}
         />
         <Route path="/micro-nutrients/agromingold" component={AgrominGold} />
-        <Route path="/micro-nutrients/ariesboron" component={AriesBoron} />
+        <Route path="/micro-nutrients/ariesboron" component={AriesBoronMicro} />
         <Route path="/micro-nutrients/chelafer" component={Chelafer} />
         <Route path="/micro-nutrients/nutriclick" component={Nutriclick} />
         <Route path="/micro-nutrients/combical" component={Combical} />
@@ -203,7 +201,6 @@ const AppRoutes = () => {
 
         <Route path="/micro-nutrients" component={micronutrients} />
 
-        {/* Micro nutrients end */}
 
         {/* Insectide Start */}
         <Route path="/Insecticide/theetaInsect" component={TheetaInsect} />
@@ -229,7 +226,6 @@ const AppRoutes = () => {
         <Route path="/Insecticide/matador" component={Matador} />
 
         <Route path="/Insecticide" component={Insecticide} />
-        {/* Insectice end  */}
 
         {/* Fungicide start */}
 
@@ -253,7 +249,6 @@ const AppRoutes = () => {
         <Route path="/fungicides/sivic" component={Sivic} />
         <Route path="/fungicides" component={TopFungi} />
 
-        {/* Fungicide end */}
 
         <Route path="/product/macrofert" component={Macrofert} />
         <Route path="/product/fertimax" component={Fertimax} />
@@ -269,9 +264,6 @@ const AppRoutes = () => {
         <Route path="/payment" component={Payment} />
 
       </Switch>
-      {/* <Route path="/payment/creditcard" component={CreditCard} /> */}
-
-
       <Route
         render={({ location }) => {
           if (location.pathname === "/") {

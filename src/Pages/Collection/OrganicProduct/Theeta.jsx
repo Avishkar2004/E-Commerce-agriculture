@@ -27,14 +27,17 @@ const Theeta = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+                        &gt;
+
             <a className="hover:text-blue-500 text-sm" href="/OrganicProduct">
               Buy Organic Product
             </a>
-            ><a className="text-sm">THEETA (Insecticide... )</a>
+                        &gt;
+<span className="text-sm">THEETA (Insecticide... )</span>
           </span>
           <a href="/OrganicProduct/sonata" className=" ml-[53rem] pl-16 font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next             &gt;
+
           </a>
         </div>
       </div>

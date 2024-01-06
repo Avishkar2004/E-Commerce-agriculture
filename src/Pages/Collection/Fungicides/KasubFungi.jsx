@@ -24,26 +24,14 @@ const KasubFungi = () => {
             <div className="space-x-52 ml-12 mt-4 mb-4">
                 <div className="flex text-sm gap-12 text-gray-500 font-secondary">
                     <span className="space-x-2 ml-6">
-                        <a className="hover:text-blue-500" href="/">
-                            Home
-                        </a>
-            >
-                        <a
-                            className="hover:text-blue-500 text-sm"
-                            href="/fungicides"
-                        >
-                            Buy Fungicide Online                        </a>
-            ><a className="text-sm">KASU-B ( Antibiotic )</a>
+                        <a className="hover:text-blue-500" href="/"> Home </a>&gt;
+                        <a className="hover:text-blue-500 text-sm" href="/fungicides">Buy Fungicide Online</a>
+                        &gt;<span className="text-sm">KASU-B ( Antibiotic )</span>
                     </span>
-                    <a
-                        href="/fungicides/conika"
-                        className=" ml-[57rem] pl-8 font-secondary cursor-pointer hover:text-blue-500 text-base"
-                    >
-            Next >
+                    <a href="/fungicides/conika" className=" ml-[57rem] pl-8 font-secondary cursor-pointer hover:text-blue-500 text-base" >Next &gt;
                     </a>
                 </div>
             </div>
-
             <div className="flex">
                 {/* Left Side */}
                 <div className="w-1/2 bg-white text-center ml-12 border-r-2 border-l-2 border-t-2 border-b-2">

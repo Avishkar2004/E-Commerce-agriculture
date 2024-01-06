@@ -27,17 +27,17 @@ const DhanvarshaOrganic = () => {
             <a className="hover:text-blue-500" href="/">
               Home{" "}
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Dhanvarsha </a>
+            &gt;<span className="text-sm">Dhanvarsha </span>
           </span>
           <a
             href="/micro-nutrients/chealacop"
             className=" ml-[60rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

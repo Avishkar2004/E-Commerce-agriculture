@@ -1,34 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import SearchIcon from "@mui/icons-material/Search";
+import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 const Header = () => {
   const inputRef = useRef(null);
-  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(null);
 
   const handleSearchBarClick = () => {
     inputRef.current.focus();
   };
 
-  const toggleLanguageMenu = () => {
-    setLanguageMenuOpen(!languageMenuOpen);
-  };
-
-  const selectLanguage = (language) => {
-    setSelectedLanguage(language);
-    setLanguageMenuOpen(false);
-  };
 
   return (
     <header className="bg-[#c4e0ef] text-white py-5">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">
           <a href="/" className="text-blue-500">
-            YourLogo
-          </a>
+            <img src={HeaderPhoto} alt="Header" className="w-14 h-12 backdrop-brightness-200	" />          </a>
         </div>
-
         <div
           className="w-full md:w-2/3 relative"
           onClick={handleSearchBarClick}
@@ -57,42 +46,6 @@ const Header = () => {
             />
           </div>
         </div>
-
-        {/* Language Menu */}
-        <div className="relative group">
-          <button
-            className="text-blue-600 font-primary"
-            onClick={toggleLanguageMenu}
-          >
-            Language
-          </button>
-          {languageMenuOpen && (
-            <ul className="absolute z-10 mt-2 space-y-2 bg-white border text-black rounded shadow-md">
-              <li>
-                <button
-                  className="px-2 py-2 z-10 hover:bg-gray-100"
-                  onClick={() => selectLanguage("English")}
-                >
-                  English
-                </button>
-              </li>
-              <li>
-                <button
-                  className="px-4 py-2 hover:bg-gray-100"
-                  onClick={() => selectLanguage("Hindi")}
-                >
-                  Hindi
-                </button>
-              </li>
-            </ul>
-          )}
-        </div>
-
-        {/* Selected Language */}
-        {selectedLanguage && (
-          <div className="ml-[-6rem] mt-10 text-black">{selectedLanguage}</div>
-        )}
-
         <div className="md:space-x-4">
           <div className="md:space-x-4">
             <button className="text-blue-500 md:ml-8 font-primary">

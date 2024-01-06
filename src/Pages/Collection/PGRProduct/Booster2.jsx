@@ -27,23 +27,23 @@ const Booster2 = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
               href="/Plantgrowthregulator"
             >
               Plant Growth Regulator (PGR)
             </a>
-            >
-            <a
+            &gt;
+            <span
               className="text-sm"
             >
-Booster: 2
-            </a>
-            
+              Booster: 2
+            </span>
+
           </span>
           <a href="/Plantgrowthregulator/tataralligold2" className=" ml-[58rem] pl-6 font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

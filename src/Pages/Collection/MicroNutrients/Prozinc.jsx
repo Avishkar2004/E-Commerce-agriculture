@@ -27,17 +27,17 @@ const Prozinc = () => {
             <a className="hover:text-blue-500" href="/">
               Home{" "}
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">Pro-Zinc </a>
+            &gt;<span className="text-sm">Pro-Zinc </span>
           </span>
           <a
             href="/micro-nutrients/surplus"
             className=" ml-[61rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

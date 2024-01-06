@@ -27,17 +27,17 @@ const Chelafer = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+          &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
-              Buy Micro-nutrients Online{" "}
+            Buy Micro-nutrients Online  {" "}
             </a>
-            ><a className="text-sm">Chelafer </a>
+          &gt;<span className="text-sm">Chelafer </span>
           </span>
           <a
             href="/micro-nutrients/nutriclick"
-            className=" ml-[60rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
+            className=" ml-[62rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next&gt;
           </a>
         </div>
       </div>

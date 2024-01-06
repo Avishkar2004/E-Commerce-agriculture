@@ -27,21 +27,14 @@ const FoliogoldFungi = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/fungicides"
-            >
-              Buy Fungicides Online            </a>
-            >
-            <a
-              className="text-sm"
-            >
-              Foliogold Syngenta            </a>
-            >
+            &gt;
+            <a className="hover:text-blue-500 text-sm"
+              href="/fungicides"> Buy Fungicides Online</a>
+            &gt;
+            <span className="text-sm">Foliogold Syngenta</span>
           </span>
           <a href="/fungicides/indofilz" className=" ml-[58rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

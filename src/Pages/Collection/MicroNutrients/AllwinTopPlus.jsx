@@ -27,17 +27,17 @@ const AllwinTopPlus = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a className="hover:text-blue-500 text-sm" href="/micro-nutrients">
               Buy Micro-nutrients Online{" "}
             </a>
-            ><a className="text-sm">All win top plus </a>
+            &gt;<span className="text-sm">All win top plus </span>
           </span>
           <a
             href="/micro-nutrients/phosphocop"
             className=" ml-[58rem] font-secondary cursor-pointer hover:text-blue-500 text-base"
           >
-            Next >
+            Next &gt;
           </a>
         </div>
       </div>

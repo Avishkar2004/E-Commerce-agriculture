@@ -27,24 +27,18 @@ const Confidor = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-            >
+            &gt;
             <a
               className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator"
+              href="/Insecticide"
             >
-Buy Insecticides of Leading Brands Online             </a>
-            >
-            <a
-              className="hover:text-blue-500 text-sm"
-              href="/Plantgrowthregulator/super-sonata"
-            >
-              HPM SUPER SONATA (PGR)
-            </a>
-            >
+              Buy Insecticides of Leading Brands Online             </a>
+            &gt;
+            <span className="text-sm">Confider Insecticide</span>
           </span>
-          <span className=" ml-[53rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
-            Next >
-          </span>
+          <a href="/Insecticide/pegasus" className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+            Next &gt;
+          </a>
         </div>
       </div>
 
