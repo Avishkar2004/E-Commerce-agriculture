@@ -7,30 +7,31 @@ import insectiicide1 from "../Components/Collections/insectiicide1.avif";
 import Funcgicide from "../Components/Collections/fungicide1.avif";
 import { Link } from "react-router-dom";
 // Feature brand
-// import Aries from "../Components/Collections/aries1_280x.avif";
-// import Bayer from "../Components/Collections/Bayer3_280x.avif";
-// import Barrix from "../Components/Collections/barrix.avif";
-// import Ramcides from "../Components/Collections/Ramcides_Logo_280x.avif";
-// import Adama from "../Components/Collections/adama_280x.avif";
-// import Industried from "../Components/Collections/PI-Industries.avif";
+import Aries from "../Components/Collections/aries1_280x.avif";
+import Bayer from "../Components/Collections/Bayer3_280x.avif";
+import Barrix from "../Components/Collections/barrix.avif";
+import Ramcides from "../Components/Collections/Ramcides_Logo_280x.avif";
+import Adama from "../Components/Collections/adama_280x.avif";
+import Industried from "../Components/Collections/PI-Industries.avif";
 
 const Collection = () => {
-  return (
-    <section className="flex flex-col justify-center items-cente mb-9">
-      <div className="mb-20">
-        <a href="">
-          <img src={Offer} alt="Offer" className="max-w-full" />
-        </a>
-      </div>
-      <div>
-        <div className="flex container justify-between -mt-6 space-x-40 mb-5 align-baseline font-bold">
-          <h1 className="text-[#1e2d7d] text-lg font-primary cursor-pointer">
-            Our Collection's
-          </h1>
-          <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer">
-            View All
-          </h1>
-        </div>
+return (
+
+<section className="flex flex-col justify-center items-cente mb-9">
+<div className="mb-20">
+<a href="">
+<img src={Offer} alt="Offer" className="max-w-full" />
+</a>
+</div>
+<div>
+<div className="flex container justify-between -mt-6 space-x-40 mb-5 align-baseline font-bold">
+<h1 className="text-[#1e2d7d] text-lg font-primary cursor-pointer">
+Our Collection's
+</h1>
+<h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer">
+View All
+</h1>
+</div>
 
         {/* Collection */}
         <div className="flex flex-wrap justify-center gap-2 md:justify-start">
@@ -129,7 +130,8 @@ const Collection = () => {
         </div>
       </div> */}
     </section>
-  );
+
+);
 };
 
 export default Collection;
