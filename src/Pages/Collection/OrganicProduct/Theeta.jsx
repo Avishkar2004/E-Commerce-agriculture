@@ -27,13 +27,13 @@ const Theeta = () => {
             <a className="hover:text-blue-500" href="/">
               Home
             </a>
-                        &gt;
+            &gt;
 
             <a className="hover:text-blue-500 text-sm" href="/OrganicProduct">
               Buy Organic Product
             </a>
-                        &gt;
-<span className="text-sm">THEETA (Insecticide... )</span>
+            &gt;
+            <span className="text-sm">THEETA (Insecticide... )</span>
           </span>
           <a href="/OrganicProduct/sonata" className=" ml-[53rem] pl-16 font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next             &gt;
@@ -134,33 +134,33 @@ const Theeta = () => {
               </p>
             </div>
           </div>
-          <div className="mt-6 flex gap-6">
-            <p className="text-2xl font-semibold space-x-9 ">
-              Quantity :
-              <p className="text-4xl space-x-12 text-red-900 ml-32 overflow-hidden -mt-9 item-center border-[2px] border-t-2 border-b-2">
-                <button className="text-gray-400 hover:text-black border-r-2 ml-5 items-center">
-                  <button className="mr-5" onClick={handleIncrement}>
+          <div className="mt-6 flex gap-6 items-center">
+            <p className="text-2xl font-semibold space-x-9">
+              Quantity:
+              <p className="text-4xl space-x-12 text-red-900 ml-32 overflow-hidden -mt-9 flex items-center border-[2px] border-t-2 border-b-2">
+                <button className="text-gray-400 hover:text-black border-r-2 px-3">
+                  <button className="mr-3" onClick={handleIncrement}>
                     +
                   </button>
                 </button>
-                <span className="text-gray-700 border-r-2 items-center">
-                  <span className="mr-5 -ml-5">{count}</span>
+                <span className="text-gray-700 border-r-2 px-3">
+                  <span className="mr-3 -ml-3">{count}</span>
                 </span>
-                <button className="items-center">
-                  <button
-                    onClick={handleDecrement}
-                    className="-ml-5 items-center"
-                  >
-                    <button className="mr-5 hover:text-black text-gray-400">
-                      -
-                    </button>
+                <button className="px-3">
+                  <button onClick={handleDecrement} className="-ml-3">
+                    <button className="mr-3 hover:text-black text-gray-400">-</button>
                   </button>
                 </button>
               </p>
             </p>
-            <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-16 ml-32 -mt-2  cursor-not-allowed rounded">
-              Sold out
-            </button>
+            <div className="flex justify-center content-center min-h-12">
+              <a href="/BuyNow" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+                Buy Now
+              </a>
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+                Add To Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>

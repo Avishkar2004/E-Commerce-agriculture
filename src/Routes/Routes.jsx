@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "../Pages/Header";
 import Collection from "../Pages/Collection";
@@ -112,6 +112,10 @@ import Zincomix from "../Pages/Collection/Products/Zincomix";
 import Payment from "../Pages/Payment";
 import KasubFungi from "../Pages/Collection/Fungicides/KasubFungi";
 import AriesBoronMicro from "../Pages/Collection/MicroNutrients/AriesBoronMicro";
+// Buy Now Page
+import BuyNow from "../Pages/BuyNow";
+import LogIn from "../Pages/LogIn";
+
 const AppRoutes = () => {
   return (
     <Router>
@@ -262,7 +266,9 @@ const AppRoutes = () => {
         <Route path="/product/trishool" component={Trishool} />
         <Route path="/product/zincomix" component={Zincomix} />
         <Route path="/payment" component={Payment} />
-
+        {/* Buy Now Route */}
+        <Route path="/BuyNow" component={BuyNow} />
+        <Route path="/LogIn" component={LogIn} />
       </Switch>
       <Route
         render={({ location }) => {

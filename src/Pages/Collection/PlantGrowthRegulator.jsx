@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PlantGrowthRegulators from "../../Components/PgrCollection/PlantGrowthRegulator.jpg";
 import { PGR } from "../../Data";
 import Recentlyviewed from "../Recentlyviewed";
@@ -11,13 +11,13 @@ const PlantGrowthRegulator = () => {
         href="/"
         className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
       >
-        Home >
+        Home &gt;
       </a>
       <a
         href="/Plantgrowthregulator"
         className="text-black text-sm ml-1 hover:text-blue-600 font-secondary"
       >
-        Plant Growth Regulator (PGR) >
+        Plant Growth Regulator (PGR) &gt;
       </a>
       <div className=" left-4 items-center">
         <div className="container flex">
@@ -182,8 +182,8 @@ const PlantGrowthRegulator = () => {
             </div>
 
             <hr className="mt-5 border-[1px]" />
-      {/* if you want to put gap inbetn component you need gap */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+            {/* if you want to put gap inbetn component you need gap */}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5 ">
               {PGR.map((product, index) => (
                 <Link
                   to={product.to}

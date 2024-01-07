@@ -12,10 +12,10 @@ const TopFungi = () => {
           href="/"
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
-          Home >
+          Home &gt;
         </a>
         <a href="/fungicides" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
-          Fungicide Online >
+          Fungicide Online &gt;
         </a>
       </div>
       <div className="container flex">

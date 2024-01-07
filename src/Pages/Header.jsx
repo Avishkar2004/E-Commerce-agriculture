@@ -52,7 +52,8 @@ const Header = () => {
               My Account
             </button>
           </div>
-          <button className="text-blue-500">Login / Signup</button>
+          <a href="/logIn" className="text-blue-500">Login</a>
+          <button className="text-blue-500">/  Sign In</button>
         </div>
 
         <div>
