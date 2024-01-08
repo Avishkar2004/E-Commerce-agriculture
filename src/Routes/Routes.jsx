@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "../Pages/Header";
 import Collection from "../Pages/Collection";
@@ -120,7 +120,6 @@ const AppRoutes = () => {
   return (
     <Router>
       <Header />
-      <Collection />
       <Switch>
         {/* PGR Start */}
         <Route path="/Plantgrowthregulator/super-sonata" component={Sonata} />
@@ -276,6 +275,7 @@ const AppRoutes = () => {
             // Render the common components only on the home page
             return (
               <>
+                <Collection />
                 <Sliders />
                 <Product />
                 <OrganicProduct />

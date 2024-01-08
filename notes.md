@@ -8,3 +8,6 @@ How router working in this File
    OrganicProduct => OrganicProduct folder madhe
    PlantGrowthRegulator => PGRProduct folder madhe
    TopFungi => Fungicides Folder madhe
+
+
+Clearsale is the main file for Clearsale
