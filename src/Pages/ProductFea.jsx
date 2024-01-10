@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const Product = () => {
+const ProductFea = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,7 +16,6 @@ const Product = () => {
         }
         const data = await response.json();
 
-        console.log("Number of products received:", data.length);
         console.log("Received products:", data);
 
         setProducts(data.slice(0, 1000) || []);
@@ -28,6 +28,11 @@ const Product = () => {
     };
     fetchData();
   }, []);
+
+  const handleProductClick = (productId) => {
+    // Navigate to the product page when a product is clicked
+    history.push(`/fungicides/${productId.toLowerCase()}`);
+  };
 
   return (
     <div className="container mx-auto mt-10 mb-5">
@@ -45,10 +50,10 @@ const Product = () => {
         ) : loading ? (
           <p>Loading...</p>
         ) : products.length > 0 ? (
-          products.map((product) => (
-            <Link
-              to={product.name}
-              key={product.id}
+          products.map((product, index) => (
+            <div
+              key={index}
+              onClick={() => handleProductClick(product.name)}
               className="border border-x-slate-200 border-solid"
             >
               <div className="image-container">
@@ -60,7 +65,6 @@ const Product = () => {
                       src={`data:image/avif;base64,${product.image}`}
                       alt={product.name}
                     />
-
                   </div>
                 )}
               </div>
@@ -81,7 +85,7 @@ const Product = () => {
                   {product.stockStatus}
                 </p>
               </div>
-            </Link>
+            </div>
           ))
         ) : (
           <p>No products available</p>
@@ -92,4 +96,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductFea;

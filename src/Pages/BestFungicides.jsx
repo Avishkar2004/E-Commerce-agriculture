@@ -17,7 +17,7 @@ const BestFungicides = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
         {parentObject.Fungicides.map((product, index) => (
           <Link
-            to={product.to}
+            to={product + "/:productId"}
             key={index}
             className="border border-x-slate-200 border-solid"
           >
