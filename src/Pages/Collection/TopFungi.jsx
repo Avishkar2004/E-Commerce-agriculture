@@ -1,5 +1,5 @@
 import React from "react";
-import { Fungicides } from "../../Data";
+import { parentObject } from "../../Data";
 import PlantGrowthRegulators from "../../Components/PgrCollection/PlantGrowthRegulator.jpg";
 import { Link } from "react-router-dom";
 import Recentlyviewed from "../Recentlyviewed";
@@ -156,7 +156,7 @@ const TopFungi = () => {
           <hr className="mt-5 border-[1px]" />
           {/* if you want to put gap inbetn component you need gap */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5">
-            {Fungicides.map((product, index) => (
+            {parentObject.Fungicides.map((product, index) => (
               <Link
                 to={product.to}
                 key={index}
@@ -164,7 +164,7 @@ const TopFungi = () => {
               >
                 <div className="image-container">
                   <img
-                    src={product.image} 
+                    src={product.image}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />

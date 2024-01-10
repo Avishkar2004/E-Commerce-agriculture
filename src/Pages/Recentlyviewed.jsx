@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { products } from "../Data";
+import { parentObject } from "../Data";
 
 const Recentlyviewed = () => {
   const settings = {
@@ -50,7 +50,7 @@ const Recentlyviewed = () => {
         </h1>
       </div>
       <Slider {...settings}>
-        {products.map((product, index) => (
+        {parentObject.products.map((product, index) => (
           <div key={index} className="border border-x-slate-200 border-solid">
             <div className="image-container">
               <img

@@ -1,6 +1,5 @@
 import React from "react";
-import { Organicproducts } from "../Data";
-import { ArielAgro } from "../Data";
+import { parentObject } from "../Data";
 import { Link } from "react-router-dom";
 const OrganicProduct = () => {
   return (
@@ -16,7 +15,7 @@ const OrganicProduct = () => {
       </div>
       {/* if you want space inbetn for this you need gap-1 */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-        {Organicproducts.map((product, index) => (
+        {parentObject.Organicproducts.map((product, index) => (
           <Link
             to={product.to}
             key={index}
@@ -58,7 +57,7 @@ const OrganicProduct = () => {
         </h1>
       </div>
       <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-        {ArielAgro.map((product, index) => (
+        {parentObject.ArielAgro.map((product, index) => (
           <Link
             to={product.to}
             key={index}

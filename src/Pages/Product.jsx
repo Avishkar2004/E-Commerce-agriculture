@@ -1,7 +1,35 @@
-import React from "react";
-import { products } from "../Data";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 const Product = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/products");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+
+        console.log("Number of products received:", data.length);
+
+        setProducts(data.slice(0, 7) || []);
+      } catch (error) {
+        console.error("Error fetching data:", error.message);
+        setError("An error occurred while fetching data");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+
+
   return (
     <div className="container mx-auto mt-10 mb-5">
       <div className="flex justify-between font-bold">
@@ -12,40 +40,52 @@ const Product = () => {
           View All
         </h1>
       </div>
-      {/* if you want space inbetn for this you need gap-1 */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-        {products.map((product, index) => (
-          <Link
-            to={product.to}
-            key={index}
-            className="border border-x-slate-200 border-solid"
-          >
-            <div className="image-container">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="text-base font-light font-primary">
-                {product.name}
-              </h2>
-              <p className="text-sm text-gray-600 font-secondary font-semibold">
-                {product.description}
-              </p>
-              <p className="text-red-500 font-secondary mt-3 font-medium text-lg">
-                {product.salePrice}
-              </p>
-              <p className="text-gray-600 font-secondary text-sm mt-2">
-                {product.reviews}
-              </p>
-              <p className="text-green-600 font-secondary mt-2">
-                {product.stockStatus}
-              </p>
-            </div>
-          </Link>
-        ))}
+        {error ? (
+          <p>{error}</p>
+        ) : loading ? (
+          <p>Loading...</p>
+        ) : products.length > 0 ? (
+          products.map((product) => (
+            <Link
+              to={product.name}
+              key={product.id}
+              className="border border-x-slate-200 border-solid"
+            >
+              <div className="image-container">
+                {product.image && (
+                  <div>
+                    {console.log(`data:image/avif;base64, ${product.image}`)}
+                    <img
+                      className="w-full h-full object-cover"
+                      src={`data:image/avif;base64, ${product.image}`}
+                      alt={product.name}
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="p-4">
+                <h2 className="text-base font-light font-primary">
+                  {product.name}
+                </h2>
+                <p className="text-sm text-gray-600 font-secondary font-semibold">
+                  {product.description}
+                </p>
+                <p className="text-red-500 font-secondary mt-3 font-medium text-lg">
+                  {product.salePrice}
+                </p>
+                <p className="text-gray-600 font-secondary text-sm mt-2">
+                  {product.reviews}
+                </p>
+                <p className="text-green-600 font-secondary mt-2">
+                  {product.stockStatus}
+                </p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p>No products available</p>
+        )}
       </div>
       <hr className="mt-12 border-[1px] border-gray-600" />
     </div>

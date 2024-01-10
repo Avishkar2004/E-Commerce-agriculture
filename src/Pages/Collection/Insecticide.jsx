@@ -1,6 +1,6 @@
 import React from "react";
 import PlantGrowthRegulators from "../../Components/PgrCollection/PlantGrowthRegulator.jpg";
-import { Insecticides } from "../../Data";
+import { parentObject } from "../../Data";
 import Recentlyviewed from "../Recentlyviewed";
 import { Link } from "react-router-dom";
 
@@ -159,7 +159,7 @@ const insecticide = () => {
           <hr className="mt-5 border-[1px]" />
           {/* if you want to put gap inbetn component you need gap */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5">
-            {Insecticides.map((product, index) => (
+            {parentObject.Insecticides.map((product, index) => (
               <Link
                 to={product.to}
                 key={index}

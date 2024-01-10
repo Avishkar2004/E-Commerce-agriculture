@@ -1,5 +1,5 @@
 import React from "react";
-import { Insecticides } from "../Data";
+import { parentObject } from "../Data";
 import { Link } from "react-router-dom";
 
 const BestInsecticides = () => {
@@ -15,7 +15,7 @@ const BestInsecticides = () => {
       </div>
       {/* if you want to put gap inbetn component you need gap */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-        {Insecticides.map((product, index) => (
+        {parentObject.Insecticides.map((product, index) => (
           <Link
             to={product.to}
             key={index}
