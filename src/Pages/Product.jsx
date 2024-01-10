@@ -16,8 +16,9 @@ const Product = () => {
         const data = await response.json();
 
         console.log("Number of products received:", data.length);
+        console.log("Received products:", data);
 
-        setProducts(data.slice(0, 7) || []);
+        setProducts(data.slice(0, 1000) || []);
       } catch (error) {
         console.error("Error fetching data:", error.message);
         setError("An error occurred while fetching data");
@@ -27,8 +28,6 @@ const Product = () => {
     };
     fetchData();
   }, []);
-
-
 
   return (
     <div className="container mx-auto mt-10 mb-5">
@@ -55,12 +54,13 @@ const Product = () => {
               <div className="image-container">
                 {product.image && (
                   <div>
-                    {console.log(`data:image/avif;base64, ${product.image}`)}
+                    {console.log("Base64 Image:", product.image)}
                     <img
                       className="w-full h-full object-cover"
-                      src={`data:image/avif;base64, ${product.image}`}
+                      src={`data:image/avif;base64,${product.image}`}
                       alt={product.name}
                     />
+
                   </div>
                 )}
               </div>
