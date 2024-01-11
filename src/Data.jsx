@@ -48,24 +48,24 @@ import ProZinc from "./Components/ArielAgri/prozinc-new.avif";
 import Zincomix from "./Components/ArielAgri/Zinco Mix.avif";
 
 // Best Fungicides 4
-import SAAF from "./Components/BestFungicides/Saaf.avif";
-import Ridomil2 from "./Components/BestFungicides/Ridomil.avif";
-import Bavistin from "./Components/BestFungicides/BAVISTIN.webp";
-import Indofil from "./Components/BestFungicides/INDOFIL.webp";
-import TataBlitox from "./Components/BestFungicides/TATABLITOX.avif";
-import TataMaster from "./Components/BestFungicides/TataMaster.avif";
-import ContafPlus from "./Components/BestFungicides/CONTAF PLUS.avif";
-import ROKO from "./Components/BestFungicides/Roko_200x.avif";
-import Kavach from "./Components/BestFungicides/Kavach_200x.avif";
-import ProfexSuper from "./Components/BestFungicides/ProfexSuper_200x.avif";
-import FolidGold from "./Components/BestFungicides/FOLIO GOLD.avif";
-import Indofil2 from "./Components/BestFungicides/Indofil.avif";
-import FlickSuper from "./Components/BestFungicides/FlickSuper1_200x.avif";
-import Baan from "./Components/BestFungicides/Baan.avif";
-import Safety from "./Components/BestFungicides/SAFETY2_200x.avif";
-import KasuB from "./Components/BestFungicides/KASU-B_200x.avif";
-import Conika from "./Components/BestFungicides/CONIKA_200x.avif";
-import SIVIC from "./Components/BestFungicides/Sivic_200x.avif";
+// import SAAF from "./Components/BestFungicides/Saaf.avif";
+// import Ridomil2 from "./Components/BestFungicides/Ridomil.avif";
+// import Bavistin from "./Components/BestFungicides/BAVISTIN.webp";
+// import Indofil from "./Components/BestFungicides/INDOFIL.webp";
+// import TataBlitox from "./Components/BestFungicides/TATABLITOX.avif";
+// import TataMaster from "./Components/BestFungicides/TataMaster.avif";
+// import ContafPlus from "./Components/BestFungicides/CONTAF PLUS.avif";
+// import ROKO from "./Components/BestFungicides/Roko_200x.avif";
+// import Kavach from "./Components/BestFungicides/Kavach_200x.avif";
+// import ProfexSuper from "./Components/BestFungicides/ProfexSuper_200x.avif";
+// import FolidGold from "./Components/BestFungicides/FOLIO GOLD.avif";
+// import Indofil2 from "./Components/BestFungicides/Indofil.avif";
+// import FlickSuper from "./Components/BestFungicides/FlickSuper1_200x.avif";
+// import Baan from "./Components/BestFungicides/Baan.avif";
+// import Safety from "./Components/BestFungicides/SAFETY2_200x.avif";
+// import KasuB from "./Components/BestFungicides/KASU-B_200x.avif";
+// import Conika from "./Components/BestFungicides/CONIKA_200x.avif";
+// import SIVIC from "./Components/BestFungicides/Sivic_200x.avif";
 
 // Best Insecticides
 import Theela2 from "./Components/OrganicProducts/THEETA.avif";
@@ -1034,170 +1034,170 @@ export const parentObject = {
     },
   ],
 
-  Fungicides: [
-    {
-      name: "Product 1",
-      description: "Description of Product 1",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: SAAF,
-      to: "fungicides/saaf",
-    },
-    {
-      name: "Product 2",
-      description: "Description of Product 2",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Ridomil2,
-      to: "fungicides/ridomil",
-    },
-    {
-      name: "Product 3",
-      description: "Description of Product 3",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Bavistin,
-      to: "fungicides/bavistin",
-    },
-    {
-      name: "Product 4",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Indofil,
-      to: "fungicides/indofil",
-    },
-    {
-      name: "Product 5",
-      description: "THEETA (Insecticide)",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: TataBlitox,
-      to: "fungicides/tatablitox",
-    },
-    {
-      name: "Product 6",
-      description: "Description of Product 3",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: TataMaster,
-      to: "fungicides/tatamaster",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: ContafPlus,
-      to: "fungicides/contafplus",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: ROKO,
-      to: "fungicides/roko",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Kavach,
-      to: "fungicides/kavach",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: ProfexSuper,
-      to: "fungicides/profexsuper",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: FolidGold,
-      to: "fungicides/foliogold",
-    },
+  // Fungicides: [
+  //   {
+  //     name: "Product 1",
+  //     description: "Description of Product 1",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: SAAF,
+  //     to: "fungicides/saaf",
+  //   },
+  //   {
+  //     name: "Product 2",
+  //     description: "Description of Product 2",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Ridomil2,
+  //     to: "fungicides/ridomil",
+  //   },
+  //   {
+  //     name: "Product 3",
+  //     description: "Description of Product 3",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Bavistin,
+  //     to: "fungicides/bavistin",
+  //   },
+  //   {
+  //     name: "Product 4",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Indofil,
+  //     to: "fungicides/indofil",
+  //   },
+  //   {
+  //     name: "Product 5",
+  //     description: "THEETA (Insecticide)",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: TataBlitox,
+  //     to: "fungicides/tatablitox",
+  //   },
+  //   {
+  //     name: "Product 6",
+  //     description: "Description of Product 3",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: TataMaster,
+  //     to: "fungicides/tatamaster",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: ContafPlus,
+  //     to: "fungicides/contafplus",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: ROKO,
+  //     to: "fungicides/roko",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Kavach,
+  //     to: "fungicides/kavach",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: ProfexSuper,
+  //     to: "fungicides/profexsuper",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: FolidGold,
+  //     to: "fungicides/foliogold",
+  //   },
 
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Indofil2,
-      to: "fungicides/indofilz",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: FlickSuper,
-      to: "fungicides/Flicksuper",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Baan,
-      to: "fungicides/baan",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Safety,
-      to: "fungicides/safety",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: KasuB,
-      to: "fungicides/kasub",
-    },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Indofil2,
+  //     to: "fungicides/indofilz",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: FlickSuper,
+  //     to: "fungicides/Flicksuper",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Baan,
+  //     to: "fungicides/baan",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Safety,
+  //     to: "fungicides/safety",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: KasuB,
+  //     to: "fungicides/kasub",
+  //   },
 
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: Conika,
-      to: "fungicides/conika",
-    },
-    {
-      name: "Product 7",
-      description: "Description of Product 4",
-      salePrice: "From Rs. 200",
-      reviews: "66 reviews",
-      stockStatus: "In stock, 4 units",
-      image: SIVIC,
-      to: "fungicides/sivic",
-    },
-  ],
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: Conika,
+  //     to: "fungicides/conika",
+  //   },
+  //   {
+  //     name: "Product 7",
+  //     description: "Description of Product 4",
+  //     salePrice: "From Rs. 200",
+  //     reviews: "66 reviews",
+  //     stockStatus: "In stock, 4 units",
+  //     image: SIVIC,
+  //     to: "fungicides/sivic",
+  //   },
+  // ],
 };

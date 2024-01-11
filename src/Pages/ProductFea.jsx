@@ -15,9 +15,7 @@ const ProductFea = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-
         console.log("Received products:", data);
-
         setProducts(data.slice(0, 1000) || []);
       } catch (error) {
         console.error("Error fetching data:", error.message);
@@ -28,7 +26,6 @@ const ProductFea = () => {
     };
     fetchData();
   }, []);
-
   const handleProductClick = (productId) => {
     // Navigate to the product page when a product is clicked
     history.push(`/fungicides/${productId.toLowerCase()}`);
@@ -51,7 +48,7 @@ const ProductFea = () => {
           <p>Loading...</p>
         ) : products.length > 0 ? (
           products.map((product, index) => (
-            <div
+            <Link
               key={index}
               onClick={() => handleProductClick(product.name)}
               className="border border-x-slate-200 border-solid"
@@ -85,7 +82,7 @@ const ProductFea = () => {
                   {product.stockStatus}
                 </p>
               </div>
-            </div>
+            </Link>
           ))
         ) : (
           <p>No products available</p>

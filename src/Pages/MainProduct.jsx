@@ -1,6 +1,6 @@
-import { Link } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Route, Switch, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 import ShowProduct from "./ShowProduct";
 
 const MainProduct = () => {
@@ -24,7 +24,6 @@ const MainProduct = () => {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, [productId]);
 
@@ -38,16 +37,18 @@ const MainProduct = () => {
 
     return (
         <div className='profile'>
-            <h1>React Dynamic Routing</h1>
-            {productData && productData.map((product) => (
-                <div key={product.id}>
-                    <Link to={`/products/${product.id}`}>{product.name}</Link>
-                </div>
-            ))}
-            <Switch>
-                {/* Add more Route components as needed */}
-                <Route path="/products/:productId" element={<ShowProduct/>} />
-            </Switch>
+            <Router>
+                {productData.map((product) =>
+                    <div key={product.id}>
+                        <p>{product.name}</p>
+                        <Link to={`/products/${product.id}`}>{product.name}</Link>
+                    </div>
+                )}
+
+                <Switch>
+                    <Route path="/products/:productId" element={<ShowProduct productData={productData} />}></Route>
+                </Switch>
+            </Router>
         </div>
     );
 };

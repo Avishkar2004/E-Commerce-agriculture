@@ -11,8 +11,6 @@ import BestInsecticides from "../Pages/BestInsecticides";
 import Recentlyviewed from "../Pages/Recentlyviewed";
 import Footer from "../Pages/Footer";
 import PlantGrowthRegulator from "../Pages/Collection/PlantGrowthRegulator";
-
-// Buy Now Page
 import BuyNow from "../Pages/BuyNow";
 import LogIn from "../Pages/LogIn";
 import MainProduct from "../Pages/MainProduct";
@@ -28,8 +26,9 @@ const AppRoutes = () => {
         <Route path="/Plantgrowthregulator/" component={ShowProduct} />
 
         {/* fungicides start */}
-        <Route path="/fungicides" component={BestFungicides} />
         <Route path="/fungicides/:productId" component={ShowProduct} />
+        <Route path="/fungicides" component={BestFungicides} />
+
         {/* Buy Now Route */}
         <Route path="/BuyNow" component={BuyNow} />
         <Route path="/LogIn" component={LogIn} />
@@ -45,7 +44,7 @@ const AppRoutes = () => {
                 <Product />
                 <OrganicProduct />
                 <Blogposts />
-                <BestFungicides />
+                {/* BestFungicides removed from here */}
                 <BestInsecticides />
                 <Recentlyviewed />
               </>
