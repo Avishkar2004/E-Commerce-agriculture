@@ -47,7 +47,9 @@ const BestFungicides = () => {
           >
             <div className="image-container">
               <img
-                src={product.image} // Assuming there is an 'image' field in the product data
+                // src={`data:image/avif;base64,${product.image}`}
+                // Ass`uming there is an 'image' field in the product data
+                src={`data:image/avif;base64, ${product.image}`}
                 alt={product.altTag || product.name} // Use a specific field if available
                 className="w-full h-full object-cover"
               />

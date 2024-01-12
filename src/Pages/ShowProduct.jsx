@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search";
 import StarIcon from "@mui/icons-material/Star";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -7,14 +7,26 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from './Description';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+// import { useCart } from './CartContext';
 
 const ShowProduct = ({ productDataProp }) => {
+  // const { addToCart } = useCart();
+  const history = useHistory();
   const location = useLocation();
   const initialProductData = (location.state && location.state.productData) || {};
   const [productData, setProductData] = useState(initialProductData);
 
   const [count, setCount] = useState(1);
   const [selectedSize, setSelectedSize] = useState('50 ml');
+
+  // const handleAddToCart = () => {
+  //   addToCart();
+  // };
+
+  const handleBuyNow = () => {
+    history.push("/BuyNow", {productData})
+  }
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -48,6 +60,7 @@ const ShowProduct = ({ productDataProp }) => {
     }));
   };
 
+
   useEffect(() => {
     console.log('Product Data:', productData);
   }, [productData, productDataProp]);
@@ -70,7 +83,7 @@ const ShowProduct = ({ productDataProp }) => {
             &gt;
             <span className="text-sm">{productData.name + " Fungicide"}</span>
           </span>
-          <a href="/fungicides/bavistin" className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a href='/fungicides/Pegasus' className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
           </a>
         </div>
@@ -81,13 +94,13 @@ const ShowProduct = ({ productDataProp }) => {
         <div className="w-1/2 bg-white text-center ml-12 border-r-2 border-l-2 border-t-2 border-b-2">
           <img
             className="h-28 border-2 border-blue-500"
-            src={productData.image}
-            alt={productData.altTag || productData.name}
+            src={`data:image/avif;base64, ${productData.image}`}
+            alt={productData.name}
           />
-
           <img
-            src={productData.hd_image}
-            alt={productData.altTag || productData.name}
+            // src={`data:image/avif;base64,${product.image}`}
+            src={`data:image/avif;base64, ${productData.hd_image}`}
+            alt={productData.name}
             className="h-[31rem] object-cover mx-auto  overflow-hidden"
           />
 
@@ -199,9 +212,14 @@ const ShowProduct = ({ productDataProp }) => {
                 </button>
               </p>
             </p>
-            <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-3 px-16 ml-32 -mt-2  cursor-not-allowed rounded">
-              Sold out
-            </button>
+            <div className="flex justify-center content-center min-h-12">
+              <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+                Buy Now
+              </a>
+              <button onClick={''} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+                Add To Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>

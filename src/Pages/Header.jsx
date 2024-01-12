@@ -2,14 +2,15 @@ import React, { useRef } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useCart } from "./CartContext";
 
 const Header = () => {
   const inputRef = useRef(null);
+  const { cartCount } = useCart();
 
   const handleSearchBarClick = () => {
     inputRef.current.focus();
   };
-
 
   return (
     <header className="bg-[#c4e0ef] text-white py-5">
@@ -58,7 +59,8 @@ const Header = () => {
 
         <div>
           <button className="text-black">
-            <ShoppingCartOutlinedIcon />0
+            <ShoppingCartOutlinedIcon />
+            {cartCount > 0 && <span className="ml-1">{cartCount}</span>}
           </button>
         </div>
       </div>
