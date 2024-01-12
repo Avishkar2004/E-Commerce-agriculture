@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 const ProductFea = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,10 +25,7 @@ const ProductFea = () => {
     };
     fetchData();
   }, []);
-  const handleProductClick = (productId) => {
-    // Navigate to the product page when a product is clicked
-    history.push(`/fungicides/${productId.toLowerCase()}`);
-  };
+
 
   return (
     <div className="container mx-auto mt-10 mb-5">
@@ -46,13 +42,17 @@ const ProductFea = () => {
           <p>{error}</p>
         ) : loading ? (
           <p>Loading...</p>
-        ) : products.length > 0 ? (
-          products.map((product, index) => (
+        ) : Array.isArray(products) && products.length > 0 ? (
+          products.map((product) => (
             <Link
-              key={index}
-              onClick={() => handleProductClick(product.name)}
+              to={{
+                pathname: `/fungicides/${product.name}`,
+                state: { productData: product }, // Make sure product contains all necessary data
+              }}
+              key={product.id}
               className="border border-x-slate-200 border-solid"
             >
+
               <div className="image-container">
                 {product.image && (
                   <div>

@@ -36,17 +36,17 @@ const MainProduct = () => {
     }
 
     return (
-        <div className='profile'>
+        <div>
             <Router>
                 {productData.map((product) =>
                     <div key={product.id}>
-                        <p>{product.name}</p>
-                        <Link to={`/products/${product.id}`}>{product.name}</Link>
+                        {/* <Link to={`/products/${product.id}`}>{product.name}</Link> */}
                     </div>
                 )}
 
                 <Switch>
-                    <Route path="/products/:productId" element={<ShowProduct productData={productData} />}></Route>
+                    {/* Pass productData as a prop to ShowProduct */}
+                    <Route path="/products/:productId" element={[<ShowProduct key={1} productData={productData} />, <ShowProduct key={2} />]} />
                 </Switch>
             </Router>
         </div>

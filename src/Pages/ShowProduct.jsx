@@ -8,11 +8,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from './Description';
 
-const ShowProduct = () => {
-  const { name } = useParams();
+const ShowProduct = ({ productDataProp }) => {
   const location = useLocation();
-  const initialProductData = location.state.productData || {};
+  const initialProductData = (location.state && location.state.productData) || {};
   const [productData, setProductData] = useState(initialProductData);
+
   const [count, setCount] = useState(1);
   const [selectedSize, setSelectedSize] = useState('50 ml');
 
@@ -50,7 +50,7 @@ const ShowProduct = () => {
 
   useEffect(() => {
     console.log('Product Data:', productData);
-  }, [productData]);
+  }, [productData, productDataProp]);
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -86,7 +86,7 @@ const ShowProduct = () => {
           />
 
           <img
-            src={productData.image}
+            src={productData.hd_image}
             alt={productData.altTag || productData.name}
             className="h-[31rem] object-cover mx-auto  overflow-hidden"
           />

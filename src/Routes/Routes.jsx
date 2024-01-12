@@ -13,7 +13,7 @@ import Footer from "../Pages/Footer";
 import PlantGrowthRegulator from "../Pages/Collection/PlantGrowthRegulator";
 import BuyNow from "../Pages/BuyNow";
 import LogIn from "../Pages/LogIn";
-import MainProduct from "../Pages/MainProduct";
+// import MainProduct from "../Pages/MainProduct";
 import ShowProduct from "../Pages/ShowProduct";
 
 const AppRoutes = () => {
@@ -21,22 +21,25 @@ const AppRoutes = () => {
     <Router>
       <Header />
       <Switch>
-        {/* PGR Start */}
+        {/* Routes for Plant Growth Regulator */}
         <Route path="/Plantgrowthregulator/:productId" component={PlantGrowthRegulator} />
         <Route path="/Plantgrowthregulator/" component={ShowProduct} />
 
-        {/* fungicides start */}
+        {/* Routes for Fungicides */}
         <Route path="/fungicides/:productId" component={ShowProduct} />
         <Route path="/fungicides" component={BestFungicides} />
 
-        {/* Buy Now Route */}
+        {/* Route for Buy Now */}
         <Route path="/BuyNow" component={BuyNow} />
+
+        {/* Route for Log In */}
         <Route path="/LogIn" component={LogIn} />
       </Switch>
+
+      {/* Common components rendered only on the home page */}
       <Route
         render={({ location }) => {
           if (location.pathname === "/") {
-            // Render the common components only on the home page
             return (
               <>
                 <Collection />
@@ -44,7 +47,6 @@ const AppRoutes = () => {
                 <Product />
                 <OrganicProduct />
                 <Blogposts />
-                {/* BestFungicides removed from here */}
                 <BestInsecticides />
                 <Recentlyviewed />
               </>
@@ -52,6 +54,8 @@ const AppRoutes = () => {
           }
         }}
       />
+
+      {/* Footer rendered on all pages */}
       <Footer />
     </Router>
   );
