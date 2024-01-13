@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PGRShowProduct from "./PGRShowProduct";
+import ShowProduct from "./ShowProduct";
 
 const PGRProduct = () => {
     const { productId } = useParams();
@@ -38,15 +39,14 @@ const PGRProduct = () => {
     return (
         <div>
             <Router>
-                {PGRproductData.map((productPGR) =>
-                    <div key={productPGR.id}>
-                        {/* <Link to={`/products/${product.id}`}>{product.name}</Link> */}
+                {PGRproductData.map((product) =>
+                    <div key={product.id}>
                     </div>
                 )}
 
                 <Switch>
-                    {/* Pass PGRproductData as a prop to ShowProduct */}
-                    <Route path="/products/:productId" element={[<PGRShowProduct key={1} PGRproductData={PGRproductData} />, <PGRShowProduct key={2} />]} />
+                    {/* Pass productData as a prop to ShowProduct */}
+                    <Route path="/products/:productId" element={<PGRShowProduct PGRDataProp={PGRproductData} />} />
                 </Switch>
             </Router>
         </div>

@@ -9,11 +9,11 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from './Description';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
 const PGRShowProduct = ({ PGRDataProp }) => {
   const history = useHistory();
   const location = useLocation();
-  const initialPGRShowProduct = (location.state && location.state.PGRShowProduct) || {};
+  const initialPGRShowProduct = (location.state && location.state.PGRProduct) || {};
+
   const [PGRShowProduct, setPGRShowProduct] = useState(initialPGRShowProduct);
 
 
@@ -78,7 +78,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
             &gt;
             <span className="text-sm">{PGRShowProduct.name}</span>
           </span>
-          <a href='/plantgrowthregulator/Pegasus' className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <a href='/plantgrowthregulator/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
           </a>
         </div>
