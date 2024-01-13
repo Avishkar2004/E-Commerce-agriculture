@@ -12,7 +12,6 @@ import Recentlyviewed from "../Pages/Recentlyviewed";
 import Footer from "../Pages/Footer";
 import BuyNow from "../Pages/BuyNow";
 import LogIn from "../Pages/LogIn";
-// import MainProduct from "../Pages/MainProduct";
 import ShowProduct from "../Pages/ShowProduct";
 import PlantGrowthRegulator from "../Pages/PlantGrowthRegulator";
 import PGRShowProduct from "../Pages/PGRShowProduct";

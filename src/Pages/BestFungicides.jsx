@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Recentlyviewed from "./Recentlyviewed";
+import BannerFungicide from '../Components/BestFungicides/BannerFungi.webp'
 
 const BestFungicides = () => {
   const [fungicidesData, setFungicidesData] = useState([]);
@@ -35,7 +36,7 @@ const BestFungicides = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container mt-2">
       <div className="">
         <a
           href="/ "
@@ -138,10 +139,10 @@ const BestFungicides = () => {
         {/* Right Column - Photo */}
         <div className="w-3/4 mt-10 bg-white ml-10  ">
           {/* Center the image */}
-          <div className="flex justify-center pl-5 w-full">
+          <div className="flex justify-center pl-5 w-full h-[10%]">
             <img
-              className="w-[100%] mr-2 -ml-2"
-              src={'PlantGrowthRegulators'}
+              className="w-[100%] mr-2 -ml-2 "
+              src={BannerFungicide}
               alt=""
             />
           </div>
@@ -150,8 +151,7 @@ const BestFungicides = () => {
           </div>
           <div className="mt-4 ml-3 space-y-5 font-secondary text-base">
             <p>
-              Fungicides is the most useful thing for agriculture so farmers can
-              use it for controlling fungi.
+              Fungicides is the most useful thing for agriculture so farmers can use it for controlling fungi.
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
@@ -183,8 +183,7 @@ const BestFungicides = () => {
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          {/* if you want to put gap inbetn component you need gap */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5">
             {fungicidesData.map((product) => (
               <Link
                 to={{

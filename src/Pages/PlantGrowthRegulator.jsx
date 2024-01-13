@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import PlantGrowthRegulators from "../../src/Components/PgrCollection/PlantGrowthRegulator.jpg";
 import Recentlyviewed from './Recentlyviewed';
 
 const PlantGrowthRegulator = () => {
@@ -10,7 +11,7 @@ const PlantGrowthRegulator = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/Plantgrowthregulator");
+        const response = await fetch("http://localhost:8080/plantgrowthregulator");
         if (!response.ok) {
           throw new Error("Failed to fetch Plantgrowthregulator data");
         }
@@ -36,7 +37,7 @@ const PlantGrowthRegulator = () => {
 
   return (
 
-    <div className="container">
+    <div className="container mt-2">
       <div className="">
         <a
           href="/"
@@ -44,9 +45,8 @@ const PlantGrowthRegulator = () => {
         >
           Home &gt;
         </a>
-        <a href="/fungicides" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
-          Fungicide Online &gt;
-        </a>
+        <a href="/Plantgrowthregulator" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
+          Plant Growth Regulator (PGR) &gt;        </a>
       </div>
       <div className="container flex">
         {/* Left Column - Leading Brands */}
@@ -142,17 +142,18 @@ const PlantGrowthRegulator = () => {
           <div className="flex justify-center pl-5 w-full">
             <img
               className="w-[100%] mr-2 -ml-2"
-              src={''}
+              src={PlantGrowthRegulators}
               alt=""
             />
           </div>
-          <div className="ml-3 mt-5 font-primary text-xl text-blue-500">
-            <h1>Buy Fungicides Online</h1>
+          <div className="ml-3 mt-5 font-primary text-3xl text-blue-500">
+            <h1>Plant Growth Regulator (PGR)</h1>
           </div>
           <div className="mt-4 ml-3 space-y-5 font-secondary text-base">
             <p>
-              Fungicides is the most useful thing for agriculture so farmers can
-              use it for controlling fungi.
+              Plant Growth Regulator (PGR) is hormone-based chemicals that regulate the plants at the inner label. It shows the results in a few hours. When the micronutrients fail to give faster growth results, you can apply the ho plant growth regulators such as Planofix, Miraculan, Booster:2, Phytozyme, or seaweed extract.
+            </p>
+            <p>Unlike micro-nutrients, it has side effects if applied frequently or more doses. Before it used, everyone keeps notice of the applicable doses of the products mentioned on the packets. The dose of all the products varies.
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
@@ -220,12 +221,19 @@ const PlantGrowthRegulator = () => {
               </Link>
             ))}
           </div>
-          <hr className="mt-12 border-[1px] border-gray-600" />
+
+
         </div>
       </div>
       <Recentlyviewed />
     </div>
+
+
+
   );
 }
 
 export default PlantGrowthRegulator
+
+
+
