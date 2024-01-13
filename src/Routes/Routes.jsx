@@ -10,11 +10,12 @@ import BestFungicides from "../Pages/BestFungicides";
 import BestInsecticides from "../Pages/BestInsecticides";
 import Recentlyviewed from "../Pages/Recentlyviewed";
 import Footer from "../Pages/Footer";
-import PlantGrowthRegulator from "../Pages/Collection/PlantGrowthRegulator";
 import BuyNow from "../Pages/BuyNow";
 import LogIn from "../Pages/LogIn";
 // import MainProduct from "../Pages/MainProduct";
 import ShowProduct from "../Pages/ShowProduct";
+import PlantGrowthRegulator from "../Pages/PlantGrowthRegulator";
+import PGRShowProduct from "../Pages/PGRShowProduct";
 
 const AppRoutes = () => {
   return (
@@ -22,8 +23,8 @@ const AppRoutes = () => {
       <Header />
       <Switch>
         {/* Routes for Plant Growth Regulator */}
-        <Route path="/Plantgrowthregulator/:productId" component={PlantGrowthRegulator} />
-        <Route path="/Plantgrowthregulator/" component={ShowProduct} />
+        <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />
+        <Route path="/plantgrowthregulator" component={PlantGrowthRegulator} />
 
         {/* Routes for Fungicides */}
         <Route path="/fungicides/:productId" component={ShowProduct} />

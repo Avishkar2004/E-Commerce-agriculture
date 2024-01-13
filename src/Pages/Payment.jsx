@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import ItemsDetails from "./ItemsDetails";
+// import ItemsDetails from "./ItemsDetails";
 
 const Payment = () => {
   const history = useHistory();
@@ -56,7 +56,7 @@ const Payment = () => {
       <div className="bg-gray-100 min-h-screen p-8">
         <div className="max-w-xl right-0 mx-auto bg-white rounded p-5 shadow-lg">
           <h2 className="text-2xl font-bold mb-4 text-center">Buy Now</h2>
-        <ItemsDetails />
+        {/* <ItemsDetails /> */}
 
           {/* Product Details */}
           <div className="mb-4">

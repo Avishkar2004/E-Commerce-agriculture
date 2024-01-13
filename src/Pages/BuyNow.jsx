@@ -9,9 +9,9 @@ const BuyNow = () => {
   const location = useLocation();
   const initialProductData = (location.state && location.state.productData) || {};
   const [productData, setProductData] = useState(initialProductData);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add your logic to handle the form submission (e.g., send data to a server)
   };
 
   return (
@@ -23,7 +23,11 @@ const BuyNow = () => {
           <h2 className="text-2xl font-bold mb-2">{productData.name} Fungicide</h2>
           <p className="mb-2">Product Name: {productData.name}</p>
           <p className="mb-4">Price: {productData.salePrice}</p>
-          <img src={`data:image/avif;base64, ${productData.image}`} alt={productData.name} className="mb-4 w-80 mr-auto ml-auto" />
+          <img
+            src={`data:image/avif;base64, ${productData.image}`}
+            alt={productData.name}
+            className="mb-4 w-80 mr-auto ml-auto"
+          />
           {/* Add more product details as needed */}
         </div>
 
@@ -33,6 +37,7 @@ const BuyNow = () => {
             {/* Add hidden input fields for product details (e.g., product ID) */}
             <input type="hidden" name="product_id" value="1" />
 
+            {/* Input fields for customer information */}
             <label htmlFor="quantity" className="block mb-2">
               Quantity:
               <input
@@ -47,7 +52,6 @@ const BuyNow = () => {
               />
             </label>
 
-            {/* Add more input fields for customer information (e.g., name, address) */}
             <label htmlFor="name" className="block mb-2">
               Name:
               <input
@@ -73,7 +77,7 @@ const BuyNow = () => {
               ></textarea>
             </label>
 
-            {/* Add payment-related fields (e.g., credit card details) */}
+            {/* Payment-related fields */}
             <label htmlFor="creditCard" className="block mb-2">
               Credit Card:
               <input

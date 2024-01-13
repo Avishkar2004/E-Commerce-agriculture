@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ShowProduct from "./ShowProduct";
 
-const MainProduct = () => {
+const FungiProduct = () => {
     const { productId } = useParams();
     const [productData, setProductData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -53,4 +53,4 @@ const MainProduct = () => {
     );
 };
 
-export default MainProduct;
+export default FungiProduct;

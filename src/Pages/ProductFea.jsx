@@ -56,10 +56,9 @@ const ProductFea = () => {
               <div className="image-container">
                 {product.image && (
                   <div>
-                    {console.log("Base64 Image:", product.image)}
                     <img
                       className="w-full h-full object-cover"
-                      src={`data:image/avif;base64,${product.image}`}
+                      src={`data:image/avif;base64,${product.hd_image}`}
                       alt={product.name}
                     />
                   </div>
@@ -93,4 +92,4 @@ const ProductFea = () => {
   );
 };
 
-export default ProductFea;
+export default ProductFea;  

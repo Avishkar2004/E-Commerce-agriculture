@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Recentlyviewed from "./Recentlyviewed";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import Recentlyviewed from './Recentlyviewed';
 
-const BestFungicides = () => {
-  const [fungicidesData, setFungicidesData] = useState([]);
+const PlantGrowthRegulator = () => {
+  const [PlantgrowthregulatorData, setPlantgrowthregulatorData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/products");
+        const response = await fetch("http://localhost:8080/Plantgrowthregulator");
         if (!response.ok) {
-          throw new Error("Failed to fetch fungicides data");
+          throw new Error("Failed to fetch Plantgrowthregulator data");
         }
         const data = await response.json();
-        setFungicidesData(data);
+        setPlantgrowthregulatorData(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -25,7 +25,6 @@ const BestFungicides = () => {
 
     fetchData();
   }, []);
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -33,6 +32,7 @@ const BestFungicides = () => {
   if (error) {
     return <p>Error: {error}</p>;
   }
+
 
   return (
     <div className="container">
@@ -43,8 +43,8 @@ const BestFungicides = () => {
         >
           Home &gt;
         </a>
-        <a href="/fungicides" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
-          Buy  Fungicide Online &gt;
+        <a href="/Plantgrowthregulator" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
+        Plant Growth Regulator (PGR)&gt;
         </a>
       </div>
       <div className="container flex">
@@ -184,49 +184,53 @@ const BestFungicides = () => {
           </div>
           <hr className="mt-5 border-[1px]" />
           {/* if you want to put gap inbetn component you need gap */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-            {fungicidesData.map((product) => (
-              <Link
-                to={{
-                  pathname: `/fungicides/${product.name}`,
-                  state: { productData: product },
-                }}
-                key={product.id}
-                className="border border-x-slate-200 border-solid"
-              >
-                <div className="image-container">
-                  <img
-                    src={`data:image/avif;base64, ${product.hd_image}`}
-                    alt={product.altTag || product.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold font-primary">
-                    {product.name}
-                  </h2>
-                  <p className="text-sm text-gray-600 font-secondary font-semibold">
-                    {product.description}
-                  </p>
-                  <p className="text-red-500 font-secondary">{product.salePrice}</p>
-                  <p className="text-green-600 font-secondary font-medium">
-                    {product.reviews}
-                  </p>
-                  <p className="text-gray-600 font-secondary">
-                    {product.stockStatus}
-                  </p>
-                </div>
-              </Link>
-            ))}
+
+          <div className="container mx-auto mt-10 mb-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+              {PlantgrowthregulatorData.map((product) => (
+                <Link
+                  to={{
+                    pathname: `/plantgrowthregulator/${product.name}`,
+                    state: { productData: product },
+                  }}
+                  key={product.id}
+                  className="border border-x-slate-200 border-solid"
+                >
+                  <div className="image-container">
+                    <img
+                      src={`data:image/avif;base64, ${product.hd_image}`}
+                      alt={product.altTag || product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold font-primary">
+                      {product.name}
+                    </h2>
+                    <p className="text-sm text-gray-600 font-secondary font-semibold">
+                      {product.description}
+                    </p>
+                    <p className="text-red-500 font-secondary">{product.salePrice}</p>
+                    <p className="text-green-600 font-secondary font-medium">
+                      {product.reviews}
+                    </p>
+                    <p className="text-gray-600 font-secondary">
+                      {product.stockStatus}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <hr className="mt-12 border-[1px] border-gray-600" />
           </div>
+
         </div>
       </div>
       <Recentlyviewed />
     </div>
   );
-};
 
-export default BestFungicides;
+}
 
-
+export default PlantGrowthRegulator
 
