@@ -16,6 +16,42 @@ const ShowOrganic = ({ OrganicproductData }) => {
   const [productData, setProductData] = useState(initialProductData);
   const [count, setCount] = useState(1);
   const [selectedSize, setSelectedSize] = useState('50 ml');
+  const [cartData, setCartData] = useState(null);
+
+  const handleAddToCart = async () => {
+    try {
+      const { id, name, price, image, reviews } = productData; // Extracting only the needed information
+      const response = await fetch('http://localhost:8080/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          price,
+          size: selectedSize,
+          quantity: count,
+          image,
+          reviews,
+        }),
+      });
+      if (response.ok) {
+        const responseData = await response.json();
+        setCartData(responseData);
+  
+        // Update local state if needed
+        setCount(1);
+        setSelectedSize('50 ml');
+        console.log('Item added to cart:', responseData);
+      } else {
+        console.error('Failed to add item to cart');
+      }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+  
 
   const handleBuyNow = () => {
     history.push("/BuyNow", { productData })
@@ -204,10 +240,10 @@ const ShowOrganic = ({ OrganicproductData }) => {
               </p>
             </p>
             <div className="flex justify-center content-center min-h-12">
-              <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+              <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
               </a>
-              <button onClick={''} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+              <button onClick={handleAddToCart} className="bg-red-500 hover:cursor-pointer hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
                 Add To Cart
               </button>
             </div>

@@ -1,38 +1,22 @@
 // CartContext.js
-import React, { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
 
-const initialState = {
-    cartItems: [],
-};
-
-const cartReducer = (state, action) => {
-    switch (action.type) {
-        case 'ADD_TO_CART':
-            return {
-                ...state,
-                cartItems: [...state.cartItems, action.payload],
-            };
-        default:
-            return state;
-    }
-};
-
 export const CartProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [cartItems, setCartItems] = useState([]);
 
-    const addToCart = (product) => {
-        dispatch({ type: 'ADD_TO_CART', payload: product });
-    };
+  const addToCart = (item) => {
+    setCartItems((prevCartItems) => [...prevCartItems, item]);
+  };
 
-    return (
-        <CartContext.Provider value={{ cart: state.cartItems, addToCart }}>
-            {children}
-        </CartContext.Provider>
-    );
+  return (
+    <CartContext.Provider value={{ cartItems, addToCart }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
 export const useCart = () => {
-    return useContext(CartContext);
+  return useContext(CartContext);
 };

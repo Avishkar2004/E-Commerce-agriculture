@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useCart } from './CartContext';
 
 const Cart = () => {
     const [cartData, setCartData] = useState([]);
@@ -21,26 +20,39 @@ const Cart = () => {
     }, []);
 
     return (
-        <div>
-            <ul>
-                {cartData.map(item => (
-                    <li key={item.id}>
-                        <p>ID: {item.id}</p>
-                        <p>Name: {item.name}</p>
-                        <p>Size: {item.size}</p>
-                        <p>Price: ${item.price}</p>
-                        <p>Quantity: {item.quantity}</p>
-                        <p>Reviews: {item.reviews}</p>
-                        {item.photo && (
-                            <img
-                                src={`data:image/png;base64,${item.photo}`}
-                                alt={item.name}
-                                style={{ maxWidth: '100px', maxHeight: '100px' }}
-                            />
-                        )}
+        <div className="container mx-auto my-8">
+            <h2 className="text-3xl font-bold mb-6">Your Shopping Cart</h2>
 
-                        <button>Edit</button>
-                        <button>Delete</button>
+            {/* Display the number of items in the cart */}
+            <p className="text-sm text-gray-600 mb-4">
+                {cartData.length} {cartData.length === 1 ? 'item' : 'items'} in your cart
+            </p>
+
+            <ul className="grid gap-8">
+                {cartData.map(item => (
+                    <li key={item.id} className="flex bg-white p-6 rounded-lg shadow-md">
+                        <div className="flex-shrink-0">
+                            <img
+                                src={`data:image/avif;base64,${item.image}`}
+                                alt={item.name}
+                                className="w-32 h-32 object-cover rounded-lg"
+                            />
+                        </div>
+                        <div className="flex-1 ml-4">
+                            <p className="text-lg font-semibold">{item.name}</p>
+                            <p className="text-gray-600">Size: {item.size}</p>
+                            <p className="text-gray-600">Price: ${item.price}</p>
+                            <p className="text-gray-600">Quantity: {item.quantity}</p>
+                            <p className="text-gray-600">Reviews: {item.reviews}</p>
+                            <div className="mt-4 space-x-4">
+                                <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
+                                    Edit
+                                </button>
+                                <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
                     </li>
                 ))}
             </ul>
