@@ -211,7 +211,7 @@ const ShowProduct = ({ productDataProp }) => {
               <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
               </a>
-              <button onClick={''} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
                 Add To Cart
               </button>
             </div>

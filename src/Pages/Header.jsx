@@ -56,12 +56,11 @@ const Header = () => {
           <a href="/logIn" className="text-blue-500">Login</a>
           <button className="text-blue-500">/  Sign In</button>
         </div>
-
         <div>
-          <button className="text-black">
+          <a href="/cart" className="text-black">
             <ShoppingCartOutlinedIcon />
             {cartCount > 0 && <span className="ml-1">{cartCount}</span>}
-          </button>
+          </a>
         </div>
       </div>
     </header>

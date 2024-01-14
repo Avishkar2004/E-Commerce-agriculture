@@ -44,9 +44,9 @@ const BestFungicides = () => {
         >
           Home &gt;
         </a>
-        <a href="/fungicides" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
+        <span className="text-black text-sm ml-2 font-secondary">
           Buy  Fungicide Online &gt;
-        </a>
+        </span>
       </div>
       <div className="container flex">
         {/* Left Column - Leading Brands */}

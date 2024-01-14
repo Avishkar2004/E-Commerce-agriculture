@@ -1,22 +1,52 @@
-import React from "react";
-import PlantGrowthRegulators from "../../Components/PgrCollection/PlantGrowthRegulator.jpg";
-import { parentObject } from "../../Data";
-import Recentlyviewed from "../Recentlyviewed";
+import React, { useState, useEffect } from "react";
+import PlantGrowthRegulators from "../Components/PgrCollection/PlantGrowthRegulator.jpg";
+import Recentlyviewed from "./Recentlyviewed";
 import { Link } from "react-router-dom";
 
-const OrOrganicproduct = () => {
+const Organic = () => {
+  const [OrganicproductData, setOrganicproductData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/organicproduct");
+        if (!response.ok) {
+          throw new Error("Failed to fetch Plantgrowthregulator data");
+        }
+        const data = await response.json();
+        setOrganicproductData(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+
   return (
     <div className="container">
-      <div className="">
+      <div>
         <a
           href="/"
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
           Home &gt;
         </a>
-        <a href="/OrganicProduct" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
+        <span className="text-black text-sm ml-1 font-secondary">
           Buy Organic Product Online &gt;
-        </a>
+        </span>
       </div>
       <div className="container flex">
         {/* Left Column - Leading Brands */}
@@ -155,35 +185,36 @@ const OrOrganicproduct = () => {
           </div>
           <hr className="mt-5 border-[1px]" />
           {/* if you want to put gap inbetn component you need gap */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5">
-            {parentObject.Organicproducts.map((product, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+            {OrganicproductData.map((OrganicProduct) => (
               <Link
-                to={product.to}
-                key={index}
-                className="border border-gray-300"
+                to={{
+                  pathname: `/organicproduct/${OrganicProduct.name}`,
+                  state: { OrganicproductData: OrganicProduct },
+                }}
+                key={OrganicProduct.id}
+                className="border border-x-slate-200 border-solid"
               >
                 <div className="image-container">
                   <img
-                    src={product.image}
-                    alt={product.name}
+                    src={`data:image/avif;base64, ${OrganicProduct.image}`}
+                    alt={OrganicProduct.altTag || OrganicProduct.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-4">
                   <h2 className="text-lg font-semibold font-primary">
-                    {product.name}
+                    {OrganicProduct.name}
                   </h2>
                   <p className="text-sm text-gray-600 font-secondary font-semibold">
-                    {product.description}
+                    {OrganicProduct.description}
                   </p>
-                  <p className="text-red-500 font-secondary">
-                    {product.salePrice}
-                  </p>
+                  <p className="text-red-500 font-secondary">{OrganicProduct.salePrice}</p>
                   <p className="text-green-600 font-secondary font-medium">
-                    {product.reviews}
+                    {OrganicProduct.reviews}
                   </p>
                   <p className="text-gray-600 font-secondary">
-                    {product.stockStatus}
+                    {OrganicProduct.stockStatus}
                   </p>
                 </div>
               </Link>
@@ -196,4 +227,4 @@ const OrOrganicproduct = () => {
   );
 };
 
-export default OrOrganicproduct;
+export default Organic;

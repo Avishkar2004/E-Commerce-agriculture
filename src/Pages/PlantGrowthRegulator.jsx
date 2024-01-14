@@ -38,15 +38,15 @@ const PlantGrowthRegulator = () => {
   return (
 
     <div className="container mt-2">
-      <div className="">
+      <div>
         <a
           href="/"
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
           Home &gt;
         </a>
-        <a href="/Plantgrowthregulator" className="text-black text-sm ml-1 hover:text-blue-600 font-secondary">
-          Plant Growth Regulator (PGR) &gt;        </a>
+        <span className="text-black text-sm ml-2 font-secondary">
+          Plant Growth Regulator (PGR) &gt;        </span>
       </div>
       <div className="container flex">
         {/* Left Column - Leading Brands */}

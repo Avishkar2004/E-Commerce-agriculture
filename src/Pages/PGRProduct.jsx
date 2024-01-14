@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PGRShowProduct from "./PGRShowProduct";
-import ShowProduct from "./ShowProduct";
 
 const PGRProduct = () => {
     const { productId } = useParams();
