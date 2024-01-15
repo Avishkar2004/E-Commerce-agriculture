@@ -40,9 +40,8 @@ const Cart = () => {
                         </div>
                         <div className="flex-1 ml-4">
                             <p className="text-lg font-semibold">{item.name}</p>
-                            <p className="text-gray-600">Size: {item.size}</p>
                             <p className="text-gray-600">Price: ${item.price}</p>
-                            <p className="text-gray-600">Quantity: {item.quantity}</p>
+                            <p className="text-gray-600">Quantity: {item.small_50}</p>
                             <p className="text-gray-600">Reviews: {item.reviews}</p>
                             <div className="mt-4 space-x-4">
                                 <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">

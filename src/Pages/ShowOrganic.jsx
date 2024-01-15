@@ -16,42 +16,10 @@ const ShowOrganic = ({ OrganicproductData }) => {
   const [productData, setProductData] = useState(initialProductData);
   const [count, setCount] = useState(1);
   const [selectedSize, setSelectedSize] = useState('50 ml');
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [cartData, setCartData] = useState(null);
 
-  const handleAddToCart = async () => {
-    try {
-      const { id, name, price, image, reviews } = productData; // Extracting only the needed information
-      const response = await fetch('http://localhost:8080/cart', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          id,
-          name,
-          price,
-          size: selectedSize,
-          quantity: count,
-          image,
-          reviews,
-        }),
-      });
-      if (response.ok) {
-        const responseData = await response.json();
-        setCartData(responseData);
-  
-        // Update local state if needed
-        setCount(1);
-        setSelectedSize('50 ml');
-        console.log('Item added to cart:', responseData);
-      } else {
-        console.error('Failed to add item to cart');
-      }
-    } catch (error) {
-      console.error('Error adding item to cart:', error);
-    }
-  };
-  
+
 
   const handleBuyNow = () => {
     history.push("/BuyNow", { productData })
@@ -62,24 +30,29 @@ const ShowOrganic = ({ OrganicproductData }) => {
   };
 
   const handleDecrement = () => {
-    setCount(count - 1);
+    if (count > 1) {
+      setCount(count - 1);
+    }
   };
 
   const handleSizeChange = (newSize) => {
     setSelectedSize(newSize);
 
     let updatedData;
+
     if (newSize === '50 ml') {
       updatedData = {
         reviews: initialProductData.review_50,
         save: initialProductData.save_50,
         price: initialProductData.price_small,
+        size: '50 ml',
       };
     } else if (newSize === '100 ml') {
       updatedData = {
         reviews: initialProductData.review_100,
         save: initialProductData.save_100,
         price: initialProductData.price_big,
+        size: '100 ml',
       };
     }
 
@@ -90,8 +63,44 @@ const ShowOrganic = ({ OrganicproductData }) => {
   };
 
 
+
+  const handleAddToCart = async () => {
+    try {
+      const { id, name, price, image } = productData;
+  
+      // Ensure image is base64-encoded
+      const base64Image = image.toString('base64');
+  
+      const response = await fetch('http://localhost:8080/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          price,
+          image: base64Image,
+        }),
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        setCartData(responseData.cart);
+        console.log('Item added to cart:', responseData);
+      } else {
+        console.error('Failed to add item to cart');
+      }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+  
+  
+
+
+
   useEffect(() => {
-    console.log('Product Data:', productData);
   }, [productData, OrganicproductData]);
 
 
@@ -202,8 +211,8 @@ const ShowOrganic = ({ OrganicproductData }) => {
           <div className="flex justify-between items-center mt-4">
             <div>
               <p className="text-2xl flex mt-3 gap-12 font-semibold">
-                Price: <p className="text-[#00badb]">{productData.price}</p>
-                <p className="text-base mt-1.5 text-gray-700">{productData.salePrice}</p>
+                Price: <p className="text-[#00badb]">{productData.price_small}</p>
+                <p className="text-base mt-1.5 text-gray-700">{productData.price}</p>
               </p>
               <p className="text-sm mt-3 ml-[107px] text-gray-700">
                 Tax included
@@ -216,34 +225,28 @@ const ShowOrganic = ({ OrganicproductData }) => {
             </div>
           </div>
           <div className="mt-6 flex gap-6">
-            <p className="text-2xl font-semibold space-x-9 ">
+            <div className="text-2xl font-semibold space-x-9">
               Quantity :
-              <p className="text-4xl space-x-12 text-red-900 ml-32 overflow-hidden -mt-9 item-center border-[2px] border-t-2 border-b-2">
-                <button className="text-gray-400 hover:text-black border-r-2 ml-5 items-center">
-                  <button className="mr-5" onClick={handleIncrement}>
-                    +
-                  </button>
+              <div className="text-4xl space-x-10 text-red-900 ml-32 overflow-hidden -mt-9 item-center border-[2px] border-t-2 border-b-2">
+                <button className="text-gray-400 hover:text-black border-r-2 ml-5 items-center" onClick={handleIncrement}>
+                  +
                 </button>
                 <span className="text-gray-700 border-r-2 items-center">
                   <span className="mr-5 -ml-5">{count}</span>
                 </span>
-                <button className="items-center">
-                  <button
-                    onClick={handleDecrement}
-                    className="-ml-5 items-center"
-                  >
-                    <button className="mr-5 hover:text-black text-gray-400">
-                      -
-                    </button>
+                <button className="items-center" onClick={handleDecrement}>
+                  <button className="hover:text-black text-gray-400">
+                    <span className='mr-2'>-</span>
                   </button>
                 </button>
-              </p>
-            </p>
+              </div>
+            </div>
+
             <div className="flex justify-center content-center min-h-12">
               <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
               </a>
-              <button onClick={handleAddToCart} className="bg-red-500 hover:cursor-pointer hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+              <button onClick={handleAddToCart} className="bg-red-500 hover:cursor-pointer hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded">
                 Add To Cart
               </button>
             </div>
