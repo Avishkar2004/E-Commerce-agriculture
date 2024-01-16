@@ -20,7 +20,7 @@ const BuyNow = () => {
 
       <div className="flex">
         <div className="w-1/2">
-          <h2 className="text-2xl font-bold mb-2">{productData.name} Fungicide</h2>
+          <h2 className="text-2xl font-bold mb-2">{productData.name}</h2>
           <p className="mb-2">Product Name: {productData.name}</p>
           <p className="mb-4">Price: {productData.salePrice}</p>
           <img

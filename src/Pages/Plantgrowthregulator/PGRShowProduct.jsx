@@ -7,9 +7,9 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
-import Description from './Description';
 import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { useCart } from './CartContext';
+import Description from '../Description';
+import { useCart } from '../CartContext';
 
 const PGRShowProduct = ({ PGRDataProp }) => {
   const { addToCart } = useCart();

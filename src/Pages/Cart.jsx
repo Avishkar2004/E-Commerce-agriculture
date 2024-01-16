@@ -27,7 +27,6 @@ const Cart = () => {
             <p className="text-sm text-gray-600 mb-4">
                 {cartData.length} {cartData.length === 1 ? 'item' : 'items'} in your cart
             </p>
-
             <ul className="grid gap-8">
                 {cartData.map(item => (
                     <li key={item.id} className="flex bg-white p-6 rounded-lg shadow-md">
@@ -35,14 +34,12 @@ const Cart = () => {
                             <img
                                 src={`data:image/avif;base64,${item.image}`}
                                 alt={item.name}
-                                className="w-32 h-32 object-cover rounded-lg"
-                            />
+                                className="w-32 h-32 object-cover rounded-lg" />
                         </div>
                         <div className="flex-1 ml-4">
                             <p className="text-lg font-semibold">{item.name}</p>
                             <p className="text-gray-600">Price: ${item.price}</p>
-                            <p className="text-gray-600">Quantity: {item.small_50}</p>
-                            <p className="text-gray-600">Reviews: {item.reviews}</p>
+                            <p className="text-gray-600">Reviews: {item.quantity}</p>
                             <div className="mt-4 space-x-4">
                                 <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">
                                     Edit

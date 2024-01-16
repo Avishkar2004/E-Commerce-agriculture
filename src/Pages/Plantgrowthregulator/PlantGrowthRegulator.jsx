@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import PlantGrowthRegulators from "../Components/Banner/PlantGrowthRegulator.jpg";
-import Recentlyviewed from './Recentlyviewed';
+import PlantGrowthRegulators from "../../Components/Banner/PlantGrowthRegulator.jpg";
+import Recentlyviewed from '../Recentlyviewed';
 
 const PlantGrowthRegulator = () => {
   const [PlantgrowthregulatorData, setPlantgrowthregulatorData] = useState([]);

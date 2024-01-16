@@ -58,10 +58,10 @@ const Header = () => {
           <button className="text-blue-500">/  Sign In</button>
         </div>
         <div>
-          <href to="/cart" className="text-black">
+          <Link to="/cart" className="text-black hover:cursor-pointer">
             <ShoppingCartOutlinedIcon />
             {cartCount > 0 && <span className="ml-1">{cartCount}</span>}
-          </href>
+          </Link>
         </div>
       </div>
     </header>

@@ -38,7 +38,6 @@ const ShowOrganic = ({ OrganicproductData }) => {
     setSelectedSize(newSize);
 
     let updatedData;
-
     if (newSize === '50 ml') {
       updatedData = {
         reviews: initialProductData.review_50,

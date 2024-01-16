@@ -15,14 +15,10 @@ const ShowProduct = ({ productDataProp }) => {
   const location = useLocation();
   const initialProductData = (location.state && location.state.productData) || {};
   const [productData, setProductData] = useState(initialProductData);
-
-
+  const [cartData, setCartData] = useState(null)
   const [count, setCount] = useState(1);
   const [selectedSize, setSelectedSize] = useState('50 ml');
 
-  const handleBuyNow = () => {
-    history.push("/BuyNow", { productData })
-  }
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -56,6 +52,40 @@ const ShowProduct = ({ productDataProp }) => {
     }));
   };
 
+  const handleAddToCart = async () => {
+    try {
+      const { id, name, price, image } = productData;
+      // Ensure image is base64-encoded
+      const base64Image = image.toString('base64');
+
+      const response = await fetch('http://localhost:8080/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          price,
+          image: base64Image,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        setCartData(responseData.cart);
+        console.log('Item added to cart:', responseData);
+      } else {
+        console.error('Failed to add item to cart');
+      }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+
+  const handleBuyNow = () => {
+    history.push("/BuyNow", { productData })
+  }
 
   useEffect(() => {
     console.log('Product Data:', productData);
@@ -95,7 +125,7 @@ const ShowProduct = ({ productDataProp }) => {
             alt={productData.name}
           />
           <img
-            src={`data:image/avif;base64,${productData.hd_image}`}
+            src={`data:image/avif;base64,${productData.image}`}
             alt={productData.name}
             className="h-[31rem] object-cover mx-auto overflow-hidden"
           />
@@ -211,7 +241,7 @@ const ShowProduct = ({ productDataProp }) => {
               <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
               </Link>
-              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+              <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded cursor-pointer">
                 Add To Cart
               </button>
             </div>
