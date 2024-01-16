@@ -11,9 +11,9 @@ const Collection = () => {
   return (
     <section className="flex flex-col justify-center items-cente mb-9">
       <div className="mb-20">
-        <a href="/clearancesale">
+        <Link to="/clearancesale">
           <img src={Offer} alt="Offer" className="max-w-full" />
-        </a>
+        </Link>
       </div>
       <div>
         <div className="flex container justify-between -mt-6 space-x-40 mb-5 align-baseline font-bold">
@@ -40,7 +40,7 @@ const Collection = () => {
           </Link>
 
           <Link
-            to="/OrganicProduct"
+            to="/organicproduct"
             className="md:flex-none space-x-2 rounded-full pl-10 pb-2 mt-10 hover:scale-105 ease-in-out delay-50"
           >
             <img
@@ -60,7 +60,7 @@ const Collection = () => {
             <>Buy Micro Nutrients</>
           </Link>
 
-          <Link to="/Insecticide" className="md:flex-none space-x-12 rounded-full pl-10 pb-2 mt-10 hover:scale-105 ease-in-out delay-50">
+          <Link to="/insecticide" className="md:flex-none space-x-12 rounded-full pl-10 pb-2 mt-10 hover:scale-105 ease-in-out delay-50">
             <img
               className="rounded-full cursor-pointer h-40"
               src={insectiicide1}

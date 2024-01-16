@@ -2,7 +2,6 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import Flower from "../Components/Collections/images.jpg";
 import Pgr from "../Components/Collections/pgr.avif";
 import TheetaInsect from "../Components/OrganicProducts/THEETA.avif";
@@ -11,7 +10,6 @@ import Hamla from "../Components/BestInsecticides/Hamla550_200x.avif";
 import SAAF from "../Components/BestFungicides/Saaf.avif";
 import Movento from "../Components/BestInsecticides/MOVENTO.avif";
 import AriesAntox from "../Components/micronutrientPhoto/ARIES ANTOX.avif";
-
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const products = [
@@ -98,12 +96,12 @@ const Sliders = () => {
       <p className="text-lg mb-6 font-secondary">
         Discover our high-quality products below.
       </p>
-      <a
-        href="#"
+      <Link
+        to="#"
         className="bg-white text-[#0774d7] py-2 px-4 rounded-full hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out"
       >
         Learn more
-      </a>
+      </Link>
       <img
         src={Flower}
         alt="Main Product"

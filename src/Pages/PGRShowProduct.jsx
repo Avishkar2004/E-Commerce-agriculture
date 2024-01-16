@@ -8,7 +8,7 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from './Description';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useCart } from './CartContext';
 
 const PGRShowProduct = ({ PGRDataProp }) => {
@@ -77,21 +77,21 @@ const PGRShowProduct = ({ PGRDataProp }) => {
       <div className="space-x-52 ml-12 mt-4 mb-4">
         <div className="flex text-sm gap-12 text-gray-500 font-secondary">
           <span className="space-x-2 ml-6">
-            <a className="hover:text-blue-500" href="/">
+            <Link className="hover:text-blue-500" to="/">
               Home
-            </a>
+            </Link>
             &gt;
-            <a
+            <Link
               className="hover:text-blue-500 text-sm"
-              href="/plantgrowthregulator"
+              to="/plantgrowthregulator"
             >
-              Plant Growth Regulator (PGR)          </a>
+              Plant Growth Regulator (PGR)          </Link>
             &gt;
             <span className="text-sm">{PGRShowProduct.name}</span>
           </span>
-          <a href='/plantgrowthregulator/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <Link to='/plantgrowthregulator/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -217,10 +217,10 @@ const PGRShowProduct = ({ PGRDataProp }) => {
               </p>
             </p>
             <div className="flex justify-center content-center min-h-12">
-              <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+              <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
-              </a>
-              <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+              </Link>
+              <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
                 Add To Cart
               </button>
             </div>

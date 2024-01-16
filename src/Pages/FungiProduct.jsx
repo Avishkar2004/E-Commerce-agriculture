@@ -41,7 +41,6 @@ const FungiProduct = () => {
             <Router>
                 {productData.map((product) =>
                     <div key={product.id}>
-                        {/* <Link to={`/products/${product.id}`}>{product.name}</Link> */}
                     </div>
                 )}
 

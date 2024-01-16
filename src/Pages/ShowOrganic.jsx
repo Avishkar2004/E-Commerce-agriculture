@@ -7,7 +7,7 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from './Description';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ShowOrganic = ({ OrganicproductData }) => {
   const history = useHistory();
@@ -18,7 +18,6 @@ const ShowOrganic = ({ OrganicproductData }) => {
   const [selectedSize, setSelectedSize] = useState('50 ml');
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [cartData, setCartData] = useState(null);
-
 
 
   const handleBuyNow = () => {
@@ -62,15 +61,13 @@ const ShowOrganic = ({ OrganicproductData }) => {
     }));
   };
 
-
-
   const handleAddToCart = async () => {
     try {
       const { id, name, price, image } = productData;
-  
+
       // Ensure image is base64-encoded
       const base64Image = image.toString('base64');
-  
+
       const response = await fetch('http://localhost:8080/cart', {
         method: 'POST',
         headers: {
@@ -83,7 +80,7 @@ const ShowOrganic = ({ OrganicproductData }) => {
           image: base64Image,
         }),
       });
-  
+
       if (response.ok) {
         const responseData = await response.json();
         setCartData(responseData.cart);
@@ -95,35 +92,30 @@ const ShowOrganic = ({ OrganicproductData }) => {
       console.error('Error adding item to cart:', error);
     }
   };
-  
-  
-
-
 
   useEffect(() => {
   }, [productData, OrganicproductData]);
-
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <div className="space-x-52 ml-12 mt-4 mb-4">
         <div className="flex text-sm gap-12 text-gray-500 font-secondary">
           <span className="space-x-2 ml-6">
-            <a className="hover:text-blue-500" href="/">
+            <Link className="hover:text-blue-500" to="/">
               Home
-            </a>
+            </Link>
             &gt;
-            <a
+            <Link
               className="hover:text-blue-500 text-sm"
-              href="/organicproduct"
+              to="/organicproduct"
             >
-              Buy Organic Product Online            </a>
+              Buy Organic Product Online            </Link>
             &gt;
             <span className="text-sm">{productData.name + " Fungicide"}</span>
           </span>
-          <a href='/fungicides/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <Link to='/fungicides/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -243,9 +235,9 @@ const ShowOrganic = ({ OrganicproductData }) => {
             </div>
 
             <div className="flex justify-center content-center min-h-12">
-              <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+              <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
-              </a>
+              </Link>
               <button onClick={handleAddToCart} className="bg-red-500 hover:cursor-pointer hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded">
                 Add To Cart
               </button>

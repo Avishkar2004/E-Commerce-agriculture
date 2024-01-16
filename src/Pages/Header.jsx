@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useCart } from "./CartContext";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Header = () => {
   const inputRef = useRef(null);
@@ -16,8 +17,8 @@ const Header = () => {
     <header className="bg-[#c4e0ef] text-white py-5">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">
-          <a href="/" className="text-blue-500">
-            <img src={HeaderPhoto} alt="Header" className="w-14 h-12 backdrop-brightness-200	" />          </a>
+          <Link to="/" className="text-blue-500">
+            <img src={HeaderPhoto} alt="Header" className="w-14 h-12 backdrop-brightness-200	" />          </Link>
         </div>
         <div
           className="w-full md:w-2/3 relative"
@@ -53,14 +54,14 @@ const Header = () => {
               My Account
             </button>
           </div>
-          <a href="/logIn" className="text-blue-500">Login</a>
+          <Link to="/logIn" className="text-blue-500">Login</Link>
           <button className="text-blue-500">/  Sign In</button>
         </div>
         <div>
-          <a href="/cart" className="text-black">
+          <href to="/cart" className="text-black">
             <ShoppingCartOutlinedIcon />
             {cartCount > 0 && <span className="ml-1">{cartCount}</span>}
-          </a>
+          </href>
         </div>
       </div>
     </header>

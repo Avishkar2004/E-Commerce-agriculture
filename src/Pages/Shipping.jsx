@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Refund from "./Refund";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Shipping = () => {
   const [showMore, setShowMore] = useState(false);
@@ -177,9 +178,9 @@ const Shipping = () => {
                       If you are facing shipping related issues
                     </span>
                     , kindly drop an email to
-                    <a href="" className="text-cyan-500">
+                    <Link to="" className="text-cyan-500">
                       admin@agritell.com
-                    </a>
+                    </Link>
                     from the registered e-mail.
                   </li>
                 </ul>

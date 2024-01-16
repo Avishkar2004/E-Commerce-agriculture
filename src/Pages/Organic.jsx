@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PlantGrowthRegulators from "../Components/PgrCollection/PlantGrowthRegulator.jpg";
+import OrganicProduct from "../Components/Banner/orgnicProduct.jpg";
 import Recentlyviewed from "./Recentlyviewed";
 import { Link } from "react-router-dom";
 
@@ -38,12 +38,12 @@ const Organic = () => {
   return (
     <div className="container">
       <div>
-        <a
-          href="/"
+        <Link
+          to="/"
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
           Home &gt;
-        </a>
+        </Link>
         <span className="text-black text-sm ml-1 font-secondary">
           Buy Organic Product Online &gt;
         </span>
@@ -139,10 +139,10 @@ const Organic = () => {
         {/* Right Column - Photo */}
         <div className="w-3/4 mt-10 bg-white ml-10  ">
           {/* Center the image */}
-          <div className="flex justify-center pl-5 w-full">
+          <div className="flex justify-center pl-5 w-full h-[15%]">
             <img
               className="w-[100%] mr-2 -ml-2"
-              src={PlantGrowthRegulators}
+              src={OrganicProduct}
               alt=""
             />
           </div>

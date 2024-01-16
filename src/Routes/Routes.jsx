@@ -19,6 +19,10 @@ import Organic from "../Pages/Organic";
 import ShowOrganic from "../Pages/ShowOrganic";
 import Cart from "../Pages/Cart";
 import { CartProvider } from "../Pages/CartContext";
+import ShowMicroProduct from "../Pages/ShowMicroProduct";
+import Micronutrients from "../Pages/Micronutrients";
+import ShowInsecticide from "../Pages/ShowInsecticide";
+import Insecticide from "../Pages/Insecticide";
 const AppRoutes = () => {
   return (
     <CartProvider>
@@ -35,9 +39,16 @@ const AppRoutes = () => {
           <Route path="/fungicides/:productId" component={ShowProduct} />
           <Route path="/fungicides" component={BestFungicides} />
 
+          <Route path="/insecticide/:productId" component={ShowInsecticide} />
+          <Route path="/insecticide" component={BestInsecticides} />
+
           {/* This is for organic product */}
-          <Route path="/OrganicProduct/:productId" component={ShowOrganic} />
-          <Route path="/OrganicProduct" component={Organic} />
+          <Route path="/organicproduct/:productId" component={ShowOrganic} />
+          <Route path="/organicproduct" component={Organic} />
+
+          {/* This is for Micro Nutrients */}
+          <Route path="/micro-nutrients/:productId" component={ShowMicroProduct} />
+          <Route path="/micro-nutrients" component={Micronutrients} />
 
           {/* Route for Buy Now */}
           <Route path="/BuyNow" component={BuyNow} />
@@ -57,7 +68,7 @@ const AppRoutes = () => {
                   <Product />
                   <OrganicFront />
                   <Blogposts />
-                  <BestInsecticides />
+                  <Insecticide />
                   <Recentlyviewed />
                 </>
               );

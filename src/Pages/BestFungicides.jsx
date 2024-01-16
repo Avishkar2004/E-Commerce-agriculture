@@ -34,16 +34,15 @@ const BestFungicides = () => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-
   return (
     <div className="container mt-2">
       <div className="">
-        <a
-          href="/ "
+        <Link
+          to="/ "
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
           Home &gt;
-        </a>
+        </Link>
         <span className="text-black text-sm ml-2 font-secondary">
           Buy  Fungicide Online &gt;
         </span>
@@ -141,7 +140,7 @@ const BestFungicides = () => {
           {/* Center the image */}
           <div className="flex justify-center pl-5 w-full h-[10%]">
             <img
-              className="w-[100%] mr-2 -ml-2 "
+              className="w-[100%] mr-2 -ml-2"
               src={BannerFungicide}
               alt=""
             />

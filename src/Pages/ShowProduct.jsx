@@ -1,4 +1,4 @@
-// this is for insecticide
+// this is for Fungicides
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search";
@@ -8,7 +8,7 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from './Description';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ShowProduct = ({ productDataProp }) => {
   const history = useHistory();
@@ -67,22 +67,22 @@ const ShowProduct = ({ productDataProp }) => {
       <div className="space-x-52 ml-12 mt-4 mb-4">
         <div className="flex text-sm gap-12 text-gray-500 font-secondary">
           <span className="space-x-2 ml-6">
-            <a className="hover:text-blue-500" href="/">
+            <Link className="hover:text-blue-500" to="/">
               Home
-            </a>
+            </Link>
             &gt;
-            <a
+            <Link
               className="hover:text-blue-500 text-sm"
-              href="/fungicides"
+              to="/fungicides"
             >
               Buy Fungicides Online
-            </a>
+            </Link>
             &gt;
             <span className="text-sm">{productData.name + " Fungicide"}</span>
           </span>
-          <a href='/fungicides/Pegasus' className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <Link to='/fungicides/Pegasus' className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -91,7 +91,7 @@ const ShowProduct = ({ productDataProp }) => {
         <div className="w-1/2 bg-white text-center ml-12 border-r-2 border-l-2 border-t-2 border-b-2">
           <img
             className="h-28 border-2 border-blue-500"
-            src={`data:image/avif;base64, ${productData.hd_image}`}
+            src={`data:image/avif;base64, ${productData.image}`}
             alt={productData.name}
           />
           <img
@@ -208,9 +208,9 @@ const ShowProduct = ({ productDataProp }) => {
               </p>
             </p>
             <div className="flex justify-center content-center min-h-12">
-              <a href="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+              <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
-              </a>
+              </Link>
               <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
                 Add To Cart
               </button>

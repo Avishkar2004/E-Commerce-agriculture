@@ -2,22 +2,23 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import ShowOrganic from "./ShowOrganic";
+import ShowInsecticide from "./ShowInsecticide";
 
-const OrganicProduct = () => {
+const InsecticideProduct = () => {
     const { productId } = useParams();
-    const [OrganicproductData, setOrganicProductData] = useState([]);
+    const [InsecticideProductData, setInsecticideProductData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/organicproduct/${productId}`);
+                const response = await fetch(`http://localhost:8080/insecticide/${productId}`);
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch data for product ${productId}`);
+                    throw new Error(`Failed to fetch data for insecticide ${productId}`);
                 }
                 const data = await response.json();
-                setOrganicProductData(data);
+                setInsecticideProductData(data);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -34,11 +35,10 @@ const OrganicProduct = () => {
     if (error) {
         return <p>Error: {error}</p>;
     }
-
     return (
         <div>
             <Router>
-                {OrganicproductData.map((product) => (
+                {InsecticideProductData.map((product) => (
                     <div key={product.id}>
                         {/* Render relevant information about the product here */}
                     </div>
@@ -46,11 +46,11 @@ const OrganicProduct = () => {
 
                 <Switch>
                     {/* Pass OrganicproductData array as a prop to ShowOrganic */}
-                    <Route path="/products/:productId" element={<ShowOrganic OrganicProductDataProp={OrganicproductData} />} />
+                    <Route path="/products/:productId" element={<ShowInsecticide OrganicProductDataProp={InsecticideProductData} />} />
                 </Switch>
             </Router>
         </div>
     );
 };
 
-export default OrganicProduct;
+export default InsecticideProduct;

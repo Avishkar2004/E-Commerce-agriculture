@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const Footer = () => {
   return (
@@ -29,29 +30,29 @@ const Footer = () => {
             <h2 className="text-xl font-semibold">Information</h2>
             <ul className="mt-4 space-y-4 ">
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   About Agritell.com
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   FAQs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Products Ideas, Roadmap, and Announcements
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Track Order
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -61,29 +62,29 @@ const Footer = () => {
             <h2 className="text-xl font-semibold">Categories</h2>
             <ul className="mt-4 space-y-4 ">
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Brands
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Insecticides
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Fungicides
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Micro-nutrients
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Organic Products
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -93,29 +94,29 @@ const Footer = () => {
             <h2 className="text-xl font-semibold">Policies</h2>
             <ul className="mt-4 space-y-4 ">
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Terms and Conditions
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Shipping Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Cancellation and Refund
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600">
+                <Link to="#" className="hover:text-blue-600">
                   Preventive Policy for COVID-19
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

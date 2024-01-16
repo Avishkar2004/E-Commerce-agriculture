@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import PlantGrowthRegulators from "../../src/Components/PgrCollection/PlantGrowthRegulator.jpg";
+import PlantGrowthRegulators from "../Components/Banner/PlantGrowthRegulator.jpg";
 import Recentlyviewed from './Recentlyviewed';
 
 const PlantGrowthRegulator = () => {
@@ -39,14 +39,15 @@ const PlantGrowthRegulator = () => {
 
     <div className="container mt-2">
       <div>
-        <a
-          href="/"
+        <Link
+          to="/"
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
           Home &gt;
-        </a>
+        </Link>
         <span className="text-black text-sm ml-2 font-secondary">
-          Plant Growth Regulator (PGR) &gt;        </span>
+          Plant Growth Regulator (PGR) &gt;
+        </span>
       </div>
       <div className="container flex">
         {/* Left Column - Leading Brands */}
