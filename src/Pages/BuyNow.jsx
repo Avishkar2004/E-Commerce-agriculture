@@ -94,7 +94,7 @@ const BuyNow = () => {
             {/* Add more payment-related fields as needed */}
 
             <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">
-              Buy Now
+            Pay Now
             </button>
           </form>
         </div>

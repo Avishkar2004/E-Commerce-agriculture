@@ -1,4 +1,3 @@
-// this is for Fungicides
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import SearchIcon from "@mui/icons-material/Search";
@@ -15,17 +14,16 @@ const ShowFungicides = ({ productDataProp }) => {
   const location = useLocation();
   const initialProductData = (location.state && location.state.productData) || {};
   const [productData, setProductData] = useState(initialProductData);
-  const [cartData, setCartData] = useState(null)
+  const [cartData, setCartData] = useState(null);
   const [count, setCount] = useState(1);
   const [selectedSize, setSelectedSize] = useState('50 ml');
-
 
   const handleIncrement = () => {
     setCount(count + 1);
   };
 
   const handleDecrement = () => {
-    setCount(count - 1);
+    setCount(count - 1 > 0 ? count - 1 : 1); // Ensure count doesn't go below 1
   };
 
   const handleSizeChange = (newSize) => {
@@ -42,7 +40,7 @@ const ShowFungicides = ({ productDataProp }) => {
       updatedData = {
         reviews: initialProductData.review_100,
         save: initialProductData.save_100,
-        price: initialProductData.price_big,
+        price: initialProductData.salePrice,
       };
     }
 
@@ -55,8 +53,15 @@ const ShowFungicides = ({ productDataProp }) => {
   const handleAddToCart = async () => {
     try {
       const { id, name, price, image } = productData;
-      // Ensure image is base64-encoded
-      const base64Image = image.toString('base64');
+
+      // Ensure price is a valid value and not null
+      if (price == null) {
+        console.error('Product price is null or undefined.');
+        return; // Exit the function to prevent further processing
+      }
+
+      // Ensure image is base64-encoded if available
+      const base64Image = image ? image.toString('base64') : null;
 
       const response = await fetch('http://localhost:8080/cart', {
         method: 'POST',
@@ -84,12 +89,13 @@ const ShowFungicides = ({ productDataProp }) => {
   };
 
   const handleBuyNow = () => {
-    history.push("/BuyNow", { productData })
-  }
+    history.push("/BuyNow", { productData });
+  };
 
   useEffect(() => {
-    console.log('Product Data:', productData);
-  }, [productData, productDataProp]);
+    // Select price by default for 50 ml
+    handleSizeChange('50 ml');
+  }, [productDataProp]);
 
 
   return (
@@ -171,22 +177,22 @@ const ShowFungicides = ({ productDataProp }) => {
           <hr className="border-[1px] border-gray-800 border-r" />
 
           <div>
-            <p className="text-xl text-[#1e2d7d] mt-5">
-              Size: <span className="text-xl">{selectedSize}</span>
-            </p>
+          <p className="text-xl text-[#1e2d7d] mt-5">
+            Size: <span className="text-xl">{selectedSize}</span>
+          </p>
             <div className="flex gap-6 mt-5">
-              <button
-                className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '50 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-8 ml-4 mb-4 mr-4 cursor-pointer' : 'bg-[#f1fdff]'} `}
-                onClick={() => handleSizeChange('50 ml')}
-              >
-                {productData.small_50}
-              </button>
-              <button
-                className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '100 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md ' : 'bg-[#f1fdff]'} mt-2 ml-2 mb-2 mr-2 cursor-pointer`}
-                onClick={() => handleSizeChange('100 ml')}
-              >
-                {productData.big_100}
-              </button>
+            <button
+            className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '50 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-8 ml-4 mb-4 mr-4 cursor-pointer' : 'bg-[#f1fdff]'} `}
+            onClick={() => handleSizeChange('50 ml')}
+          >
+            {productData.small_50}
+          </button>
+          <button
+            className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '100 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md ' : 'bg-[#f1fdff]'} mt-2 ml-2 mb-2 mr-2 cursor-pointer`}
+            onClick={() => handleSizeChange('100 ml')}
+          >
+            {productData.big_100}
+          </button>
             </div>
             <p className="text-xl mt-6 text-[#1e2d7d]">
               Expiry Date: <span className="text-black">09-Dec-2024</span>
