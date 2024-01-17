@@ -23,7 +23,6 @@ const Micronutrients = () => {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, []);
 
@@ -185,9 +184,6 @@ const Micronutrients = () => {
                     </div>
                     <hr className="mt-5 border-[1px]" />
                     {/* if you want to put gap inbetn component you need gap */}
-
-
-
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
                         {micronutrientData.map((micronutrientProduct) => (
                             <Link

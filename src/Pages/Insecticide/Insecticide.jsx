@@ -32,8 +32,7 @@ const Insecticide = () => {
     <div className="container mx-auto mt-10 mb-5">
     <div className="flex justify-between font-bold">
       <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
-        Featured collection
-      </h1>
+      Best Insecticides      </h1>
       <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer">
         View All
       </h1>
@@ -47,8 +46,8 @@ const Insecticide = () => {
         products.map((product) => (
           <Link
             to={{
-              pathname: `/Insecticide/${product.name}`,
-              state: { productData: product }, // Make sure product contains all necessary data
+              pathname: `/Insecticide/${encodeURIComponent(product.name)}`,
+              state: { productData: product },
             }}
             key={product.id}
             className="border border-x-slate-200 border-solid"

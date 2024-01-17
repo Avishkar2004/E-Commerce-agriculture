@@ -19,10 +19,11 @@ const ShowOrganic = ({ OrganicproductData }) => {
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [cartData, setCartData] = useState(null);
 
-
   const handleBuyNow = () => {
-    history.push("/BuyNow", { productData })
+    history.push("/BuyNow", { productData });
   }
+
+
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -113,7 +114,7 @@ const ShowOrganic = ({ OrganicproductData }) => {
             &gt;
             <span className="text-sm">{productData.name + " Fungicide"}</span>
           </span>
-          <Link to='/fungicides/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <Link to='/fungicides/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
           </Link>
         </div>

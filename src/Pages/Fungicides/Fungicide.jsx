@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-const ProductFea = () => {
+const Fungicides = () => {
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,14 +26,11 @@ const ProductFea = () => {
     };
     fetchData();
   }, []);
-
-
   return (
     <div className="container mx-auto mt-10 mb-5">
       <div className="flex justify-between font-bold">
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
-          Featured collection
-        </h1>
+          Best Fungicide        </h1>
         <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer">
           View All
         </h1>
@@ -46,8 +44,8 @@ const ProductFea = () => {
           products.map((product) => (
             <Link
               to={{
-                pathname: `/fungicides/${product.name}`,
-                state: { productData: product }, // Make sure product contains all necessary data
+                pathname: `/fungicides/${encodeURIComponent(product.name)}`,
+                state: { productData: product },
               }}
               key={product.id}
               className="border border-x-slate-200 border-solid"
@@ -88,8 +86,7 @@ const ProductFea = () => {
         )}
       </div>
       <hr className="mt-12 border-[1px] border-gray-600" />
-    </div>
-  );
-};
+    </div>)
+}
 
-export default ProductFea;  
+export default Fungicides

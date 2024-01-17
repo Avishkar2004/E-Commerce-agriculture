@@ -23,6 +23,7 @@ import ShowMicroProduct from "../Pages/MicroNutrients/ShowMicroProduct";
 import Micronutrients from "../Pages/MicroNutrients/Micronutrients";
 import ShowInsecticide from "../Pages/Insecticide/ShowInsecticide";
 import Insecticide from "../Pages/Insecticide/Insecticide";
+import Fungicides from "../Pages/Fungicides/Fungicide";
 const AppRoutes = () => {
   return (
     <CartProvider>
@@ -68,6 +69,7 @@ const AppRoutes = () => {
                   <Product />
                   <OrganicFront />
                   <Blogposts />
+                  <Fungicides />
                   <Insecticide />
                   <Recentlyviewed />
                 </>

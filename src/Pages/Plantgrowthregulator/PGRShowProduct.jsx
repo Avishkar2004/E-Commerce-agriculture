@@ -89,7 +89,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
             &gt;
             <span className="text-sm">{PGRShowProduct.name}</span>
           </span>
-          <Link to='/plantgrowthregulator/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <Link to='/plantgrowthregulator/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
           </Link>
         </div>

@@ -77,7 +77,7 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
                         &gt;
                         <span className="text-sm">{productData.name}</span>
                     </span>
-                    <Link to='/insecticide/Pegasus' className=" ml-[59rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+                    <Link to='/insecticide/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
                         Next &gt;
                     </Link>
                 </div>

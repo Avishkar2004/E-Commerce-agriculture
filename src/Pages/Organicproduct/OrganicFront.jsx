@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { parentObject } from "../../Data";
 import { Link } from "react-router-dom";
 const OrganicFront = () => {
   const [micronutrientData, setMicronutrientData] = useState([]);
@@ -26,7 +25,6 @@ const OrganicFront = () => {
     fetchData();
   }, [])
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,15 +43,6 @@ const OrganicFront = () => {
 
     fetchData();
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-
-  if (error) {
-    return <p>Error : {error}</p>;
-  }
-
 
   if (loading) {
     return <p>Loading...</p>
@@ -79,10 +68,10 @@ const OrganicFront = () => {
         {OrganicproductData.map((OrganicProduct) => (
           <Link
             to={{
-
               pathname: `/organicproduct/${OrganicProduct.name}`,
-              state: { OrganicProduct: OrganicProduct }
+              state: { OrganicproductData: OrganicProduct }
             }}
+            key={OrganicProduct.id}
             className="border border-x-slate-200 border-solid"
           >
             <div className="image-container">

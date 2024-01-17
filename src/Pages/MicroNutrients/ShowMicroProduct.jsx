@@ -88,7 +88,7 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                         &gt;
                         <span className="text-sm">{showMicroProduct.name}</span>
                     </span>
-                    <Link to='/micro-nutrients/Pegasus' className=" ml-[52rem] font-secondary cursor-pointer hover:text-blue-500 text-base">
+                    <Link to='/micro-nutrients/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
                         Next &gt;
                     </Link>
                 </div>

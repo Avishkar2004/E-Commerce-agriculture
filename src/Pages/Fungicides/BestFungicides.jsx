@@ -194,7 +194,7 @@ const BestFungicides = () => {
               >
                 <div className="image-container">
                   <img
-                    src={`data:image/avif;base64, ${product.hd_image}`}
+                    src={`data:image/avif;base64, ${product.image}`}
                     alt={product.altTag || product.name}
                     className="w-full h-full object-cover"
                   />
