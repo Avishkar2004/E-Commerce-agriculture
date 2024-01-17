@@ -7,10 +7,10 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
-import Description from './Description';
+import Description from '../Description';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-const ShowProduct = ({ productDataProp }) => {
+const ShowFungicides = ({ productDataProp }) => {
   const history = useHistory();
   const location = useLocation();
   const initialProductData = (location.state && location.state.productData) || {};
@@ -253,4 +253,4 @@ const ShowProduct = ({ productDataProp }) => {
   );
 };
 
-export default ShowProduct;
+export default ShowFungicides;

@@ -40,7 +40,6 @@ const OrganicProduct = () => {
             <Router>
                 {OrganicproductData.map((product) => (
                     <div key={product.id}>
-                        {/* Render relevant information about the product here */}
                     </div>
                 ))}
 

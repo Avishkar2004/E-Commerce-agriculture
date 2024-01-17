@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import MicronutrientsBanner from "../Components/Banner/Micronutrients.png";
-import Recentlyviewed from './Recentlyviewed';
+import MicronutrientsBanner from "../../Components/Banner/Micronutrients.png";
+import Recentlyviewed from '../Recentlyviewed';
 import { Link } from "react-router-dom";
 
 const Micronutrients = () => {

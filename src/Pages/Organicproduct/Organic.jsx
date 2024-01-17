@@ -1,47 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import OrganicProduct from "../../Components/Banner/orgnicProduct.jpg";
+import Recentlyviewed from "../Recentlyviewed";
 import { Link } from "react-router-dom";
-import Recentlyviewed from "./Recentlyviewed";
-import BannerInsecticide from "../Components/Banner/Insecticide.jpg"
 
-
-const BestInsecticides = () => {
-
-  const [InsecticideData, setInsecticideData] = useState([]);
+const Organic = () => {
+  const [OrganicproductData, setOrganicproductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/insecticide");
+        const response = await fetch("http://localhost:8080/organicproduct");
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error("Failed to fetch organicproduct data");
         }
         const data = await response.json();
-        console.log("Received products:", data);
-        setInsecticideData(data.slice(0, 1000) || []);
+        setOrganicproductData(data);
       } catch (error) {
-        console.error("Error fetching data:", error.message);
-        setError("An error occurred while fetching data");
+        setError(error.message);
       } finally {
         setLoading(false);
       }
     };
+
     fetchData();
   }, []);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
 
   return (
-    <div className="container mt-2">
-      <div className="">
+    <div className="container">
+      <div>
         <Link
-          to="/ "
+          to="/"
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
           Home &gt;
         </Link>
-        <span className="text-black text-sm ml-2 font-secondary">
-          Buy  Insecticide Online &gt;
+        <span className="text-black text-sm ml-1 font-secondary">
+          Buy Organic Product Online &gt;
         </span>
       </div>
       <div className="container flex">
@@ -135,19 +139,20 @@ const BestInsecticides = () => {
         {/* Right Column - Photo */}
         <div className="w-3/4 mt-10 bg-white ml-10  ">
           {/* Center the image */}
-          <div className="flex justify-center pl-5 w-full h-[10%]">
+          <div className="flex justify-center pl-5 w-full h-[15%]">
             <img
               className="w-[100%] mr-2 -ml-2"
-              src={BannerInsecticide}
+              src={OrganicProduct}
               alt=""
             />
           </div>
           <div className="ml-3 mt-5 font-primary text-xl text-blue-500">
-            <h1>Buy Insecticide Online</h1>
+            <h1>Buy Organic Product Online</h1>
           </div>
           <div className="mt-4 ml-3 space-y-5 font-secondary text-base">
             <p>
-              Insecticide is the most useful thing for agriculture so farmers can use it for controlling fungi.
+              Organic products cover a broad range of functionality of crops and
+              plants. All are eco-friendly and give your garden greener.
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
@@ -179,36 +184,37 @@ const BestInsecticides = () => {
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5">
-            {InsecticideData.map((product) => (
+          {/* if you want to put gap inbetn component you need gap */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+            {OrganicproductData.map((OrganicProduct) => (
               <Link
                 to={{
-                  pathname: `/insecticide/${product.name}`,
-                  state: { productData: product },
+                  pathname: `/organicproduct/${OrganicProduct.name}`,
+                  state: { OrganicproductData: OrganicProduct },
                 }}
-                key={product.id}
+                key={OrganicProduct.id}
                 className="border border-x-slate-200 border-solid"
               >
                 <div className="image-container">
                   <img
-                    src={`data:image/avif;base64, ${product.image}`}
-                    alt={product.altTag || product.name}
+                    src={`data:image/avif;base64, ${OrganicProduct.image}`}
+                    alt={OrganicProduct.altTag || OrganicProduct.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-4">
                   <h2 className="text-lg font-semibold font-primary">
-                    {product.name}
+                    {OrganicProduct.name}
                   </h2>
                   <p className="text-sm text-gray-600 font-secondary font-semibold">
-                    {product.description}
+                    {OrganicProduct.description}
                   </p>
-                  <p className="text-red-500 font-secondary">{product.salePrice}</p>
+                  <p className="text-red-500 font-secondary">{OrganicProduct.salePrice}</p>
                   <p className="text-green-600 font-secondary font-medium">
-                    {product.reviews}
+                    {OrganicProduct.reviews}
                   </p>
                   <p className="text-gray-600 font-secondary">
-                    {product.stockStatus}
+                    {OrganicProduct.stockStatus}
                   </p>
                 </div>
               </Link>
@@ -219,7 +225,6 @@ const BestInsecticides = () => {
       <Recentlyviewed />
     </div>
   );
-
 };
 
-export default BestInsecticides;
+export default Organic;

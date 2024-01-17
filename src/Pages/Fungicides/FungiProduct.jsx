@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ShowProduct from "./ShowProduct";
+import ShowProduct from "./ShowFungicides.jsx";
 
 const FungiProduct = () => {
     const { productId } = useParams();

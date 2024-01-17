@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import OrganicProduct from "../Components/Banner/orgnicProduct.jpg";
-import Recentlyviewed from "./Recentlyviewed";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Recentlyviewed from "../Recentlyviewed";
+import BannerFungicide from '../../Components/BestFungicides/BannerFungi.webp'
 
-const Organic = () => {
-  const [OrganicproductData, setOrganicproductData] = useState([]);
+const BestFungicides = () => {
+  const [fungicidesData, setFungicidesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/organicproduct");
+        const response = await fetch("http://localhost:8080/products");
         if (!response.ok) {
-          throw new Error("Failed to fetch Plantgrowthregulator data");
+          throw new Error("Failed to fetch fungicides data");
         }
         const data = await response.json();
-        setOrganicproductData(data);
+        setFungicidesData(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -26,6 +26,7 @@ const Organic = () => {
 
     fetchData();
   }, []);
+
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -33,19 +34,17 @@ const Organic = () => {
   if (error) {
     return <p>Error: {error}</p>;
   }
-
-
   return (
-    <div className="container">
-      <div>
+    <div className="container mt-2">
+      <div className="">
         <Link
-          to="/"
+          to="/ "
           className="ml-12 mt-12 text-black text-sm hover:text-blue-600 font-primary"
         >
           Home &gt;
         </Link>
-        <span className="text-black text-sm ml-1 font-secondary">
-          Buy Organic Product Online &gt;
+        <span className="text-black text-sm ml-2 font-secondary">
+          Buy  Fungicide Online &gt;
         </span>
       </div>
       <div className="container flex">
@@ -139,20 +138,19 @@ const Organic = () => {
         {/* Right Column - Photo */}
         <div className="w-3/4 mt-10 bg-white ml-10  ">
           {/* Center the image */}
-          <div className="flex justify-center pl-5 w-full h-[15%]">
+          <div className="flex justify-center pl-5 w-full h-[10%]">
             <img
               className="w-[100%] mr-2 -ml-2"
-              src={OrganicProduct}
+              src={BannerFungicide}
               alt=""
             />
           </div>
           <div className="ml-3 mt-5 font-primary text-xl text-blue-500">
-            <h1>Buy Organic Product Online</h1>
+            <h1>Buy Fungicides Online</h1>
           </div>
           <div className="mt-4 ml-3 space-y-5 font-secondary text-base">
             <p>
-              Organic products cover a broad range of functionality of crops and
-              plants. All are eco-friendly and give your garden greener.
+              Fungicides is the most useful thing for agriculture so farmers can use it for controlling fungi.
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
@@ -184,37 +182,36 @@ const Organic = () => {
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          {/* if you want to put gap inbetn component you need gap */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-            {OrganicproductData.map((OrganicProduct) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5">
+            {fungicidesData.map((product) => (
               <Link
                 to={{
-                  pathname: `/organicproduct/${OrganicProduct.name}`,
-                  state: { OrganicproductData: OrganicProduct },
+                  pathname: `/fungicides/${product.name}`,
+                  state: { productData: product },
                 }}
-                key={OrganicProduct.id}
+                key={product.id}
                 className="border border-x-slate-200 border-solid"
               >
                 <div className="image-container">
                   <img
-                    src={`data:image/avif;base64, ${OrganicProduct.image}`}
-                    alt={OrganicProduct.altTag || OrganicProduct.name}
+                    src={`data:image/avif;base64, ${product.hd_image}`}
+                    alt={product.altTag || product.name}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="p-4">
                   <h2 className="text-lg font-semibold font-primary">
-                    {OrganicProduct.name}
+                    {product.name}
                   </h2>
                   <p className="text-sm text-gray-600 font-secondary font-semibold">
-                    {OrganicProduct.description}
+                    {product.description}
                   </p>
-                  <p className="text-red-500 font-secondary">{OrganicProduct.salePrice}</p>
+                  <p className="text-red-500 font-secondary">{product.salePrice}</p>
                   <p className="text-green-600 font-secondary font-medium">
-                    {OrganicProduct.reviews}
+                    {product.reviews}
                   </p>
                   <p className="text-gray-600 font-secondary">
-                    {OrganicProduct.stockStatus}
+                    {product.stockStatus}
                   </p>
                 </div>
               </Link>
@@ -227,4 +224,7 @@ const Organic = () => {
   );
 };
 
-export default Organic;
+export default BestFungicides;
+
+
+

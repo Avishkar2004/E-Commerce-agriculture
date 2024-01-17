@@ -6,7 +6,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
-import Description from './Description';
+import Description from '../Description';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const ShowOrganic = ({ OrganicproductData }) => {
@@ -108,7 +108,8 @@ const ShowOrganic = ({ OrganicproductData }) => {
               className="hover:text-blue-500 text-sm"
               to="/organicproduct"
             >
-              Buy Organic Product Online            </Link>
+              Buy Organic Product Online
+            </Link>
             &gt;
             <span className="text-sm">{productData.name + " Fungicide"}</span>
           </span>

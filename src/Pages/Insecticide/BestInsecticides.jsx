@@ -1,39 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Recentlyviewed from "./Recentlyviewed";
-import BannerFungicide from '../Components/BestFungicides/BannerFungi.webp'
+import Recentlyviewed from "../Recentlyviewed";
+import BannerInsecticide from "../../Components/Banner/Insecticide.jpg"
 
-const BestFungicides = () => {
-  const [fungicidesData, setFungicidesData] = useState([]);
+
+const BestInsecticides = () => {
+
+  const [InsecticideData, setInsecticideData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/products");
+        const response = await fetch("http://localhost:8080/insecticide");
         if (!response.ok) {
-          throw new Error("Failed to fetch fungicides data");
+          throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setFungicidesData(data);
+        console.log("Received products:", data);
+        setInsecticideData(data.slice(0, 1000) || []);
       } catch (error) {
-        setError(error.message);
+        console.error("Error fetching data:", error.message);
+        setError("An error occurred while fetching data");
       } finally {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
   return (
     <div className="container mt-2">
       <div className="">
@@ -44,7 +41,7 @@ const BestFungicides = () => {
           Home &gt;
         </Link>
         <span className="text-black text-sm ml-2 font-secondary">
-          Buy  Fungicide Online &gt;
+          Buy  Insecticide Online &gt;
         </span>
       </div>
       <div className="container flex">
@@ -141,16 +138,16 @@ const BestFungicides = () => {
           <div className="flex justify-center pl-5 w-full h-[10%]">
             <img
               className="w-[100%] mr-2 -ml-2"
-              src={BannerFungicide}
+              src={BannerInsecticide}
               alt=""
             />
           </div>
           <div className="ml-3 mt-5 font-primary text-xl text-blue-500">
-            <h1>Buy Fungicides Online</h1>
+            <h1>Buy Insecticide Online</h1>
           </div>
           <div className="mt-4 ml-3 space-y-5 font-secondary text-base">
             <p>
-              Fungicides is the most useful thing for agriculture so farmers can use it for controlling fungi.
+              Insecticide is the most useful thing for agriculture so farmers can use it for controlling fungi.
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
@@ -183,10 +180,10 @@ const BestFungicides = () => {
           </div>
           <hr className="mt-5 border-[1px]" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 mt-5">
-            {fungicidesData.map((product) => (
+            {InsecticideData.map((product) => (
               <Link
                 to={{
-                  pathname: `/fungicides/${product.name}`,
+                  pathname: `/insecticide/${product.name}`,
                   state: { productData: product },
                 }}
                 key={product.id}
@@ -194,7 +191,7 @@ const BestFungicides = () => {
               >
                 <div className="image-container">
                   <img
-                    src={`data:image/avif;base64, ${product.hd_image}`}
+                    src={`data:image/avif;base64, ${product.image}`}
                     alt={product.altTag || product.name}
                     className="w-full h-full object-cover"
                   />
@@ -222,9 +219,7 @@ const BestFungicides = () => {
       <Recentlyviewed />
     </div>
   );
+
 };
 
-export default BestFungicides;
-
-
-
+export default BestInsecticides;
