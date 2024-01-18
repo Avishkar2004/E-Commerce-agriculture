@@ -247,9 +247,9 @@ const ShowFungicides = ({ productDataProp }) => {
               <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
               </Link>
-              <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded cursor-pointer">
+              <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded cursor-pointer">
                 Add To Cart
-              </button>
+              </Link>
             </div>
           </div>
         </div>
