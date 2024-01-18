@@ -17,59 +17,87 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
     const initialMicroShowProduct = (location.state && location.state.micronutrientProduct) || {};
     const [showMicroProduct, setshowMicroProduct] = useState(initialMicroShowProduct);
     const [count, setCount] = useState(1);
+    const [cartData, setCartData] = useState(null);
     const [selectedSize, setSelectedSize] = useState("50 ml")
 
+    const handleIncrement = () => {
+        setCount(count + 1);
+    }
+    const handleDecrement = () => {
+        setCount(count - 1 > 0 ? count - 1 : 1); // Ensure count doesn't go below 1
+    }
 
     const handleBuyNow = (e) => {
         e.preventDefault()
         history.push("/BuyNow", { showMicroProduct })
     }
 
-    const handleAddToCart = () => {
-        const productToAdd = {
-            id: showMicroProduct.id,
-            name: showMicroProduct.name,
-            price: showMicroProduct.price,
-            quantity: count,
-        }
-        console.log("Product to add to cart", productToAdd);
-        addToCart(productToAdd)
-    }
-
-    const handleIncrement = () => {
-        setCount(count + 1);
-    }
-    const handleDecrement = () => {
-        setCount(count - 1)
-    }
 
     const handleSizeChange = (newSize) => {
         setSelectedSize(newSize);
 
         let updatedData;
-        if (newSize === "50 ml") {
+        if (newSize === '50 ml') {
             updatedData = {
-                reviews: initialMicroShowProduct.reviews_50,
+                reviews: initialMicroShowProduct.review_50,
                 save: initialMicroShowProduct.save_50,
                 price: initialMicroShowProduct.price_small,
             };
-        } else if (newSize === "100 ml") {
+        } else if (newSize === '100 ml') {
             updatedData = {
-                reviews: initialMicroShowProduct.reviews_100,
+                reviews: initialMicroShowProduct.review_100,
                 save: initialMicroShowProduct.save_100,
-                price: initialMicroShowProduct.price_big
+                price: initialMicroShowProduct.salePrice,
             };
         }
 
         setshowMicroProduct((prevData) => ({
             ...prevData,
-            ...updatedData
+            ...updatedData,
         }));
-    }
+    };
+
+    const handleAddToCart = async () => {
+        try {
+            const { id, name, price, image } = showMicroProduct;
+
+            // Ensure price is a valid value and not null
+            if (price == null) {
+                console.error('Product price is null or undefined.');
+                return; // Exit the function to prevent further processing
+            }
+            // Ensure image is base64-encoded if available
+            const base64Image = image ? image.toString('base64') : null;
+
+            const response = await fetch('http://localhost:8080/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id,
+                    name,
+                    price,
+                    image: base64Image,
+                }),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                setCartData(responseData.cart);
+                console.log('Item added to cart:', responseData);
+            } else {
+                console.error('Failed to add item to cart');
+            }
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+        }
+    };
 
     useEffect(() => {
-        console.log("Product Data:", showMicroProduct);
-    }, [showMicroProduct, MicroDataProp])
+        handleSizeChange('50 ml');
+
+    }, [])
 
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -84,7 +112,8 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                             className="hover:text-blue-500 text-sm"
                             to="/micro-nutrients"
                         >
-                            Buy Micro-nutrients Online          </Link>
+                            Buy micro-nutrients Online
+                        </Link>
                         &gt;
                         <span className="text-sm">{showMicroProduct.name}</span>
                     </span>
@@ -219,9 +248,9 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                             <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                                 Buy Now
                             </Link>
-                            <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded">
+                            <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded cursor-pointer">
                                 Add To Cart
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

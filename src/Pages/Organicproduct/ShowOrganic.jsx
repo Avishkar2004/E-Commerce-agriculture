@@ -15,9 +15,8 @@ const ShowOrganic = ({ OrganicproductData }) => {
   const initialProductData = (location.state && location.state.OrganicproductData) || {};
   const [productData, setProductData] = useState(initialProductData);
   const [count, setCount] = useState(1);
-  const [selectedSize, setSelectedSize] = useState('50 ml');
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [cartData, setCartData] = useState(null);
+  const [selectedSize, setSelectedSize] = useState('50 ml');
 
 
   const handleBuyNow = () => {
@@ -34,6 +33,7 @@ const ShowOrganic = ({ OrganicproductData }) => {
     }
   };
 
+
   const handleSizeChange = (newSize) => {
     setSelectedSize(newSize);
 
@@ -43,14 +43,12 @@ const ShowOrganic = ({ OrganicproductData }) => {
         reviews: initialProductData.review_50,
         save: initialProductData.save_50,
         price: initialProductData.price_small,
-        size: '50 ml',
       };
     } else if (newSize === '100 ml') {
       updatedData = {
         reviews: initialProductData.review_100,
         save: initialProductData.save_100,
-        price: initialProductData.price_big,
-        size: '100 ml',
+        price: initialProductData.salePrice,
       };
     }
 
@@ -64,8 +62,14 @@ const ShowOrganic = ({ OrganicproductData }) => {
     try {
       const { id, name, price, image } = productData;
 
-      // Ensure image is base64-encoded
-      const base64Image = image.toString('base64');
+      // Ensure price is a valid value and not null
+      if (price == null) {
+        console.error('Product price is null or undefined.');
+        return; // Exit the function to prevent further processing
+      }
+
+      // Ensure image is base64-encoded if available
+      const base64Image = image ? image.toString('base64') : null;
 
       const response = await fetch('http://localhost:8080/cart', {
         method: 'POST',
@@ -93,7 +97,8 @@ const ShowOrganic = ({ OrganicproductData }) => {
   };
 
   useEffect(() => {
-  }, [productData, OrganicproductData]);
+    handleSizeChange('50 ml');
+  }, []);
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -237,9 +242,9 @@ const ShowOrganic = ({ OrganicproductData }) => {
               <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:cursor-pointer hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
               </Link>
-              <button onClick={handleAddToCart} className="bg-red-500 hover:cursor-pointer hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded">
+              <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:cursor-pointer hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded">
                 Add To Cart
-              </button>
+              </Link>
             </div>
           </div>
         </div>

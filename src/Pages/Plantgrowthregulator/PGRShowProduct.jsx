@@ -18,29 +18,20 @@ const PGRShowProduct = ({ PGRDataProp }) => {
   const initialPGRShowProduct = (location.state && location.state.PGRProduct) || {};
   const [PGRShowProduct, setPGRShowProduct] = useState(initialPGRShowProduct);
   const [count, setCount] = useState(1);
+  const [cartData, setCartData] = useState(null);
   const [selectedSize, setSelectedSize] = useState('50 ml');
 
   const handleBuyNow = () => {
     history.push("/BuyNow", { PGRShowProduct })
   }
-  const handleAddToCart = () => {
-    const productToAdd = {
-      id: PGRShowProduct.id,
-      name: PGRShowProduct.name,
-      price: PGRShowProduct.price,
-      quantity: count,
-    };
-
-    console.log('Product to add to cart:', productToAdd);
-    addToCart(productToAdd);
-  }
-
   const handleIncrement = () => {
     setCount(count + 1);
   };
 
   const handleDecrement = () => {
-    setCount(count - 1);
+    if (count > 1) {
+      setCount(count - 1);
+    }
   };
 
   const handleSizeChange = (newSize) => {
@@ -57,7 +48,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
       updatedData = {
         reviews: initialPGRShowProduct.review_100,
         save: initialPGRShowProduct.save_100,
-        price: initialPGRShowProduct.price_big,
+        price: initialPGRShowProduct.salePrice,
       };
     }
 
@@ -67,10 +58,48 @@ const PGRShowProduct = ({ PGRDataProp }) => {
     }));
   };
 
+  const handleAddToCart = async () => {
+    try {
+      const { id, name, price, image } = PGRShowProduct;
+
+      // Ensure price is a valid value and not null
+      if (price == null) {
+        console.error('Product price is null or undefined.');
+        return; // Exit the function to prevent further processing
+      }
+
+      // Ensure image is base64-encoded if available
+      const base64Image = image ? image.toString('base64') : null;
+
+      const response = await fetch('http://localhost:8080/cart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id,
+          name,
+          price,
+          image: base64Image,
+        }),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        setCartData(responseData.cart);
+        console.log('Item added to cart:', responseData);
+      } else {
+        console.error('Failed to add item to cart');
+      }
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+
 
   useEffect(() => {
-    console.log('Product Data:', PGRShowProduct);
-  }, [PGRShowProduct, PGRDataProp]);
+    handleSizeChange("50 ml")
+  }, []);
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -220,9 +249,9 @@ const PGRShowProduct = ({ PGRDataProp }) => {
               <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
               </Link>
-              <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
+              <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
                 Add To Cart
-              </button>
+              </Link>
             </div>
           </div>
         </div>

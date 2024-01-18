@@ -95,7 +95,7 @@ const ShowFungicides = ({ productDataProp }) => {
   useEffect(() => {
     // Select price by default for 50 ml
     handleSizeChange('50 ml');
-  }, [productDataProp]);
+  }, []);
 
 
   return (
@@ -177,22 +177,22 @@ const ShowFungicides = ({ productDataProp }) => {
           <hr className="border-[1px] border-gray-800 border-r" />
 
           <div>
-          <p className="text-xl text-[#1e2d7d] mt-5">
-            Size: <span className="text-xl">{selectedSize}</span>
-          </p>
+            <p className="text-xl text-[#1e2d7d] mt-5">
+              Size: <span className="text-xl">{selectedSize}</span>
+            </p>
             <div className="flex gap-6 mt-5">
-            <button
-            className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '50 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-8 ml-4 mb-4 mr-4 cursor-pointer' : 'bg-[#f1fdff]'} `}
-            onClick={() => handleSizeChange('50 ml')}
-          >
-            {productData.small_50}
-          </button>
-          <button
-            className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '100 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md ' : 'bg-[#f1fdff]'} mt-2 ml-2 mb-2 mr-2 cursor-pointer`}
-            onClick={() => handleSizeChange('100 ml')}
-          >
-            {productData.big_100}
-          </button>
+              <button
+                className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '50 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-8 ml-4 mb-4 mr-4 cursor-pointer' : 'bg-[#f1fdff]'} `}
+                onClick={() => handleSizeChange('50 ml')}
+              >
+                {productData.small_50}
+              </button>
+              <button
+                className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '100 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md ' : 'bg-[#f1fdff]'} mt-2 ml-2 mb-2 mr-2 cursor-pointer`}
+                onClick={() => handleSizeChange('100 ml')}
+              >
+                {productData.big_100}
+              </button>
             </div>
             <p className="text-xl mt-6 text-[#1e2d7d]">
               Expiry Date: <span className="text-black">09-Dec-2024</span>

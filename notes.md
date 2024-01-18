@@ -1,7 +1,33 @@
-mala atta pryat folder madhe madhe jolder chya name chi file create karaychi ahe aani tychya madun data localhost:3000 la show krn ahe
+1. PGRShowProduct.jsx:-
 
-you have to change fungicide
+  useEffect(() => {
+    console.log('Product Data:', PGRShowProduct);
+  }, [PGRShowProduct, PGRDataProp]);
 
 
+2. ShowOrganic.jsx
 
-add to cart is not working for showFungicides and all component
+      useEffect(() => {
+  }, [productData, OrganicproductData]);
+
+3. ShowMicroProduct.jsx
+
+
+     useEffect(() => {
+        console.log("Product Data:", showMicroProduct);
+    }, [showMicroProduct, MicroDataProp])
+
+
+4. ShowInsecticide
+
+       useEffect(() => {
+        console.log('Product Data:', productData);
+    }, [productData, InsecticideProductData]);
+
+
+5. ShowFungicide.jsx
+
+     useEffect(() => {
+    // Select price by default for 50 ml
+    handleSizeChange('50 ml');
+  }, [productDataProp]);

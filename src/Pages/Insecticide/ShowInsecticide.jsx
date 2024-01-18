@@ -15,19 +15,16 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
     const location = useLocation();
     const initialProductData = (location.state && location.state.productData) || {};
     const [productData, setProductData] = useState(initialProductData);
+    const [cartData, setCartData] = useState(null);
     const [count, setCount] = useState(1);
     const [selectedSize, setSelectedSize] = useState('50 ml');
-
-    const handleBuyNow = () => {
-        history.push("/BuyNow", { productData })
-    }
 
     const handleIncrement = () => {
         setCount(count + 1);
     };
 
     const handleDecrement = () => {
-        setCount(count - 1);
+        setCount(count - 1 > 0 ? count - 1 : 1); // Ensure count doesn't go below 1
     };
 
     const handleSizeChange = (newSize) => {
@@ -44,7 +41,7 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
             updatedData = {
                 reviews: initialProductData.review_100,
                 save: initialProductData.save_100,
-                price: initialProductData.price_big,
+                price: initialProductData.salePrice,
             };
         }
 
@@ -54,9 +51,53 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
         }));
     };
 
+    const handleAddToCart = async () => {
+        try {
+            const { id, name, price, image } = productData;
+
+            // Ensure price is a valid value and not null
+            if (price == null) {
+                console.error('Product price is null or undefined.');
+                return; // Exit the function to prevent further processing
+            }
+
+            // Ensure image is base64-encoded if available
+            const base64Image = image ? image.toString('base64') : null;
+
+            const response = await fetch('http://localhost:8080/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id,
+                    name,
+                    price,
+                    image: base64Image,
+                }),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                setCartData(responseData.cart);
+                console.log('Item added to cart:', responseData);
+            } else {
+                console.error('Failed to add item to cart');
+            }
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+        }
+    };
+
+    const handleBuyNow = () => {
+        history.push("/BuyNow", { productData });
+    };
+
+
     useEffect(() => {
-        console.log('Product Data:', productData);
-    }, [productData, InsecticideProductData]);
+        // console.log('Product Data:', productData);
+        handleSizeChange('50 ml');
+    }, []);//you can remove these two of productdata and insecticideProductdata
 
 
     return (
@@ -208,9 +249,9 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
                             <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                                 Buy Now
                             </Link>
-                            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+                            <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
                                 Add To Cart
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
