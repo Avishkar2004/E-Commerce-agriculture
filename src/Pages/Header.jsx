@@ -54,8 +54,8 @@ const Header = () => {
               My Account
             </button>
           </div>
-          <Link to="/logIn" className="text-blue-500">Login</Link>
-          <button className="text-blue-500">/  Sign In</button>
+          <Link to="/login" className="text-blue-500">Login</Link>
+          <Link to="/signup" className="text-blue-500">/  Sign In</Link>
         </div>
         <div>
           <Link to="/cart" className="text-black hover:cursor-pointer">

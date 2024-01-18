@@ -11,7 +11,7 @@ import BestInsecticides from "../Pages/Insecticide/BestInsecticides";
 import Recentlyviewed from "../Pages/Recentlyviewed";
 import Footer from "../Pages/Footer";
 import BuyNow from "../Pages/BuyNow";
-import LogIn from "../Pages/LogIn";
+import Login from "../Pages/Login";
 import ShowFungicides from "../Pages/Fungicides/ShowFungicides";
 import PlantGrowthRegulator from "../Pages/Plantgrowthregulator/PlantGrowthRegulator";
 import PGRShowProduct from "../Pages/Plantgrowthregulator/PGRShowProduct";
@@ -24,6 +24,7 @@ import Micronutrients from "../Pages/MicroNutrients/Micronutrients";
 import ShowInsecticide from "../Pages/Insecticide/ShowInsecticide";
 import Insecticide from "../Pages/Insecticide/Insecticide";
 import Fungicides from "../Pages/Fungicides/Fungicide";
+import CreateAcc from "../Pages/CreateAcc";
 const AppRoutes = () => {
   return (
     <CartProvider>
@@ -53,9 +54,11 @@ const AppRoutes = () => {
 
           {/* Route for Buy Now */}
           <Route path="/BuyNow" component={BuyNow} />
-
+          
           {/* Route for Log In */}
-          <Route path="/LogIn" component={LogIn} />
+          <Route path="/Login" component={Login} />
+          {/* Route for SignUp  */}
+          <Route path="/signup" component={CreateAcc} />
         </Switch>
 
         {/* Common components rendered only on the home page */}

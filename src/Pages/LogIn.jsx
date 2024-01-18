@@ -2,97 +2,122 @@
 import React, { useState } from 'react';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    username: '',
+    password: '',
+  });
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleLogin = () => {
-    // Mock authentication - replace with your actual authentication logic
-    if (username === 'demo' && password === 'password') {
-      setLoggedIn(true);
-      setError('');
-    } else {
-      setLoggedIn(false);
-      setError('Invalid username or password');
+  const handleLoginWithGoogle = () => {
+    // Add Google login logic here
+    console.log('Login with Google');
+  };
+
+  const handleLoginWithTwitter = () => {
+    // Add Twitter login logic here
+    console.log('Login with Twitter');
+  };
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+        }),
+      });
+
+      if (response.ok) {
+        // Successful login
+        setErrorMessage('');
+        console.log('Login successful. Redirect to homepage.');
+        // Redirect to homepage using React Router or window.location.href
+      } else {
+        // Invalid credentials
+        const errorMessage = await response.text();
+        setErrorMessage('Invalid username or password');
+        console.error('Login failed:', errorMessage);
+      }
+    } catch (error) {
+      console.error('Login failed:', error.message);
     }
   };
 
-  const handleLogout = () => {
-    setLoggedIn(false);
-    setUsername('');
-    setPassword('');
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Login</h2>
-        </div>
-
-        {isLoggedIn ? (
-          <div className="space-y-4">
-            <div className="text-green-500 text-center">You are already logged in.</div>
-            <button
-              onClick={handleLogout}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-            >
-              Log out
-            </button>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
+        <h2 className="text-2xl font-semibold mb-6">Login</h2>
+        <form onSubmit={handleLogin}>
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-gray-600 text-sm font-medium mb-2">
+              Username / Email
+            </label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              className="w-full border-gray-300 rounded-md p-2 border"
+              required
+              placeholder='Enter your user name or email'
+              onChange={handleInputChange}
+            />
           </div>
-        ) : (
-          <>
-            {error && <div className="text-red-500 text-center">{error}</div>}
-
-            <form className="mt-8 space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="rounded-md shadow-sm -space-y-px">
-                <div>
-                  <label htmlFor="username" className="sr-only">
-                    Username
-                  </label>
-                  <input
-                    id="username"
-                    name="username"
-                    type="text"
-                    autoComplete="username"
-                    required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="password" className="sr-only">
-                    Password
-                  </label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  onClick={handleLogin}
-                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  Log in
-                </button>
-              </div>
-            </form>
-          </>
-        )}
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-gray-600 text-sm font-medium mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="w-full border-gray-300 rounded-md p-2 border"
+              required
+              placeholder='Enter your password'
+              onChange={handleInputChange}
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
+          >
+            Login with Username and Password
+          </button>
+          {errorMessage && (
+            <div className="text-red-500 text-sm mb-4">{errorMessage}</div>
+          )}
+        </form>
+        <div className='mt-3 mb-3 right-12 items-end'>
+          <button className='text-blue-500 hover:underline'>Forget Pass</button>
+        </div>
+        <div className="text-center text-gray-600">
+          <span className="mr-2">or</span>
+          <button
+            className="text-blue-500 hover:underline focus:outline-none"
+            onClick={handleLoginWithGoogle}
+          >
+            Continue with Google
+          </button>
+          <span className="mx-2">/</span>
+          <button
+            className="text-blue-500 hover:underline focus:outline-none"
+            onClick={handleLoginWithTwitter}
+          >
+            Continue with Twitter
+          </button>
+        </div>
       </div>
     </div>
   );
