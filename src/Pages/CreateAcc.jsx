@@ -1,8 +1,9 @@
-// src/components/Signup.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useHistory } from 'react-router-dom';
 
 const CreateAcc = () => {
+    const history = useHistory()
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -12,12 +13,17 @@ const CreateAcc = () => {
 
     const handleInputChange = (e) => {
         setFormData({
-            ...formData, [e.target.name]: e.target.value
+            ...formData,
+            [e.target.name]: e.target.value,
         });
     };
 
     const handleSignup = async (e) => {
         e.preventDefault();
+        if (formData.password !== formData.confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
         try {
             const response = await fetch("http://localhost:8080/users", {
                 method: "POST",
@@ -28,17 +34,27 @@ const CreateAcc = () => {
                     username: formData.username,
                     email: formData.email,
                     password: formData.password,
-                    confirmPassword: formData.confirmPassword
+                    confirmPassword: formData.confirmPassword,
                 }),
             });
-            if (!response.ok) {
+            if (response.ok) {
                 console.log("Signup successful");
+                history.push("/")
             } else {
-                const errorMessage = await response.text();
-                console.error('Signup failed:', errorMessage);
+                if (response.status === 400) {
+                    const errorMessage = await response.text();
+                    // Display an alert with the server provided error message
+                    alert(errorMessage)
+                } else {
+                    const errorMessage = await response.text();
+                    console.error('Signup failed:', errorMessage);
+                }
             }
         } catch (error) {
             console.error('Signup failed:', error.message);
+        }
+        finally {
+            setLoading(false);
         }
     }
 
@@ -58,6 +74,7 @@ const CreateAcc = () => {
                             className="w-full border-gray-300 rounded-md p-2 border"
                             required
                             placeholder='Enter Your User Name'
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="mb-4">
@@ -71,6 +88,7 @@ const CreateAcc = () => {
                             className="w-full border-gray-300 rounded-md p-2 border"
                             required
                             placeholder='Enter Your Email'
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="mb-4">
@@ -84,6 +102,7 @@ const CreateAcc = () => {
                             className="w-full border-gray-300 rounded-md p-2 border"
                             required
                             placeholder='Enter Your Password'
+                            onChange={handleInputChange}
                         />
                     </div>
                     <div className="mb-4">
@@ -105,10 +124,12 @@ const CreateAcc = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md mb-4"
+                        className={`w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md mb-4 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={loading}
                     >
-                        Sign Up
+                        {loading ? 'Signing Up...' : 'Sign Up'}
                     </button>
+
                 </form>
                 <div className="text-center text-gray-600">
                     <span>Already have an account?</span>{' '}

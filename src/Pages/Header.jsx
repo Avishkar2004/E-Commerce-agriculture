@@ -4,9 +4,11 @@ import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useCart } from "./CartContext";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useAuth } from "./authContext";
 
 const Header = () => {
   const inputRef = useRef(null);
+  const { authenticatedUser } = useAuth(); // Replace with your authentication context or state
   const { cartCount } = useCart();
 
   const handleSearchBarClick = () => {
@@ -49,13 +51,16 @@ const Header = () => {
           </div>
         </div>
         <div className="md:space-x-4">
-          <div className="md:space-x-4">
-            <button className="text-blue-500 md:ml-8 font-primary">
-              My Account
-            </button>
-          </div>
-          <Link to="/login" className="text-blue-500">Login</Link>
-          <Link to="/signup" className="text-blue-500">/  Sign In</Link>
+          {authenticatedUser ? (
+            <span className="text-blue-500 md:ml-8 font-primary">
+              Welcome, {authenticatedUser.username}
+            </span>
+          ) : (
+            <>
+              <Link to="/login" className="text-blue-500">Login</Link>
+              <Link to="/signup" className="text-blue-500">Sign Up</Link>
+            </>
+          )}
         </div>
         <div>
           <Link to="/cart" className="text-black hover:cursor-pointer">

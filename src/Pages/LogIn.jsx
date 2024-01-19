@@ -1,7 +1,11 @@
 // src/components/Login.js
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from './authContext';
 
 const Login = () => {
+  const history = useHistory()
+  const { setAuthenticatedUser } = useAuth();
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -29,32 +33,37 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/login', {
+      const response = await fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          username: formData.username,
-          password: formData.password,
-        }),
+        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        // Successful login
-        setErrorMessage('');
-        console.log('Login successful. Redirect to homepage.');
-        // Redirect to homepage using React Router or window.location.href
+      if (!response.ok) {
+        const { error } = await response.json();
+        setErrorMessage(error);
+        return;
+      }
+
+      const { success, message, user } = await response.json();
+
+      if (success) {
+        console.log('Login successful');
+        // For showing user name if login successful
+        setAuthenticatedUser(user)
+        // Redirect to the home page
+        history.push('/');
       } else {
-        // Invalid credentials
-        const errorMessage = await response.text();
-        setErrorMessage('Invalid username or password');
-        console.error('Login failed:', errorMessage);
+        setErrorMessage(message);
       }
     } catch (error) {
-      console.error('Login failed:', error.message);
+      console.error('Error during login:', error);
+      setErrorMessage('Internal Server Error');
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
