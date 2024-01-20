@@ -37,8 +37,7 @@ const Login = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`, // Assuming you store the user information in localStorage
-
+          'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
         },
         body: JSON.stringify(formData),
       });
@@ -48,11 +47,12 @@ const Login = () => {
         setServerResponse('');
         return;
       }
-      const { success, message, user } = await response.json();
-
+      const { success, message, user, token } = await response.json();
+      // console.log('Server Response:', success, message, user, token);
       if (success) {
         console.log('Login successful');
-        localStorage.setItem('authenticatedUser', JSON.stringify(user));
+        localStorage.setItem('authenticatedUser', JSON.stringify({ user, token }));
+        console.log('localStorage:', localStorage.getItem('authenticatedUser'));
         if (setAuthenticatedUser && typeof setAuthenticatedUser === 'function') {
           // For showing user name if login successful
           setAuthenticatedUser(user);
