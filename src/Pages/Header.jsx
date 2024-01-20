@@ -2,14 +2,14 @@ import React, { useRef } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { useCart } from "./CartContext";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useAuth } from "./authContext";
+// import {useDispatch} from "redux"
 
 const Header = () => {
   const inputRef = useRef(null);
-  const { authenticatedUser } = useAuth(); // Replace with your authentication context or state
-  const { cartCount } = useCart();
+  const { authenticatedUser } = useAuth() || {};
+
 
   const handleSearchBarClick = () => {
     inputRef.current.focus();
@@ -52,20 +52,20 @@ const Header = () => {
         </div>
         <div className="md:space-x-4">
           {authenticatedUser ? (
-            <span className="text-blue-500 md:ml-8 font-primary">
-              Welcome, {authenticatedUser.username}
-            </span>
+            // If user is authenticated, display username
+            <span className="text-gray-600">Welcome, {authenticatedUser.username}</span>
           ) : (
+            // If user is not authenticated, display login and signup buttons
             <>
-              <Link to="/login" className="text-blue-500">Login</Link>
-              <Link to="/signup" className="text-blue-500">Sign Up</Link>
+              <Link to="/login" className="hover:underline text-gray-600">Login</Link>
+              <Link to="/signup" className="hover:underline text-gray-600">Signup</Link>
             </>
           )}
         </div>
         <div>
           <Link to="/cart" className="text-black hover:cursor-pointer">
             <ShoppingCartOutlinedIcon />
-            {cartCount > 0 && <span className="ml-1">{cartCount}</span>}
+            <span className="ml-1">1</span>
           </Link>
         </div>
       </div>

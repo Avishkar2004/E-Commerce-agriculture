@@ -5,7 +5,8 @@ import { useAuth } from './authContext';
 
 const Login = () => {
   const history = useHistory()
-  const { setAuthenticatedUser } = useAuth();
+  const { setAuthenticatedUser } = useAuth() || {};
+  const [serverResponse, setServerResponse] = useState('');
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -31,36 +32,45 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`, // Assuming you store the user information in localStorage
+
         },
         body: JSON.stringify(formData),
       });
-
       if (!response.ok) {
         const { error } = await response.json();
         setErrorMessage(error);
+        setServerResponse('');
         return;
       }
-
       const { success, message, user } = await response.json();
 
       if (success) {
         console.log('Login successful');
-        // For showing user name if login successful
-        setAuthenticatedUser(user)
+        localStorage.setItem('authenticatedUser', JSON.stringify(user));
+        if (setAuthenticatedUser && typeof setAuthenticatedUser === 'function') {
+          // For showing user name if login successful
+          setAuthenticatedUser(user);
+        } else {
+          console.error("setAuthenticatedUser is not a function or not defined");
+        }
         // Redirect to the home page
         history.push('/');
-      } else {
+      }
+      else {
         setErrorMessage(message);
+        setServerResponse(message); // Set server response for display
+
       }
     } catch (error) {
       console.error('Error during login:', error);
       setErrorMessage('Internal Server Error');
+      setServerResponse('Internal Server Error'); // Set server response for display
     }
   };
 
@@ -106,6 +116,9 @@ const Login = () => {
           </button>
           {errorMessage && (
             <div className="text-red-500 text-sm mb-4">{errorMessage}</div>
+          )}
+          {serverResponse && (
+            <div className="text-green-500 text-sm mb-4">{serverResponse}</div>
           )}
         </form>
         <div className='mt-3 mb-3 right-12 items-end'>

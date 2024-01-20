@@ -11,7 +11,7 @@ const Collection = () => {
   return (
     <section className="flex flex-col justify-center items-cente mb-9">
       <div className="mb-20">
-        <Link to="/clearancesale">
+        <Link to="#">
           <img src={Offer} alt="Offer" className="max-w-full" />
         </Link>
       </div>

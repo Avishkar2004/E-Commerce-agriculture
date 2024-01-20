@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 const CreateAcc = () => {
     const history = useHistory()
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         username: "",
         email: "",
@@ -24,6 +25,7 @@ const CreateAcc = () => {
             alert("Passwords do not match");
             return;
         }
+
         try {
             const response = await fetch("http://localhost:8080/users", {
                 method: "POST",
@@ -37,26 +39,25 @@ const CreateAcc = () => {
                     confirmPassword: formData.confirmPassword,
                 }),
             });
+
             if (response.ok) {
                 console.log("Signup successful");
-                history.push("/")
+                history.push("/");
             } else {
-                if (response.status === 400) {
-                    const errorMessage = await response.text();
-                    // Display an alert with the server provided error message
-                    alert(errorMessage)
-                } else {
-                    const errorMessage = await response.text();
-                    console.error('Signup failed:', errorMessage);
-                }
+                // Display a generic error message
+                setError("Sign up failed. Please try again later.");
+                alert("Username is already taken, please choose another one");
+
             }
         } catch (error) {
+            // Display a generic error message
+            setError("Sign up failed. Please try again later.");
             console.error('Signup failed:', error.message);
-        }
-        finally {
+        } finally {
             setLoading(false);
         }
     }
+
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">

@@ -9,10 +9,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import Description from '../Description';
-import { useCart } from '../CartContext';
 
 const PGRShowProduct = ({ PGRDataProp }) => {
-  const { addToCart } = useCart();
   const history = useHistory();
   const location = useLocation();
   const initialPGRShowProduct = (location.state && location.state.PGRProduct) || {};

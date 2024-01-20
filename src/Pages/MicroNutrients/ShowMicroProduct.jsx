@@ -8,10 +8,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import EmailIcon from "@mui/icons-material/Email";
 import Description from '../Description';
 import { Link, useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import { useCart } from '../CartContext'
 
 const ShowMicroProduct = ({ MicroDataProp }) => {
-    const { addToCart } = useCart();
     const history = useHistory()
     const location = useLocation()
     const initialMicroShowProduct = (location.state && location.state.micronutrientProduct) || {};

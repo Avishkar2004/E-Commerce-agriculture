@@ -18,7 +18,6 @@ import PGRShowProduct from "../Pages/Plantgrowthregulator/PGRShowProduct";
 import Organic from "../Pages/Organicproduct/Organic";
 import ShowOrganic from "../Pages/Organicproduct/ShowOrganic";
 import Cart from "../Pages/Cart";
-import { CartProvider } from "../Pages/CartContext";
 import ShowMicroProduct from "../Pages/MicroNutrients/ShowMicroProduct";
 import Micronutrients from "../Pages/MicroNutrients/Micronutrients";
 import ShowInsecticide from "../Pages/Insecticide/ShowInsecticide";
@@ -27,8 +26,6 @@ import Fungicides from "../Pages/Fungicides/Fungicide";
 import CreateAcc from "../Pages/CreateAcc";
 const AppRoutes = () => {
   return (
-    <CartProvider>
-
       <Router>
         <Header />
         <Switch>
@@ -84,7 +81,6 @@ const AppRoutes = () => {
         {/* Footer rendered on all pages */}
         <Footer />
       </Router>
-    </CartProvider>
   );
 };
 
