@@ -61,6 +61,7 @@ const Header = () => {
               <Link to="/signup" className="hover:underline text-gray-600">Signup</Link>
             </>
           )}
+
         </div>
         <div>
           <Link to="/cart" className="text-black hover:cursor-pointer">

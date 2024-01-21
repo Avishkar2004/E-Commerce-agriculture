@@ -39,6 +39,7 @@ const Login = () => {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
       if (!response.ok) {
@@ -47,14 +48,17 @@ const Login = () => {
         setServerResponse('');
         return;
       }
-      const { success, message, user, token } = await response.json();
-      // console.log('Server Response:', success, message, user, token);
+      const { success, message, user, secretKey, token } = await response.json();
+      //! Check if cookies are received
+      const authTokenCookies = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, "$1")
+      if (authTokenCookies) {
+        console.log("Received authToken cookie:", authTokenCookies)
+      }
       if (success) {
         console.log('Login successful');
-        localStorage.setItem('authenticatedUser', JSON.stringify({ user, token }));
-        console.log('localStorage:', localStorage.getItem('authenticatedUser'));
+        localStorage.setItem('authenticatedUser', JSON.stringify({ user, token, secretKey }));
         if (setAuthenticatedUser && typeof setAuthenticatedUser === 'function') {
-          // For showing user name if login successful
+          //! For showing user name if login successful
           setAuthenticatedUser(user);
         } else {
           console.error("setAuthenticatedUser is not a function or not defined");
@@ -64,13 +68,13 @@ const Login = () => {
       }
       else {
         setErrorMessage(message);
-        setServerResponse(message); // Set server response for display
+        setServerResponse(message); //! Set server response for display
 
       }
     } catch (error) {
       console.error('Error during login:', error);
       setErrorMessage('Internal Server Error');
-      setServerResponse('Internal Server Error'); // Set server response for display
+      setServerResponse('Internal Server Error'); //! Set server response for display
     }
   };
 
