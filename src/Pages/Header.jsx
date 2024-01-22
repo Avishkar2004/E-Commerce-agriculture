@@ -3,8 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useAuth } from "./authContext";
-// import {useDispatch} from "redux"
+import { useAuth } from "../actions/authContext";
 
 const Header = () => {
   const inputRef = useRef(null);
@@ -53,7 +52,7 @@ const Header = () => {
         <div className="md:space-x-4">
           {authenticatedUser ? (
             // If user is authenticated, display username
-            <span className="text-gray-600">Welcome, {authenticatedUser.username}</span>
+            <span className="text-gray-600">{authenticatedUser.username}</span>
           ) : (
             // If user is not authenticated, display login and signup buttons
             <>

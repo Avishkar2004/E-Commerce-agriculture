@@ -1,17 +1,17 @@
 // src/components/Login.js
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useAuth } from './authContext';
+import { useAuth } from '../actions/authContext';
 
 const Login = () => {
   const history = useHistory()
-  const { setAuthenticatedUser } = useAuth() || {};
+  const { login } = useAuth();
   const [serverResponse, setServerResponse] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLoginWithGoogle = () => {
     // Add Google login logic here
@@ -48,6 +48,7 @@ const Login = () => {
         setServerResponse('');
         return;
       }
+
       const { success, message, user, secretKey, token } = await response.json();
       //! Check if cookies are received
       const authTokenCookies = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, "$1")
@@ -57,19 +58,20 @@ const Login = () => {
       if (success) {
         console.log('Login successful');
         localStorage.setItem('authenticatedUser', JSON.stringify({ user, token, secretKey }));
-        if (setAuthenticatedUser && typeof setAuthenticatedUser === 'function') {
+        console.log('setAuthenticatedUser:', login);
+        if (login && typeof login === 'function') {
           //! For showing user name if login successful
-          setAuthenticatedUser(user);
+          login(user);
         } else {
-          console.error("setAuthenticatedUser is not a function or not defined");
+          console.error("login is not a function or not defined");
         }
+
         // Redirect to the home page
         history.push('/');
       }
       else {
         setErrorMessage(message);
         setServerResponse(message); //! Set server response for display
-
       }
     } catch (error) {
       console.error('Error during login:', error);
