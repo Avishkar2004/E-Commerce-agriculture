@@ -17,12 +17,10 @@ const Login = () => {
     // Add Google login logic here
     console.log('Login with Google');
   };
-
   const handleLoginWithTwitter = () => {
     // Add Twitter login logic here
     console.log('Login with Twitter');
   };
-
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -65,7 +63,6 @@ const Login = () => {
         } else {
           console.error("login is not a function or not defined");
         }
-
         // Redirect to the home page
         history.push('/');
       }

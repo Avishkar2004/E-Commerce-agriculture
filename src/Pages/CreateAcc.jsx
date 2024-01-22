@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useAuth } from '../actions/authContext';
 
 const CreateAcc = () => {
     const history = useHistory()
+    const { login } = useAuth()
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
@@ -21,17 +23,19 @@ const CreateAcc = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
+        //! check if password match
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords do not match");
             return;
         }
-
         try {
             const response = await fetch("http://localhost:8080/users", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
                 },
+                credentials: "include",
                 body: JSON.stringify({
                     username: formData.username,
                     email: formData.email,
@@ -40,9 +44,24 @@ const CreateAcc = () => {
                 }),
             });
 
-            if (response.ok) {
-                console.log("Signup successful");
-                history.push("/");
+            const { success, user, secretKey, token } = await response.json();
+            //! Check if cookies are received
+            const authTokenCookies = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, "$1")
+            if (authTokenCookies) {
+                console.log("Received authToken cookie:", authTokenCookies)
+            }
+            if (success) {
+                console.log('Login successful');
+                localStorage.setItem('authenticatedUser', JSON.stringify({ user, token, secretKey }));
+                console.log('setAuthenticatedUser:', login);
+                if (login && typeof login === 'function') {
+                    //! For showing user name if login successful
+                    login(user);
+                } else {
+                    console.error("login is not a function or not defined");
+                }
+                // Redirect to the home page
+                history.push('/');
             } else {
                 // Display a generic error message
                 setError("Sign up failed. Please try again later.");

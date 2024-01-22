@@ -19,7 +19,8 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">
           <Link to="/" className="text-blue-500">
-            <img src={HeaderPhoto} alt="Header" className="w-14 h-12 backdrop-brightness-200	" />          </Link>
+            <img src={HeaderPhoto} alt="Header" className="w-14 h-12 backdrop-brightness-200	" />
+          </Link>
         </div>
         <div
           className="w-full md:w-2/3 relative"
