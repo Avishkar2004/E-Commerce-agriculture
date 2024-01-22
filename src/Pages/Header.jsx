@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
@@ -7,20 +7,51 @@ import { useAuth } from "../actions/authContext";
 
 const Header = () => {
   const inputRef = useRef(null);
-  const { authenticatedUser } = useAuth() || {};
-
-
+  const { authenticatedUser, logout } = useAuth() || {};
+  const [isDrodownOpne, setisDrodownOpne] = useState(false)
   const handleSearchBarClick = () => {
     inputRef.current.focus();
   };
+
+  const toggleDropdown = () => {
+    setisDrodownOpne(!isDrodownOpne)
+  }
+
+  const closeDropdown = () => {
+    setisDrodownOpne(false)
+  }
+
+  const handleLogOut = () => {
+    logout()
+  }
+
+  const renderUserDropdown = () => {
+    return (
+      <div className="relative inline-block text-left">
+        <button onClick={toggleDropdown} className="text-gray-600 focus:outline-none">{authenticatedUser.username}</button>
+        {isDrodownOpne && (
+          <div className="origin-top-right absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div className="py-1">
+              <Link to="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={closeDropdown}>
+                Profile
+              </Link>
+              <Link to="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onClick={handleLogOut}>
+                Logout
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
 
   return (
     <header className="bg-[#c4e0ef] text-white py-5">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">
           <Link to="/" className="text-blue-500">
-            <img src={HeaderPhoto} alt="Header" className="w-14 h-12 backdrop-brightness-200	" />
-          </Link>
+            <img src={HeaderPhoto} alt="Header" className="w-14 h-12 backdrop-brightness-200	" />          </Link>
         </div>
         <div
           className="w-full md:w-2/3 relative"
@@ -52,8 +83,7 @@ const Header = () => {
         </div>
         <div className="md:space-x-4">
           {authenticatedUser ? (
-            // If user is authenticated, display username
-            <span className="text-gray-600">{authenticatedUser.username}</span>
+            renderUserDropdown()
           ) : (
             // If user is not authenticated, display login and signup buttons
             <>

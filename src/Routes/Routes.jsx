@@ -24,63 +24,65 @@ import ShowInsecticide from "../Pages/Insecticide/ShowInsecticide";
 import Insecticide from "../Pages/Insecticide/Insecticide";
 import Fungicides from "../Pages/Fungicides/Fungicide";
 import CreateAcc from "../Pages/CreateAcc";
+import Profile from "../Pages/Profile";
 const AppRoutes = () => {
   return (
-      <Router>
-        <Header />
-        <Switch>
-          {/* Routes for Plant Growth Regulator */}
-          <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />
-          <Route path="/plantgrowthregulator" component={PlantGrowthRegulator} />
-          <Route path="/cart" component={Cart} />
+    <Router>
+      <Header />
+      <Route path="/profile" component={Profile} />
+      <Switch>
+        {/* Routes for Plant Growth Regulator */}
+        <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />
+        <Route path="/plantgrowthregulator" component={PlantGrowthRegulator} />
+        <Route path="/cart" component={Cart} />
 
-          {/* Routes for Fungicides */}
-          <Route path="/fungicides/:productId" component={ShowFungicides} />
-          <Route path="/fungicides" component={BestFungicides} />
+        {/* Routes for Fungicides */}
+        <Route path="/fungicides/:productId" component={ShowFungicides} />
+        <Route path="/fungicides" component={BestFungicides} />
 
-          <Route path="/insecticide/:productId" component={ShowInsecticide} />
-          <Route path="/insecticide" component={BestInsecticides} />
+        <Route path="/insecticide/:productId" component={ShowInsecticide} />
+        <Route path="/insecticide" component={BestInsecticides} />
 
-          {/* This is for organic product */}
-          <Route path="/organicproduct/:productId" component={ShowOrganic} />
-          <Route path="/organicproduct" component={Organic} />
+        {/* This is for organic product */}
+        <Route path="/organicproduct/:productId" component={ShowOrganic} />
+        <Route path="/organicproduct" component={Organic} />
 
-          {/* This is for Micro Nutrients */}
-          <Route path="/micro-nutrients/:productId" component={ShowMicroProduct} />
-          <Route path="/micro-nutrients" component={Micronutrients} />
+        {/* This is for Micro Nutrients */}
+        <Route path="/micro-nutrients/:productId" component={ShowMicroProduct} />
+        <Route path="/micro-nutrients" component={Micronutrients} />
 
-          {/* Route for Buy Now */}
-          <Route path="/BuyNow" component={BuyNow} />
-          
-          {/* Route for Log In */}
-          <Route path="/Login" component={Login} />
-          {/* Route for SignUp  */}
-          <Route path="/signup" component={CreateAcc} />
-        </Switch>
+        {/* Route for Buy Now */}
+        <Route path="/BuyNow" component={BuyNow} />
 
-        {/* Common components rendered only on the home page */}
-        <Route
-          render={({ location }) => {
-            if (location.pathname === "/") {
-              return (
-                <>
-                  <Collection />
-                  <Sliders />
-                  <Product />
-                  <OrganicFront />
-                  <Blogposts />
-                  <Fungicides />
-                  <Insecticide />
-                  <Recentlyviewed />
-                </>
-              );
-            }
-          }}
-        />
+        {/* Route for Log In */}
+        <Route path="/Login" component={Login} />
+        {/* Route for SignUp  */}
+        <Route path="/signup" component={CreateAcc} />
+      </Switch>
 
-        {/* Footer rendered on all pages */}
-        <Footer />
-      </Router>
+      {/* Common components rendered only on the home page */}
+      <Route
+        render={({ location }) => {
+          if (location.pathname === "/") {
+            return (
+              <>
+                <Collection />
+                <Sliders />
+                <Product />
+                <OrganicFront />
+                <Blogposts />
+                <Fungicides />
+                <Insecticide />
+                <Recentlyviewed />
+              </>
+            );
+          }
+        }}
+      />
+
+      {/* Footer rendered on all pages */}
+      <Footer />
+    </Router>
   );
 };
 
