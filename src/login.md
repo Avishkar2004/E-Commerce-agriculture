@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../actions/authContext';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-
 const Login = () => {
   const history = useHistory()
   const { login } = useAuth();
@@ -13,6 +11,9 @@ const Login = () => {
     username: '',
     password: '',
   });
+
+
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -116,7 +117,7 @@ const Login = () => {
           )}
         </form>
         <div className='mt-3 mb-3 right-12 items-end'>
-          <Link to="/forgot-password" className='text-blue-500 hover:underline'>Forget Pass</Link>
+          <button className='text-blue-500 hover:underline'>Forget Pass</button>
         </div>
       </div>
     </div>

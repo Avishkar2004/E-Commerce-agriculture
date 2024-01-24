@@ -25,11 +25,13 @@ import Insecticide from "../Pages/Insecticide/Insecticide";
 import Fungicides from "../Pages/Fungicides/Fungicide";
 import CreateAcc from "../Pages/CreateAcc";
 import Profile from "../Pages/Profile";
+import ForgotPassword from "../Pages/ForgotPassword";
 const AppRoutes = () => {
   return (
     <Router>
       <Header />
       <Route path="/profile" component={Profile} />
+      <Route path="/forgot-password" component={ForgotPassword} />
       <Switch>
         {/* Routes for Plant Growth Regulator */}
         <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />

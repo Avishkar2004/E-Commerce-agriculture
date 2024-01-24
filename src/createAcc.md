@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../actions/authContext';
-import zxcvbn from 'zxcvbn'
-
+import zxcvbn from 'zxcvbn';
+import { jwtDecode } from 'jwt-decode';
 
 const CreateAcc = () => {
     const history = useHistory()
     const { login } = useAuth()
     const [loading, setLoading] = useState(false);
+    const [users, setUsers] = useState({})
+    const [isSignInDivVisible, setIsSignInDivVisible] = useState(true);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
         username: "",
@@ -46,8 +48,69 @@ const CreateAcc = () => {
         }
     };
 
+    const handleLoginWithGoogle = (response) => {
+        console.log("Encoded JWT ID token: " + response.credential);
+        var userObject = jwtDecode(response.credential);
+        console.log(userObject);
+        setUsers(userObject);
+
+        setIsSignInDivVisible(false);
+
+
+        const signInDiv = document.getElementById("signInDiv");
+        if (signInDiv) {
+            signInDiv.hidden = true;
+        } else {
+            console.error("Element with ID 'signInDiv' not found.");
+        }
+
+    };
+
+
+    useEffect(() => {
+        const initializeGoogleSignIn = async () => {
+            try {
+                const signInDiv = document.getElementById("signInDiv");
+                if (signInDiv) {
+                    await google.accounts.id.initialize({
+                        client_id: "350338249801-duudqknf69p38bki7ko8asqtvnjcvo6j.apps.googleusercontent.com",
+                        callback: handleLoginWithGoogle,
+                    });
+                    google.accounts.id.renderButton(signInDiv, { theme: "outline", size: "large" });
+                    google.accounts.id.prompt();
+                } else {
+                    console.error("Element with ID 'signInDiv' not found");
+                }
+            } catch (error) {
+                console.error("Error initializing Google Sign-In:", error);
+            }
+        };
+
+        initializeGoogleSignIn();
+    }, []);
+
+
+
+    const handleSignOut = (event) => {
+        setUsers({});
+
+        const signInDiv = document.getElementById("signInDiv");
+        if (signInDiv) {
+            signInDiv.hidden = false;
+        } else {
+            console.error("Element with ID 'signInDiv' not found");
+        }
+    };
+
+
+
+
     const handleSignup = async (e) => {
         e.preventDefault();
+        if (formData.password.length < 8) {
+            alert("Password should be at least 8 character long")
+            return
+        }
         //! check if password match
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords do not match");
@@ -185,6 +248,29 @@ const CreateAcc = () => {
                     >
                         {loading ? 'Signing Up...' : 'Sign Up'}
                     </button>
+
+
+                    <div className="text-center text-gray-600">
+                        <span className="mr-2">or</span>
+                        <button
+                            className="text-blue-500 hover:underline focus:outline-none"
+                            onClick={handleLoginWithGoogle}
+                        >
+                            <div>
+                                <div id='signInDiv'>
+                                    {Object.keys(users).length !== 0 &&
+                                        <button onClick={(e) => handleSignOut(e)}>Sign Out</button>
+                                    }
+                                    {users &&
+                                        <div>
+                                            <img src={users.picture} alt="" />
+                                            <h3>{users.name}</h3>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </button>
+                    </div>
 
                 </form>
                 <div className="text-center text-gray-600">
