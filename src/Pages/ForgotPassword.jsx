@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 const ForgotPassword = () => {
+    const history = useHistory()
     const [email, setEmail] = useState('');
     const [isEmailSent, setIsEmailSent] = useState(false);
 
@@ -13,11 +14,10 @@ const ForgotPassword = () => {
                 },
                 body: JSON.stringify({ email }),
             });
-
+            history.push("/passwordreset")
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-
             setIsEmailSent(true);
         } catch (error) {
             console.error('Error:', error.message);
@@ -37,12 +37,13 @@ const ForgotPassword = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded"
+                            defaultValue={email} // Set defaultValue here
                         />
                         <button
                             onClick={handleEmailSubmit}
                             className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
                         >
-                            Send OTP
+                            Reset my password
                         </button>
                     </div>
                 )}

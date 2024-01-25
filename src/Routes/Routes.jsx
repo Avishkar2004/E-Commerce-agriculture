@@ -26,12 +26,15 @@ import Fungicides from "../Pages/Fungicides/Fungicide";
 import CreateAcc from "../Pages/CreateAcc";
 import Profile from "../Pages/Profile";
 import ForgotPassword from "../Pages/ForgotPassword";
+import PasswordResetPage from "../Pages/PasswordResetPage";
 const AppRoutes = () => {
   return (
     <Router>
       <Header />
       <Route path="/profile" component={Profile} />
       <Route path="/forgot-password" component={ForgotPassword} />
+      <Route path="/passwordreset" component={PasswordResetPage} />
+      
       <Switch>
         {/* Routes for Plant Growth Regulator */}
         <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />
