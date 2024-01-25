@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
 const ForgotPassword = () => {
-    const history = useHistory()
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [isEmailSent, setIsEmailSent] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleEmailSubmit = async () => {
+        setIsLoading(true);
         try {
             const response = await fetch('http://localhost:8080/forgotpassword', {
                 method: 'POST',
@@ -21,6 +26,8 @@ const ForgotPassword = () => {
             setIsEmailSent(true);
         } catch (error) {
             console.error('Error:', error.message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -37,14 +44,23 @@ const ForgotPassword = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             className="w-full p-2 border border-gray-300 rounded"
-                            defaultValue={email} // Set defaultValue here
+                            defaultValue={email}
                         />
-                        <button
-                            onClick={handleEmailSubmit}
-                            className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-                        >
-                            Reset my password
-                        </button>
+                        {isLoading ? (
+                            <div className="flex justify-center mt-4">
+                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                    <CircularProgress color="secondary" />
+                                    <span className="ml-2 text-blue-500">Sending...</span>
+                                </Box>
+                            </div>
+                        ) : (
+                            <button
+                                onClick={handleEmailSubmit}
+                                className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out"
+                            >
+                                Reset my password
+                            </button>
+                        )}
                     </div>
                 )}
             </div>

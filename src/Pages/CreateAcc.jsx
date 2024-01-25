@@ -68,7 +68,6 @@ const CreateAcc = () => {
                     confirmPassword: formData.confirmPassword,
                 }),
             });
-
             const { success, user, secretKey, token } = await response.json();
             //! Check if cookies are received
             const authTokenCookies = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, "$1")

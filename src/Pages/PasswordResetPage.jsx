@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useAuth } from '../actions/authContext';
 
 const PasswordResetPage = () => {
+    const { login } = useAuth();
     const [resetCode, setResetCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
+    const [username, setUsername] = useState('');
+
     const history = useHistory()
     const handleResetPassword = async (e) => {
         e.preventDefault();
@@ -19,10 +23,9 @@ const PasswordResetPage = () => {
 
         // OTP validation
         if (!(/^\d{1,6}$/).test(resetCode)) {
-            setError('Invalid OTP format. It should be a numeric value of no more than 6 digits.');
+            alert('Invalid OTP format. It should be a numeric value of no more than 6 digits.');
             return;
         }
-
         if (newPassword.length < 6) {
             setError('Password must be at least 6 characters long.');
             return;
@@ -39,7 +42,11 @@ const PasswordResetPage = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
+                    'Username': username // Include username in headers
                 },
+                credentials: "include",
+
                 body: JSON.stringify({ otp: resetCode, newPassword }),
             });
 
@@ -54,8 +61,25 @@ const PasswordResetPage = () => {
                     return;
                 }
             }
+            //parse the response body as json
+            const data = await response.json()
+
+            console.log("Response Data:", data)
+            //set the success message
             setSuccessMessage('Password reset successfully.');
-            history.push('/');
+            //get the username from the response data
+            const usernameFromResponse = data.username;
+            setUsername(usernameFromResponse)
+            // Log the username upon successful password reset
+            console.log('Username:', usernameFromResponse);
+            if (login && typeof login === 'function') {
+                //! For showing user name if login successful
+                login(username);
+                console.log(username)
+            } else {
+                console.error("login is not a function or not defined");
+            }
+            // history.push('/');
         } catch (error) {
             setError(error.message);
         }
