@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../actions/authContext';
 
 const PasswordResetPage = () => {
@@ -10,22 +10,21 @@ const PasswordResetPage = () => {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
     const [username, setUsername] = useState('');
-    const history = useHistory()
+    const history = useHistory();
 
     const handleResetPassword = async (e) => {
         e.preventDefault();
 
-        // Basic validation
         if (!resetCode || !newPassword || !confirmPassword) {
             setError('All fields are required.');
             return;
         }
 
-        // OTP validation
         if (!(/^\d{1,6}$/).test(resetCode)) {
-            alert('Invalid OTP format. It should be a numeric value of no more than 6 digits.');
+            setError('Invalid OTP format. It should be a numeric value of no more than 6 digits.');
             return;
         }
+
         if (newPassword.length < 6) {
             setError('Password must be at least 6 characters long.');
             return;
@@ -36,7 +35,6 @@ const PasswordResetPage = () => {
             return;
         }
 
-        // Call backend API to reset password
         try {
             const response = await fetch('http://localhost:8080/resetpassword', {
                 method: 'POST',
@@ -44,7 +42,7 @@ const PasswordResetPage = () => {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
                 },
-                credentials: "include",
+                credentials: 'include',
                 body: JSON.stringify({ otp: resetCode, newPassword }),
             });
 
@@ -54,46 +52,36 @@ const PasswordResetPage = () => {
                     throw new Error(errorMessage);
                 } else {
                     console.log('Ignoring "Invalid OTP" error.');
-                    // Clear previous error state
                     setError(null);
                     return;
                 }
             }
 
-            //! Parse the response body as JSON
             const data = await response.json();
 
-            // console.log("Response Data:", data); // Log the response data
+            localStorage.setItem('authenticatedUser', JSON.stringify({
+                username: data.username,
+                token: data.token,
+                secretKey: data.secretKey
+            }));
 
-            //! Check if username is available in data
-            if (!data || !data.username) {
-                throw new Error("Username not found in response data.");
-            }
-
-            //! Set the success message
             setSuccessMessage('Password reset successfully.');
 
-            //! Get the username from the response data
             const usernameFromResponse = data.username;
             setUsername(usernameFromResponse);
 
-            // Log the username upon successful password reset
-            // console.log('Username:', usernameFromResponse);
-
             if (login && typeof login === 'function') {
-                //! For showing user name if login successful
                 login({ username: data.username });
-                // console.log(usernameFromResponse);
             } else {
-                console.error("login is not a function or not defined");
+                console.error('login is not a function or not defined');
             }
 
             history.push('/');
         } catch (error) {
             setError(error.message);
         }
-
     };
+
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white p-8 rounded shadow-md">
