@@ -10,8 +10,8 @@ const PasswordResetPage = () => {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
     const [username, setUsername] = useState('');
-
     const history = useHistory()
+
     const handleResetPassword = async (e) => {
         e.preventDefault();
 
@@ -43,10 +43,8 @@ const PasswordResetPage = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
-                    'Username': username // Include username in headers
                 },
                 credentials: "include",
-
                 body: JSON.stringify({ otp: resetCode, newPassword }),
             });
 
@@ -61,30 +59,41 @@ const PasswordResetPage = () => {
                     return;
                 }
             }
-            //parse the response body as json
-            const data = await response.json()
 
-            console.log("Response Data:", data)
-            //set the success message
+            //! Parse the response body as JSON
+            const data = await response.json();
+
+            // console.log("Response Data:", data); // Log the response data
+
+            //! Check if username is available in data
+            if (!data || !data.username) {
+                throw new Error("Username not found in response data.");
+            }
+
+            //! Set the success message
             setSuccessMessage('Password reset successfully.');
-            //get the username from the response data
+
+            //! Get the username from the response data
             const usernameFromResponse = data.username;
-            setUsername(usernameFromResponse)
+            setUsername(usernameFromResponse);
+
             // Log the username upon successful password reset
-            console.log('Username:', usernameFromResponse);
+            // console.log('Username:', usernameFromResponse);
+
             if (login && typeof login === 'function') {
                 //! For showing user name if login successful
-                login(username);
-                console.log(username)
+                login({ username: data.username });
+                // console.log(usernameFromResponse);
             } else {
                 console.error("login is not a function or not defined");
             }
-            // history.push('/');
+
+            history.push('/');
         } catch (error) {
             setError(error.message);
         }
-    };
 
+    };
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100">
             <div className="bg-white p-8 rounded shadow-md">

@@ -7,12 +7,12 @@ export const AuthProvider = ({ children }) => {
   const [authenticatedUser, setAuthenticatedUser] = useState(null);
 
   const login = (user) => {
-    console.log("Logging in:", user);
+    // console.log("Logging in:", user);
     setAuthenticatedUser(user);
   };
 
   const logout = () => {
-    console.log("Logging out");
+    // console.log("Logging out");
     setAuthenticatedUser(null);
   };
 

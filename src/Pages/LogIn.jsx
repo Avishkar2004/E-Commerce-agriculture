@@ -21,6 +21,7 @@ const Login = () => {
   };
 
   const handleLogin = async (e) => {
+    
     e.preventDefault();
     try {
       const response = await fetch('http://localhost:8080/login', {
@@ -46,9 +47,9 @@ const Login = () => {
         console.log("Received authToken cookie:", authTokenCookies)
       }
       if (success) {
-        console.log('Login successful');
+        // console.log('Login successful');
         localStorage.setItem('authenticatedUser', JSON.stringify({ user, token, secretKey }));
-        console.log('setAuthenticatedUser:', login);
+        // console.log('setAuthenticatedUser:', login);
         if (login && typeof login === 'function') {
           //! For showing user name if login successful
           login(user);

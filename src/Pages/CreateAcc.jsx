@@ -87,13 +87,13 @@ const CreateAcc = () => {
                 // Redirect to the home page
                 history.push('/');
             } else {
-                // Display a generic error message
+                //! Display a generic error message
                 setError("Sign up failed. Please try again later.");
                 alert("Username is already taken, please choose another one");
 
             }
         } catch (error) {
-            // Display a generic error message
+            //! Display a generic error message
             setError("Sign up failed. Please try again later.");
             console.error('Signup failed:', error.message);
         } finally {
