@@ -58,7 +58,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
 
   const handleAddToCart = async () => {
     try {
-      const { id, name, price, image } = PGRShowProduct;
+      const { id, name, price, image, quantity } = PGRShowProduct;
 
       // Ensure price is a valid value and not null
       if (price == null) {
@@ -79,6 +79,9 @@ const PGRShowProduct = ({ PGRDataProp }) => {
           name,
           price,
           image: base64Image,
+          quantity: count
+
+
         }),
       });
 

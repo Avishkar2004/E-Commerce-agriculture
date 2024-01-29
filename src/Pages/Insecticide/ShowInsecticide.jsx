@@ -53,7 +53,7 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
 
     const handleAddToCart = async () => {
         try {
-            const { id, name, price, image } = productData;
+            const { id, name, price, image, quantity } = productData;
 
             // Ensure price is a valid value and not null
             if (price == null) {
@@ -74,13 +74,14 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
                     name,
                     price,
                     image: base64Image,
+                    quantity: count
                 }),
             });
 
             if (response.ok) {
                 const responseData = await response.json();
                 setCartData(responseData.cart);
-                console.log('Item added to cart:', responseData);
+                // console.log('Item added to cart:', responseData);
             } else {
                 console.error('Failed to add item to cart');
             }

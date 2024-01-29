@@ -16,7 +16,7 @@ const BestInsecticides = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log("Received products:", data);
+        // console.log("Received products:", data);
         setInsecticideData(data.slice(0, 1000) || []);
       } catch (error) {
         console.error("Error fetching data:", error.message);
