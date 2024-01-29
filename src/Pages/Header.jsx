@@ -1,14 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useAuth } from "../actions/authContext";
+import axios from 'axios'
 
 const Header = () => {
   const inputRef = useRef(null);
   const { authenticatedUser, logout } = useAuth() || {};
   const [isDrodownOpne, setisDrodownOpne] = useState(false)
+  const [cartItemCount, setCartItemCount] = useState(0)
   const handleSearchBarClick = () => {
     inputRef.current.focus();
   };
@@ -24,6 +26,17 @@ const Header = () => {
   const handleLogOut = () => {
     logout()
   }
+
+  const fetchCartData = () => {
+    axios.get("http://localhost:8080/cart").then(response => {
+      setCartItemCount(response.data.length);
+    });
+  };
+
+  useEffect(() => {
+    //fetch cart data  from backend when component mounts
+    fetchCartData()
+  }, [])
 
   const renderUserDropdown = () => {
     return (
@@ -96,7 +109,7 @@ const Header = () => {
         <div>
           <Link to="/cart" className="text-black hover:cursor-pointer">
             <ShoppingCartOutlinedIcon />
-            <span className="ml-1">1</span>
+            <span className="ml-1">{cartItemCount}</span>
           </Link>
         </div>
       </div>
