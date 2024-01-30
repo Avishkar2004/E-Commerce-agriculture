@@ -114,8 +114,7 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
                             className="hover:text-blue-500 text-sm"
                             to="/insecticide"
                         >
-                            Buy Insecticide Online
-                        </Link>
+                            Buy Insecticide Online        </Link>
                         &gt;
                         <span className="text-sm">{productData.name}</span>
                     </span>
@@ -179,28 +178,22 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
                     </div>
                     <hr className="border-[1px] border-gray-800 border-r" />
 
-                    <div>
-                        <p className="text-xl text-[#1e2d7d] mt-5">
-                            Size: <span className="text-xl">{selectedSize}</span>
-                        </p>
-                        <div className="flex gap-6 mt-5">
-                            <button
-                                className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '50 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-8 ml-4 mb-4 mr-4 cursor-pointer' : 'bg-[#f1fdff]'} `}
-                                onClick={() => handleSizeChange('50 ml')}
-                            >
-                                {productData.small_50}
-                            </button>
-                            <button
-                                className={`text-xl text-gray-700 border-r-2 border-l-2 border-t-2 border-b-2 rounded-md cursor-pointer ${selectedSize === '100 ml' ? 'text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md ' : 'bg-[#f1fdff]'} mt-2 ml-2 mb-2 mr-2 cursor-pointer`}
-                                onClick={() => handleSizeChange('100 ml')}
-                            >
-                                {productData.big_100}
-                            </button>
-                        </div>
-                        <p className="text-xl mt-6 text-[#1e2d7d]">
-                            Expiry Date: <span className="text-black">09-Dec-2024</span>
-                        </p>
+                    <p className="text-[#1e2d7d] mt-8">Size: <span className="text-xl">{selectedSize}</span></p>
+                    <div className="flex mt-8 space-x-3">
+                        <button
+                            className={`text-xl border-2 rounded-md py-1 px-3 focus:outline-none ${selectedSize === '50 ml' ? 'bg-blue-500 text-white border-blue-500' : 'bg-gray-200 text-gray-700 border-gray-300'}`}
+                            onClick={() => handleSizeChange('50 ml')}
+                        >
+                            {productData.small_50}
+                        </button>
+                        <button
+                            className={`text-xl border-2 rounded-md py-1 px-3 focus:outline-none ${selectedSize === '100 ml' ? 'bg-blue-500 text-white border-blue-500' : 'bg-gray-200 text-gray-700 border-gray-300'}`}
+                            onClick={() => handleSizeChange('100 ml')}
+                        >
+                            {productData.big_100}
+                        </button>
                     </div>
+                    <p className="text-[#1e2d7d] mt-5">Expiry Date: <span className="text-black">09-Dec-2024</span></p>
                     <div className="flex gap-6 mt-5">
                         <button className="text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-2 ml-2 mb-2 mr-2 cursor-pointer">
                             09-Dec-2024
@@ -209,8 +202,8 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
                     <div className="flex justify-between items-center mt-4">
                         <div>
                             <p className="text-2xl flex mt-3 gap-12 font-semibold">
-                                Price: <p className="text-[#00badb]">{productData.price}</p>
-                                <p className="text-base mt-1.5 text-gray-700">{productData.salePrice}</p>
+                                Price: <p className="text-[#00badb]">{productData.salePrice ? productData.salePrice - productData.save : productData.price_small - productData.save}</p>
+                                <p className="text-base mt-1.5 text-gray-700 line-through">{productData.price && `(${productData.salePrice})`}</p>
                             </p>
                             <p className="text-sm mt-3 ml-[107px] text-gray-700">
                                 Tax included
@@ -250,7 +243,7 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
                             <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                                 Buy Now
                             </Link>
-                            <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded" disabled>
+                            <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
                                 Add To Cart
                             </Link>
                         </div>

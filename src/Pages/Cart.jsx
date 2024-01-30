@@ -19,10 +19,6 @@ const Cart = ({ cartDataPass }) => {
             });
     };
 
-
-
-
-
     const calculateSubtotal = () => {
         if (cartData.length === 0) {
             return 0
