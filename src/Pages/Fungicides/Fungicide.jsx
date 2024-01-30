@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import EastIcon from '@mui/icons-material/East';
 
 const Fungicides = () => {
-
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [isHovered, setIsHovered] = useState(false)
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+  }
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,8 +36,12 @@ const Fungicides = () => {
       <div className="flex justify-between font-bold">
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
           Best Fungicide        </h1>
-        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer">
-          View All
+        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+
+>
+          View All {isHovered && <EastIcon />}
         </h1>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">

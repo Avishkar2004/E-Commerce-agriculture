@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Offer from "../Components/Collections/Offer.webp";
 import Pgr from "../Components/Collections/pgr.avif";
 import Organic from "../Components/Collections/organic.avif";
@@ -6,10 +6,22 @@ import micronutrients1 from "../Components/Collections/micronutrients1.avif";
 import insectiicide1 from "../Components/Collections/insectiicide1.avif";
 import Funcgicide from "../Components/Collections/fungicide1.avif";
 import { Link } from "react-router-dom";
+import EastIcon from '@mui/icons-material/East'; // Import EastIcon
+
+
 
 const Collection = () => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
   return (
-    <section className="flex flex-col  justify-center items-cente mb-9">
+    <section className="flex flex-col justify-center items-cente mb-9">
       <div className="mb-5">
         <Link to="#">
           <img src={Offer} alt="Offer" className="max-w-full" />
@@ -19,11 +31,13 @@ const Collection = () => {
         <h1 className="text-[#1e2d7d] text-lg font-primary cursor-pointer">
           Our Collection's
         </h1>
-        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer">
+        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}>
           View All
+          {isHovered && <EastIcon />} {/* Render EastIcon if isHovered is true */}
         </h1>
       </div>
-
       {/* Collection */}
       <div className="flex flex-wrap justify-center gap-2 md:justify-start">
         <Link

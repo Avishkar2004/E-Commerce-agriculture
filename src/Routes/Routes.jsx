@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "../Pages/Header";
 import Collection from "../Pages/Collection";
 import Sliders from "../Pages/Slider";
-import Product from "../Pages/ProductFea";
+import FungiUI from "../Pages/Fungicides/FungiUI";
 import OrganicFront from "../Pages/Organicproduct/OrganicFront";
 import Blogposts from "../Pages/Blogposts";
 import BestFungicides from "../Pages/Fungicides/BestFungicides";
@@ -34,7 +34,7 @@ const AppRoutes = () => {
       <Route path="/profile" component={Profile} />
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/passwordreset" component={PasswordResetPage} />
-      
+
       <Switch>
         {/* Routes for Plant Growth Regulator */}
         <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />
@@ -73,7 +73,7 @@ const AppRoutes = () => {
               <>
                 <Collection />
                 <Sliders />
-                <Product />
+                <FungiUI />
                 <OrganicFront />
                 <Blogposts />
                 <Fungicides />

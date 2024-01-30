@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import EastIcon from "@mui/icons-material/East"
 const OrganicFront = () => {
   const [micronutrientData, setMicronutrientData] = useState([]);
   const [OrganicproductData, setOrganicproductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isHovered, setIsHovered] = useState(false)
+
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+  }
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,8 +68,12 @@ const OrganicFront = () => {
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
           Organic Products
         </h1>
-        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer">
-          View All
+        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
+
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          View All {isHovered && <EastIcon />}
         </h1>
       </div>
       {/* if you want space inbetn for this you need gap-1 */}
@@ -107,8 +120,11 @@ const OrganicFront = () => {
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary mt-10 mb-5">
           Aries Agro's collection
         </h1>
-        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer mt-10">
-          View All
+        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer mt-10"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        >
+          View All {isHovered && <EastIcon />}
         </h1>
       </div>
       <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
