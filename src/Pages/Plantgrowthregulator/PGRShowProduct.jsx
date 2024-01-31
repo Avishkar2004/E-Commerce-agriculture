@@ -57,7 +57,6 @@ const PGRShowProduct = ({ PGRDataProp }) => {
   };
 
 
-
   const handleAddToCart = async () => {
     try {
       const { id, name, price, image, quantity } = PGRShowProduct;
