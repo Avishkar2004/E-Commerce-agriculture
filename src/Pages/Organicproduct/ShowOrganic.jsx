@@ -19,7 +19,8 @@ const OrganicproductData = ({ OrganicproductData }) => {
   const [selectedSize, setSelectedSize] = useState('50 ml');
 
 
-  const handleBuyNow = () => {
+  const handleBuyNow = (e) => {
+    e.preventDefault()
     history.push("/BuyNow", { productData })
   }
 
@@ -240,9 +241,9 @@ const OrganicproductData = ({ OrganicproductData }) => {
               </p>
             </p>
             <div className="flex justify-center content-center min-h-12">
-              <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+              <span onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded hover:cursor-pointer">
                 Buy Now
-              </Link>
+              </span>
               <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
                 Add To Cart
               </Link>

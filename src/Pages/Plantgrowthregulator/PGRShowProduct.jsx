@@ -13,15 +13,17 @@ import Description from '../Description';
 const PGRShowProduct = ({ PGRDataProp }) => {
   const history = useHistory();
   const location = useLocation();
-  const initialPGRShowProduct = (location.state && location.state.PGRProduct) || {};
-  const [PGRShowProduct, setPGRShowProduct] = useState(initialPGRShowProduct);
+  const initialproductData = (location.state && location.state.PGRProduct) || {};
+  const [productData, setProductData] = useState(initialproductData);
   const [count, setCount] = useState(1);
   const [cartData, setCartData] = useState(null);
   const [selectedSize, setSelectedSize] = useState('50 ml');
 
-  const handleBuyNow = () => {
-    history.push("/BuyNow", { PGRShowProduct })
+  const handleBuyNow = (e) => {
+    e.preventDefault()
+    history.push("/BuyNow", { productData })
   }
+
   const handleIncrement = () => {
     setCount(count + 1);
   };
@@ -38,19 +40,19 @@ const PGRShowProduct = ({ PGRDataProp }) => {
     let updatedData;
     if (newSize === '50 ml') {
       updatedData = {
-        reviews: initialPGRShowProduct.review_50,
-        save: initialPGRShowProduct.save_50,
-        price: initialPGRShowProduct.price_small,
+        reviews: initialproductData.review_50,
+        save: initialproductData.save_50,
+        price: initialproductData.price_small,
       };
     } else if (newSize === '100 ml') {
       updatedData = {
-        reviews: initialPGRShowProduct.review_100,
-        save: initialPGRShowProduct.save_100,
-        price: initialPGRShowProduct.salePrice,
+        reviews: initialproductData.review_100,
+        save: initialproductData.save_100,
+        price: initialproductData.salePrice,
       };
     }
 
-    setPGRShowProduct((prevData) => ({
+    setProductData((prevData) => ({
       ...prevData,
       ...updatedData,
     }));
@@ -58,7 +60,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
 
   const handleAddToCart = async () => {
     try {
-      const { id, name, price, image, quantity } = PGRShowProduct;
+      const { id, name, price, image, quantity } = productData;
 
       // Ensure price is a valid value and not null
       if (price == null) {
@@ -118,7 +120,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
               Plant Growth Regulator (PGR)
             </Link>
             &gt;
-            <span className="text-sm">{PGRShowProduct.name}</span>
+            <span className="text-sm">{productData.name}</span>
           </span>
           <Link to='/plantgrowthregulator/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
@@ -131,13 +133,13 @@ const PGRShowProduct = ({ PGRDataProp }) => {
         <div className="w-1/2 bg-white text-center ml-12 border-r-2 border-l-2 border-t-2 border-b-2">
           <img
             className="h-28 border-2 border-blue-500"
-            src={`data:image/avif;base64, ${PGRShowProduct.image}`}
-            alt={PGRShowProduct.name}
+            src={`data:image/avif;base64, ${productData.image}`}
+            alt={productData.name}
           />
           {/* this is a big image */}
           <img
-            src={`data:image/avif;base64,${PGRShowProduct.image}`}
-            alt={PGRShowProduct.name}
+            src={`data:image/avif;base64,${productData.image}`}
+            alt={productData.name}
             className="h-[31rem] object-cover mx-auto overflow-hidden"
           />
           <p className="text-gray-500 mb-4">
@@ -149,15 +151,15 @@ const PGRShowProduct = ({ PGRDataProp }) => {
         {/* Right Side */}
         <div className="w-1/2 bg-white text-left ml-8 p-4 mr-8 border-r-2 border-l-2 border-t-2 border-b-2">
           <span>ven</span>
-          <h1 className="text-2xl font-[#1e2d7d]">{PGRShowProduct.name}</h1>
+          <h1 className="text-2xl font-[#1e2d7d]">{productData.name}</h1>
           <p className="mt-5 mb-3">
             <StarIcon color="warning" />
             <StarIcon color="warning" />
             <StarIcon color="warning" />
             <StarIcon color="warning" />
-            <StarIcon color="warning" /> {PGRShowProduct.reviews} reviews
+            <StarIcon color="warning" /> {productData.reviews} reviews
           </p>
-          <span className="bg-green-300">Save {PGRShowProduct.save}</span>
+          <span className="bg-green-300">Save {productData.save}</span>
           <div className="flex mt-3 mb-3">
             <p>HPM</p>
             <div className="flex ml-[35.5rem] space-x-3">
@@ -187,13 +189,13 @@ const PGRShowProduct = ({ PGRDataProp }) => {
               className={`text-xl border-2 rounded-md py-1 px-3 focus:outline-none ${selectedSize === '50 ml' ? 'bg-blue-500 text-white border-blue-500' : 'bg-gray-200 text-gray-700 border-gray-300'}`}
               onClick={() => handleSizeChange('50 ml')}
             >
-              {PGRShowProduct.small_50}
+              {productData.small_50}
             </button>
             <button
               className={`text-xl border-2 rounded-md py-1 px-3 focus:outline-none ${selectedSize === '100 ml' ? 'bg-blue-500 text-white border-blue-500' : 'bg-gray-200 text-gray-700 border-gray-300'}`}
               onClick={() => handleSizeChange('100 ml')}
             >
-              {PGRShowProduct.big_100}
+              {productData.big_100}
             </button>
           </div>
           <p className="text-[#1e2d7d] mt-5">Expiry Date: <span className="text-black">09-Dec-2024</span></p>
@@ -205,8 +207,8 @@ const PGRShowProduct = ({ PGRDataProp }) => {
           <div className="flex justify-between items-center mt-4">
             <div>
               <p className="text-2xl flex mt-3 gap-12 font-semibold">
-                Price: <p className="text-[#00badb]">{PGRShowProduct.salePrice ? PGRShowProduct.salePrice - PGRShowProduct.save : PGRShowProduct.price_small - PGRShowProduct.save}</p>
-                <p className="text-base mt-1.5 text-gray-700 line-through">{PGRShowProduct.price && `(${PGRShowProduct.salePrice})`}</p>
+                Price: <p className="text-[#00badb]">{productData.salePrice ? productData.salePrice - productData.save : productData.price_small - productData.save}</p>
+                <p className="text-base mt-1.5 text-gray-700 line-through">{productData.price && `(${productData.salePrice})`}</p>
               </p>
               <p className="text-sm mt-3 ml-[107px] text-gray-700">
                 Tax included
@@ -243,9 +245,9 @@ const PGRShowProduct = ({ PGRDataProp }) => {
               </p>
             </p>
             <div className="flex justify-center content-center min-h-12">
-              <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+              <span onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded hover:cursor-pointer">
                 Buy Now
-              </Link>
+              </span>
               <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
                 Add To Cart
               </Link>
