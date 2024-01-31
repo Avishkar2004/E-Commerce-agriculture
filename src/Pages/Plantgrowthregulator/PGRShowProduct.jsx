@@ -115,7 +115,8 @@ const PGRShowProduct = ({ PGRDataProp }) => {
               className="hover:text-blue-500 text-sm"
               to="/plantgrowthregulator"
             >
-              Plant Growth Regulator (PGR)          </Link>
+              Plant Growth Regulator (PGR)
+            </Link>
             &gt;
             <span className="text-sm">{PGRShowProduct.name}</span>
           </span>
@@ -133,6 +134,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
             src={`data:image/avif;base64, ${PGRShowProduct.image}`}
             alt={PGRShowProduct.name}
           />
+          {/* this is a big image */}
           <img
             src={`data:image/avif;base64,${PGRShowProduct.image}`}
             alt={PGRShowProduct.name}

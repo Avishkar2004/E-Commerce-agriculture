@@ -99,8 +99,6 @@ const ShowInsecticide = ({ InsecticideProductData }) => {
         // console.log('Product Data:', productData);
         handleSizeChange('50 ml');
     }, []);//you can remove these two of productdata and insecticideProductdata
-
-
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
             <div className="space-x-52 ml-12 mt-4 mb-4">
