@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch, useParams } from "react-router-dom";
 import ShowMicroProduct from "./ShowMicroProduct";
 const MicroNutrientProduct = () => {
     const { productId } = useParams()

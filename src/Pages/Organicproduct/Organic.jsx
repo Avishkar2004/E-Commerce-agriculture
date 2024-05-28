@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import OrganicProduct from "../../Components/Banner/orgnicProduct.jpg";
 import Recentlyviewed from "../Recentlyviewed";
-import { Link } from "react-router-dom";
 
 const Organic = () => {
   const [OrganicproductData, setOrganicproductData] = useState([]);

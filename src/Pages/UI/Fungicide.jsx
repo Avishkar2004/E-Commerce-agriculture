@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import EastIcon from '@mui/icons-material/East';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 const Fungicides = () => {
   const [products, setProducts] = useState([]);

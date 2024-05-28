@@ -1,6 +1,6 @@
+import EastIcon from "@mui/icons-material/East";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import EastIcon from "@mui/icons-material/East"
 const OrganicFront = () => {
   const [micronutrientData, setMicronutrientData] = useState([]);
   const [OrganicproductData, setOrganicproductData] = useState([]);

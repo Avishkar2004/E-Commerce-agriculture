@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import HeaderPhoto from './Logo.jpeg'
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import axios from 'axios';
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useAuth } from "../actions/authContext";
-import axios from 'axios'
+import HeaderPhoto from './Logo.jpeg';
 
 const Header = () => {
   const inputRef = useRef(null);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import ShowOrganic from "./ShowOrganic";
 import ShowInsecticide from "./ShowInsecticide";
 
 const InsecticideProduct = () => {

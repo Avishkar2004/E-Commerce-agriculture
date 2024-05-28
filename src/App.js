@@ -1,6 +1,6 @@
 import AppRoutes from "./Routes/Routes";
-import { AuthProvider } from "./actions/authContext";
 import { CartProvider } from "./actions/CartContext";
+import { AuthProvider } from "./actions/authContext";
 function App() {
   return (
     <div>

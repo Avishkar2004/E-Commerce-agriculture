@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Recentlyviewed from "../Recentlyviewed";
 import BannerInsecticide from "../../Components/Banner/Insecticide.jpg";
+import Recentlyviewed from "../Recentlyviewed";
 
 const BestInsecticides = () => {
   const [insecticideData, setInsecticideData] = useState([]);

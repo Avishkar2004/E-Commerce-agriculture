@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Offer from "../Components/Collections/Offer.webp";
-import Pgr from "../Components/Collections/pgr.avif";
-import Organic from "../Components/Collections/organic.avif";
-import micronutrients1 from "../Components/Collections/micronutrients1.avif";
-import insectiicide1 from "../Components/Collections/insectiicide1.avif";
-import Funcgicide from "../Components/Collections/fungicide1.avif";
-import { Link } from "react-router-dom";
 import EastIcon from '@mui/icons-material/East'; // Import EastIcon
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Offer from "../Components/Collections/Offer.webp";
+import Funcgicide from "../Components/Collections/fungicide1.avif";
+import insectiicide1 from "../Components/Collections/insectiicide1.avif";
+import micronutrients1 from "../Components/Collections/micronutrients1.avif";
+import Organic from "../Components/Collections/organic.avif";
+import Pgr from "../Components/Collections/pgr.avif";
 
 
 

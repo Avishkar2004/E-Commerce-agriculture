@@ -1,16 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import SAAF from "../Components/BestFungicides/Saaf.avif";
+import Hamla from "../Components/BestInsecticides/Hamla550_200x.avif";
+import Movento from "../Components/BestInsecticides/MOVENTO.avif";
 import Flower from "../Components/Collections/images.jpg";
 import Pgr from "../Components/Collections/pgr.avif";
 import TheetaInsect from "../Components/OrganicProducts/THEETA.avif";
-import ProZinc2 from "../Components/micronutrientPhoto/prozinc-new_300x.avif";
-import Hamla from "../Components/BestInsecticides/Hamla550_200x.avif";
-import SAAF from "../Components/BestFungicides/Saaf.avif";
-import Movento from "../Components/BestInsecticides/MOVENTO.avif";
 import AriesAntox from "../Components/micronutrientPhoto/ARIES ANTOX.avif";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import ProZinc2 from "../Components/micronutrientPhoto/prozinc-new_300x.avif";
 
 const products = [
   {

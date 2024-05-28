@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import EastIcon from "@mui/icons-material/East";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import EastIcon from "@mui/icons-material/East"
 
 const FungiUI = () => {
   const [products, setProducts] = useState([]);

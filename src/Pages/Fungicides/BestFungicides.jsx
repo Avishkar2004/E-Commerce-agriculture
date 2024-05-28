@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Recentlyviewed from "../Recentlyviewed";
 import BannerFungicide from '../../Components/BestFungicides/BannerFungi.webp';
+import Recentlyviewed from "../Recentlyviewed";
 
 const BestFungicides = () => {
   const [fungicidesData, setFungicidesData] = useState([]);

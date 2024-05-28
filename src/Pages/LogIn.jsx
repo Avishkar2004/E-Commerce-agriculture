@@ -1,8 +1,8 @@
 // src/components/Login.js
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useAuth } from '../actions/authContext';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useAuth } from '../actions/authContext';
 
 const Login = () => {
   const history = useHistory()

@@ -1,7 +1,7 @@
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 const ForgotPassword = () => {
     const history = useHistory();
     const [email, setEmail] = useState('');

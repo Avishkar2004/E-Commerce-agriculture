@@ -1,14 +1,14 @@
 // this is for insecticide
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import SearchIcon from "@mui/icons-material/Search";
-import StarIcon from "@mui/icons-material/Star";
+import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
+import SearchIcon from "@mui/icons-material/Search";
+import StarIcon from "@mui/icons-material/Star";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import EmailIcon from "@mui/icons-material/Email";
-import Description from '../Description';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import Description from '../Description';
 
 const ShowInsecticide = ({ InsecticideProductData }) => {
     const history = useHistory();

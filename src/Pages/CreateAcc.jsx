@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import zxcvbn from 'zxcvbn';
 import { useAuth } from '../actions/authContext';
-import zxcvbn from 'zxcvbn'
 
 
 const CreateAcc = () => {
