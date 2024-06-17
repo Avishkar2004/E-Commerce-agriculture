@@ -37,10 +37,10 @@ const Fungicides = () => {
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
           Best Fungicide        </h1>
         <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
 
->
+        >
           View All {isHovered && <EastIcon />}
         </h1>
       </div>

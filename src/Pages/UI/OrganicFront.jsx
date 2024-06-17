@@ -121,8 +121,8 @@ const OrganicFront = () => {
           Aries Agro's collection
         </h1>
         <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer mt-10"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           View All {isHovered && <EastIcon />}
         </h1>

@@ -6,7 +6,7 @@ const Insecticide = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isHovered, setIsHovered ] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleMouseEnter = () => {
     setIsHovered(true)
@@ -38,11 +38,11 @@ const Insecticide = () => {
     <div className="container mx-auto mt-10 mb-5">
       <div className="flex justify-between font-bold">
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
-          Best Insecticides    
+          Best Insecticides
         </h1>
         <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           View All {isHovered && <EastIcon />}
         </h1>
