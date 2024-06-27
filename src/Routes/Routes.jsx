@@ -11,7 +11,7 @@ import BestInsecticides from "../Pages/Insecticide/BestInsecticides";
 import Recentlyviewed from "../Pages/Recentlyviewed";
 import Footer from "../Pages/Footer";
 import BuyNow from "../Pages/BuyNow";
-import Login from "../Pages/Login";
+import LogIn from "../Pages/LogIn";
 import ShowFungicides from "../Pages/Fungicides/ShowFungicides";
 import PlantGrowthRegulator from "../Pages/Plantgrowthregulator/PlantGrowthRegulator";
 import PGRShowProduct from "../Pages/Plantgrowthregulator/PGRShowProduct";
@@ -60,7 +60,7 @@ const AppRoutes = () => {
         <Route path="/BuyNow" component={BuyNow} />
 
         {/* Route for Log In */}
-        <Route path="/Login" component={Login} />
+        <Route path="/Login" component={LogIn} />
         {/* Route for SignUp  */}
         <Route path="/signup" component={CreateAcc} />
       </Switch>

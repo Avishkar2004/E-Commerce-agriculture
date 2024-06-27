@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useAuth } from '../actions/authContext';
 
-const Login = () => {
+const LogIn = () => {
   const history = useHistory()
   const { login } = useAuth();
   const [serverResponse, setServerResponse] = useState('');
@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   const handleLogin = async (e) => {
-    
+
     e.preventDefault();
     try {
       const response = await fetch('http://localhost:8080/login', {
@@ -124,4 +124,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LogIn;
