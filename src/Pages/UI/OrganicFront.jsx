@@ -30,7 +30,6 @@ const OrganicFront = () => {
         setLoading(false)
       }
     }
-
     fetchData();
   }, [])
 
@@ -112,7 +111,6 @@ const OrganicFront = () => {
           </Link>
         ))}
       </div>
-
 
       {/* Aries Agro's collection */}
       <hr className=" mt-12 border-[1px] border-gray-600" />

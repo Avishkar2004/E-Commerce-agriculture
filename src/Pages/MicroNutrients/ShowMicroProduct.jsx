@@ -29,7 +29,6 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
         history.push("/BuyNow", { productData })
     }
 
-
     const handleSizeChange = (newSize) => {
         setSelectedSize(newSize);
 
