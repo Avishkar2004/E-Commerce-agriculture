@@ -1,33 +1,34 @@
-// this is for micro nutrient data
+import React, { useEffect, useState } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import SearchIcon from "@mui/icons-material/Search";
 import StarIcon from "@mui/icons-material/Star";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import Description from '../Description';
+
 const ShowMicroProduct = ({ MicroDataProp }) => {
-    const history = useHistory()
-    const location = useLocation()
+    const history = useHistory();
+    const location = useLocation();
     const initialMicroShowProduct = (location.state && location.state.micronutrientProduct) || {};
     const [productData, setProductData] = useState(initialMicroShowProduct);
     const [count, setCount] = useState(1);
     const [cartData, setCartData] = useState(null);
-    const [selectedSize, setSelectedSize] = useState("50 ml")
+    const [selectedSize, setSelectedSize] = useState("50 ml");
 
     const handleIncrement = () => {
         setCount(count + 1);
-    }
+    };
+
     const handleDecrement = () => {
         setCount(count - 1 > 0 ? count - 1 : 1); // Ensure count doesn't go below 1
-    }
+    };
 
     const handleBuyNow = (e) => {
-        e.preventDefault()
-        history.push("/BuyNow", { productData })
-    }
+        e.preventDefault();
+        history.push("/BuyNow", { productData });
+    };
 
     const handleSizeChange = (newSize) => {
         setSelectedSize(newSize);
@@ -93,8 +94,7 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
 
     useEffect(() => {
         handleSizeChange('50 ml');
-
-    }, [])
+    }, []);
 
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -105,11 +105,9 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                             Home
                         </Link>
                         &gt;
-                        <Link
-                            className="hover:text-blue-500 text-sm"
-                            to="/micro-nutrients"
-                        >
-                            Buy Micro-nutrients Online          </Link>
+                        <Link className="hover:text-blue-500 text-sm" to="/micro-nutrients">
+                            Buy Micro-nutrients Online
+                        </Link>
                         &gt;
                         <span className="text-sm">{productData.name}</span>
                     </span>
@@ -171,10 +169,10 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                             />
                         </div>
                     </div>
-                    <hr className="border-[1px] border-gray-800 border-r" />
+                    <hr className="border-r-0 border-gray-800" />
 
-                    <p className="text-[#1e2d7d] mt-8">Size: <span className="text-xl">{selectedSize}</span></p>
-                    <div className="flex mt-8 space-x-3">
+                    <p className="text-[#1e2d7d] mt-5">Size: <span className="text-xl">{selectedSize}</span></p>
+                    <div className="flex mt-5 space-x-3">
                         <button
                             className={`text-xl border-2 rounded-md py-1 px-3 focus:outline-none ${selectedSize === '50 ml' ? 'bg-blue-500 text-white border-blue-500' : 'bg-gray-200 text-gray-700 border-gray-300'}`}
                             onClick={() => handleSizeChange('50 ml')}
@@ -188,31 +186,30 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                             {productData.big_100}
                         </button>
                     </div>
-                    <p className="text-[#1e2d7d] mt-5">Expiry Date: <span className="text-black">09-Dec-2024</span></p>
+                    <p className="text-[#1e2d7d] mt-5 text-lg font-semibold">Expiry Date: <span className="text-black">09-Dec-2024</span></p>
                     <div className="flex gap-6 mt-5">
-                        <button className="text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-2 ml-2 mb-2 mr-2 cursor-pointer">
+                        <span className="text-xl text-gray-700 bg-[#f1fdff] border-2 border-[#00badb] rounded-md py-2 px-4 cursor-pointer">
                             09-Dec-2024
-                        </button>
+                        </span>
                     </div>
                     <div className="flex justify-between items-center mt-4">
                         <div>
                             <p className="text-2xl flex mt-3 gap-12 font-semibold">
-                                Price: <p className="text-[#00badb]">{productData.salePrice ? productData.salePrice - productData.save : productData.price_small - productData.save}</p>
-                                <p className="text-base mt-1.5 text-gray-700 line-through">{productData.price && `(${productData.salePrice})`}</p>
+                                Price: <p className="text-[#00badb]">{productData.price ? productData.price - productData.save : null}</p>
+                                <p className="text-base mt-1.5 text-gray-700 line-through">{productData.salePrice && `(${productData.salePrice})`}</p>
                             </p>
                             <p className="text-sm mt-3 ml-[107px] text-gray-700">
                                 Tax included
                                 <span className="text-[#00badb] cursor-pointer">
                                     {" "}
-                                    Shipping calculated
-                                </span>{" "}
-                                at checkout
+                                    Shipping calculated at checkout
+                                </span>
                             </p>
                         </div>
                     </div>
                     <div className="mt-6 flex gap-6">
-                        <p className="text-2xl font-semibold space-x-9 ">
-                            Quantity :
+                        <p className="text-2xl font-semibold space-x-9">
+                            Quantity:
                             <p className="text-4xl space-x-12 text-red-900 ml-32 overflow-hidden -mt-9 item-center border-[2px] border-t-2 border-b-2">
                                 <button className="text-gray-400 hover:text-black border-r-2 ml-5 items-center">
                                     <button className="mr-5" onClick={handleIncrement}>
@@ -223,10 +220,7 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                                     <span className="mr-5 -ml-5">{count}</span>
                                 </span>
                                 <button className="items-center">
-                                    <button
-                                        onClick={handleDecrement}
-                                        className="-ml-5 items-center"
-                                    >
+                                    <button onClick={handleDecrement} className="-ml-5 items-center">
                                         <button className="mr-5 hover:text-black text-gray-400">
                                             -
                                         </button>
@@ -238,16 +232,16 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                             <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                                 Buy Now
                             </Link>
-                            <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
+                            <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer">
                                 Add To Cart
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
             <Description />
         </div>
-    )
-}
+    );
+};
 
-export default ShowMicroProduct
+export default ShowMicroProduct;
