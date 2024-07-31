@@ -92,9 +92,35 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
         }
     };
 
+
+    const fetchNextProduct = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/products/next/${productData.id}`);
+            if (response.ok) {
+                const nextProduct = await response.json();
+                history.push({
+                    pathname: `/micro-nutrients/${nextProduct.id}`,
+                    state: { micronutrientProduct: nextProduct }
+                });
+                setProductData(nextProduct);
+                setSelectedSize("50 ml"); // Reset the size to default
+
+            } else {
+                console.error('Failed to fetch next product');
+            }
+        } catch (error) {
+            console.error('Error fetching next product:', error);
+        }
+    };
+
     useEffect(() => {
         handleSizeChange('50 ml');
     }, []);
+
+
+    useEffect(() => {
+        console.log("Product data updated", productData)
+    }, [productData])
 
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -111,9 +137,9 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                         &gt;
                         <span className="text-sm">{productData.name}</span>
                     </span>
-                    <Link to='/micro-nutrients/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
+                    <span onClick={fetchNextProduct} className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
                         Next &gt;
-                    </Link>
+                    </span>
                 </div>
             </div>
 
