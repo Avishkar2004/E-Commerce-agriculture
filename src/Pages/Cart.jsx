@@ -35,7 +35,7 @@ const Cart = ({ cartDataPass }) => {
 
     useEffect(() => {
         const subtotal = calculateSubtotal();
-        console.log('Subtotal:', subtotal); // Check the calculated subtotal
+        // console.log('Subtotal:', subtotal); // Check the calculated subtotal
         // Update subtotal state if necessary
     }, [cartData]); // Trigger when cartData changes
 
