@@ -3,10 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import zxcvbn from 'zxcvbn';
 import { useAuth } from '../actions/authContext';
 
-
 const CreateAcc = () => {
-    const history = useHistory()
-    const { login } = useAuth()
+    const history = useHistory();
+    const { login } = useAuth();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [formData, setFormData] = useState({
@@ -18,10 +17,7 @@ const CreateAcc = () => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-
-        // Replace spaces with underscores for the username
         const transformedValue = name === 'username' ? value.replace(/\s/g, '_') : value;
-
         setFormData({
             ...formData,
             [name]: transformedValue,
@@ -48,7 +44,6 @@ const CreateAcc = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        //! check if password match
         if (formData.password !== formData.confirmPassword) {
             alert("Passwords do not match");
             return;
@@ -58,7 +53,6 @@ const CreateAcc = () => {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
                 },
                 credentials: "include",
                 body: JSON.stringify({
@@ -68,39 +62,22 @@ const CreateAcc = () => {
                     confirmPassword: formData.confirmPassword,
                 }),
             });
-            const { success, user, secretKey, token } = await response.json();
-            //! Check if cookies are received
-            const authTokenCookies = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, "$1")
-            if (authTokenCookies) {
-                console.log("Received authToken cookie:", authTokenCookies)
-            }
+            const { success, user, token } = await response.json();
             if (success) {
-                console.log('Login successful');
-                localStorage.setItem('authenticatedUser', JSON.stringify({ user, token, secretKey }));
-                console.log('setAuthenticatedUser:', login);
-                if (login && typeof login === 'function') {
-                    //! For showing user name if login successful
-                    login(user);
-                } else {
-                    console.error("login is not a function or not defined");
-                }
-                // Redirect to the home page
+                localStorage.setItem('authenticatedUser', JSON.stringify({ user, token }));
+                login(user);
                 history.push('/');
             } else {
-                //! Display a generic error message
                 setError("Sign up failed. Please try again later.");
                 alert("Username is already taken, please choose another one");
-
             }
         } catch (error) {
-            //! Display a generic error message
             setError("Sign up failed. Please try again later.");
             console.error('Signup failed:', error.message);
         } finally {
             setLoading(false);
         }
     }
-
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -115,17 +92,12 @@ const CreateAcc = () => {
                             type="text"
                             id="username"
                             name="username"
-                            value={formData.username}
                             className="w-full border-gray-300 rounded-md p-2 border"
                             required
-                            placeholder='Enter Your User Name'
+                            value={formData.username}
                             onChange={handleInputChange}
+                            placeholder='Enter your user name'
                         />
-                        {formData.username && (
-                            <div className='text-sm text-gray-500'>
-                                Transformed Username : {formData.username}
-                            </div>
-                        )}
                     </div>
                     <div className="mb-4">
                         <label htmlFor="email" className="block text-gray-600 text-sm font-medium mb-2">
@@ -137,8 +109,9 @@ const CreateAcc = () => {
                             name="email"
                             className="w-full border-gray-300 rounded-md p-2 border"
                             required
-                            placeholder='Enter Your Email'
+                            value={formData.email}
                             onChange={handleInputChange}
+                            placeholder='Enter your email'
                         />
                     </div>
                     <div className="mb-4">
@@ -151,20 +124,16 @@ const CreateAcc = () => {
                             name="password"
                             className="w-full border-gray-300 rounded-md p-2 border"
                             required
-                            placeholder='Enter Your Password'
+                            value={formData.password}
                             onChange={handleInputChange}
+                            placeholder='Enter your password'
                         />
-                        {formData.password && (
-                            <div className={`text-sm ${getPasswordStrengthLabel(formData.passwordStrength)}`}>
-                                Password strength : {getPasswordStrengthLabel(formData.passwordStrength)}
-                            </div>
-                        )}
+                        <div className="mt-2 text-sm text-gray-500">
+                            Strength: {getPasswordStrengthLabel(formData.passwordStrength)}
+                        </div>
                     </div>
                     <div className="mb-4">
-                        <label
-                            htmlFor="confirmPassword"
-                            className="block text-gray-600 text-sm font-medium mb-2"
-                        >
+                        <label htmlFor="confirmPassword" className="block text-gray-600 text-sm font-medium mb-2">
                             Confirm Password
                         </label>
                         <input
@@ -173,24 +142,21 @@ const CreateAcc = () => {
                             name="confirmPassword"
                             className="w-full border-gray-300 rounded-md p-2 border"
                             required
-                            placeholder='Confirm Your Password'
+                            value={formData.confirmPassword}
                             onChange={handleInputChange}
+                            placeholder='Confirm your password'
                         />
                     </div>
                     <button
                         type="submit"
-                        className={`w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md mb-4 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                        disabled={loading}
+                        className="w-full bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
                     >
-                        {loading ? 'Signing Up...' : 'Sign Up'}
+                        {loading ? "Loading..." : "Sign Up"}
                     </button>
-
+                    {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
                 </form>
-                <div className="text-center text-gray-600">
-                    <span>Already have an account?</span>{' '}
-                    <Link to="/login" className="text-blue-500 hover:underline">
-                        Log In
-                    </Link>
+                <div className='mt-3 mb-3 right-12 items-end'>
+                    <Link to="/login" className='text-blue-500 hover:underline'>Login</Link>
                 </div>
             </div>
         </div>

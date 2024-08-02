@@ -1,9 +1,5 @@
-// AuthContext.js
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Importing necessary functions and components from React
-import React, { createContext, useContext, useState } from "react";
-
-// Creating a new context called AuthContext
 const AuthContext = createContext();
 
 // Creating a provider component for managing authentication state
@@ -13,14 +9,19 @@ export const AuthProvider = ({ children }) => {
 
   // Function to handle user login
   const login = (user) => {
+    // Ensure to store only non-sensitive user information
+    const { id, username, token } = user;
+    const safeUser = { id, username, token };
     // Updating the authenticatedUser state with the provided user information
     setAuthenticatedUser(user);
+    localStorage.setItem("authenticatedUser", JSON.stringify(safeUser));
   };
 
   // Function to handle user logout
   const logout = () => {
     // Clearing the authenticatedUser state (logging out)
     setAuthenticatedUser(null);
+    localStorage.removeItem("authenticatedUser");
   };
 
   // Function to retrieve the authentication token of the authenticated user
@@ -28,6 +29,13 @@ export const AuthProvider = ({ children }) => {
     // Returning the authentication token if a user is authenticated, otherwise returning null
     return authenticatedUser ? authenticatedUser.token : null;
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("authenticatedUser");
+    if (storedUser) {
+      setAuthenticatedUser(JSON.parse(storedUser));
+    }
+  }, []);
 
   // Rendering the AuthContext.Provider with the provided children and passing the authentication context value
   return (

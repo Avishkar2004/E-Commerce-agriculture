@@ -1,11 +1,10 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useAuth } from '../actions/authContext';
 
 const LogIn = () => {
-  const history = useHistory()
+  const history = useHistory();
   const { login } = useAuth();
   const [serverResponse, setServerResponse] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -13,6 +12,7 @@ const LogIn = () => {
     username: '',
     password: '',
   });
+
   const handleInputChange = (e) => {
     setFormData({
       ...formData,
@@ -21,18 +21,17 @@ const LogIn = () => {
   };
 
   const handleLogin = async (e) => {
-
     e.preventDefault();
     try {
       const response = await fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('authenticatedUser')}`,
         },
         credentials: "include",
         body: JSON.stringify(formData),
       });
+
       if (!response.ok) {
         const { error } = await response.json();
         setErrorMessage(error);
@@ -40,33 +39,20 @@ const LogIn = () => {
         return;
       }
 
-      const { success, message, user, secretKey, token } = await response.json();
-      //! Check if cookies are received
-      const authTokenCookies = document.cookie.replace(/(?:(?:^|.*;\s*)authToken\s*=\s*([^;]*).*$)|^.*$/, "$1")
-      if (authTokenCookies) {
-        console.log("Received authToken cookie:", authTokenCookies)
-      }
+      const { success, message, user, token } = await response.json();
+
       if (success) {
-        // console.log('Login successful');
-        localStorage.setItem('authenticatedUser', JSON.stringify({ user, token, secretKey }));
-        // console.log('setAuthenticatedUser:', login);
-        if (login && typeof login === 'function') {
-          //! For showing user name if login successful
-          login(user);
-        } else {
-          console.error("login is not a function or not defined");
-        }
-        // Redirect to the home page
+        localStorage.setItem('authenticatedUser', JSON.stringify({ user, token }));
+        login(user);
         history.push('/');
-      }
-      else {
+      } else {
         setErrorMessage(message);
-        setServerResponse(message); //! Set server response for display
+        setServerResponse(message);
       }
     } catch (error) {
       console.error('Error during login:', error);
       setErrorMessage('Internal Server Error');
-      setServerResponse('Internal Server Error'); //! Set server response for display
+      setServerResponse('Internal Server Error');
     }
   };
 
