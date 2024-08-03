@@ -27,6 +27,7 @@ import CreateAcc from "../Pages/CreateAcc";
 import Profile from "../Pages/Profile";
 import ForgotPassword from "../Pages/ForgotPassword";
 import PasswordResetPage from "../Pages/PasswordResetPage";
+import BecomeSeller from "../Pages/Seller/BecomeSeller"
 const AppRoutes = () => {
   return (
     <Router>
@@ -34,6 +35,7 @@ const AppRoutes = () => {
       <Route path="/profile" component={Profile} />
       <Route path="/forgot-password" component={ForgotPassword} />
       <Route path="/passwordreset" component={PasswordResetPage} />
+      <Route path="/become-a-seller" component={BecomeSeller} />
 
       <Switch>
         {/* Routes for Plant Growth Regulator */}
