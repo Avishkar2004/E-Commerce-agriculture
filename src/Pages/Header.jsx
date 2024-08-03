@@ -83,11 +83,11 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-[#dce9f0] text-gray-800 py-5 shadow-md">
+    <header className="bg-[#98def5] text-gray-800 py-5">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">
           <Link to="/" className="text-blue-600">
-            <img src={HeaderPhoto} alt="Header" className="w-16 h-12" />
+            <img src={HeaderPhoto} alt="Header" className="w-16 h-12 rounded-md" />
           </Link>
         </div>
         <div className="w-full md:w-2/3 relative flex items-center">
