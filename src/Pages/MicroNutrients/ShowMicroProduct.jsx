@@ -56,15 +56,7 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
 
     const handleAddToCart = async () => {
         try {
-            const { id, name, price, image, quantity } = productData;
-
-            // Ensure price is a valid value and not null
-            if (price == null) {
-                console.error('Product price is null or undefined.');
-                return; // Exit the function to prevent further processing
-            }
-            // Ensure image is base64-encoded if available
-            const base64Image = image ? image.toString('base64') : null;
+            const { id, name, price, image } = productData;
 
             const response = await fetch('http://localhost:8080/cart', {
                 method: 'POST',
@@ -75,15 +67,18 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                     id,
                     name,
                     price,
-                    image: base64Image,
+                    image,
                     quantity: count
                 }),
+                credentials: 'include' // Include credentials (cookies)
             });
 
             if (response.ok) {
                 const responseData = await response.json();
                 setCartData(responseData.cart);
-                // console.log('Item added to cart:', responseData);
+            } else if (response.status === 401) {
+                alert('You must be logged in to add items to the cart.');
+                history.push('/login');
             } else {
                 console.error('Failed to add item to cart');
             }
@@ -91,7 +86,6 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
             console.error('Error adding item to cart:', error);
         }
     };
-
 
     const fetchNextProduct = async () => {
         try {
@@ -116,6 +110,10 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
     useEffect(() => {
         handleSizeChange('50 ml');
     }, []);
+
+    useEffect(() => {
+        console.log("Product data updated", productData)
+    }, [productData]);
 
 
     useEffect(() => {

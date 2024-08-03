@@ -55,7 +55,7 @@ const PlantGrowthRegulator = () => {
             <p>Unlike micro-nutrients, it has side effects if applied frequently or more doses. Before it used, everyone keeps notice of the applicable doses of the products mentioned on the packets. The dose of all the products varies.</p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          <div className="flex space-x-12 justify-center mt-5 font-secondary gap-24">
+          <div className="flex space-x-12 ml-3 mt-5 font-secondary justify-center gap-24">
             <p>Showing 1 - {PlantgrowthregulatorData.length} of {PlantgrowthregulatorData.length} products</p>
             <p>
               <label>

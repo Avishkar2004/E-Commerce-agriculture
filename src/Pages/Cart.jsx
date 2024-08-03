@@ -19,6 +19,21 @@ const Cart = ({ cartDataPass }) => {
             });
     };
 
+
+    const handleRemoveFromCart = async (itemId) => {
+        try {
+            const response = await fetch(`http://localhost:8080/cart/${itemId}`, { method: "DELETE" })
+            if (response.ok) {
+                setCartData((prevData) => prevData.filter((item) => item.id !== itemId))
+            } else {
+                console.error("Failed to remove item from cart")
+            }
+        } catch (error) {
+            console.error("Error removing item from cart:", error)
+        }
+    }
+
+
     const calculateSubtotal = () => {
         if (cartData.length === 0) {
             return 0
@@ -35,9 +50,10 @@ const Cart = ({ cartDataPass }) => {
 
     useEffect(() => {
         const subtotal = calculateSubtotal();
-        // console.log('Subtotal:', subtotal); // Check the calculated subtotal
         // Update subtotal state if necessary
     }, [cartData]); // Trigger when cartData changes
+
+
 
     return (
         <div className="container mx-auto my-8">
@@ -49,7 +65,7 @@ const Cart = ({ cartDataPass }) => {
 
             <ul className="grid gap-8">
                 {cartData.map(item => (
-                    <CartItem key={item.id} item={item} />
+                    <CartItem key={item.id} item={item} onDelete={handleRemoveFromCart} />
                 ))}
             </ul>
 
@@ -63,7 +79,7 @@ const Cart = ({ cartDataPass }) => {
     );
 };
 
-const CartItem = ({ item }) => (
+const CartItem = ({ item, onDelete }) => (
     <li className="flex bg-white p-4 rounded-lg shadow-md">
         <div className="flex-shrink-0">
             <img
@@ -77,6 +93,12 @@ const CartItem = ({ item }) => (
             <p className="text-gray-600">Price: ${item.price}</p>
             <p className="text-gray-600">Quantity: {item.quantity}</p>
         </div>
+        <button
+            className="ml-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-700"
+            onClick={() => onDelete(item.id)}
+        >
+            Delete
+        </button>
     </li>
 );
 

@@ -14,13 +14,6 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  const handleSearchBarClick = () => {
-    inputRef.current.focus();
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   const closeDropdown = () => {
     setIsDropdownOpen(false);
