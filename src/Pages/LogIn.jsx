@@ -93,7 +93,7 @@ const LogIn = () => {
             type="submit"
             className="w-full bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
           >
-            Login with Username and Password
+            Login
           </button>
           {errorMessage && (
             <div className="text-red-500 text-sm mb-4">{errorMessage}</div>
@@ -102,9 +102,21 @@ const LogIn = () => {
             <div className="text-green-500 text-sm mb-4">{serverResponse}</div>
           )}
         </form>
-        <div className='mt-3 mb-3 right-12 items-end'>
-          <Link to="/forgot-password" className='text-blue-500 hover:underline'>Forget Pass</Link>
+        <div className="flex items-center justify-between gap-4 mt-4 mb-4">
+          <Link
+            to="/forgot-password"
+            className="bg-blue-500 text-white py-2 px-4 rounded-md shadow-lg hover:bg-blue-600 transition-colors duration-300"
+          >
+            Forgot Password
+          </Link>
+          <Link
+            to="/signup"
+            className="bg-blue-500 text-white py-2 px-4 rounded-md shadow-lg hover:bg-blue-600 transition-colors duration-300"
+          >
+            Create New Account
+          </Link>
         </div>
+
       </div>
     </div>
   );

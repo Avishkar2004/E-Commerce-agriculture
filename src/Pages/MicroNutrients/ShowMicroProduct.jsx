@@ -79,7 +79,7 @@ const ShowMicroProduct = ({ MicroDataProp = {} }) => {
                 setCartData(responseData.cart);
             } else if (response.status === 401) {
                 alert('You must be logged in to add items to the cart.');
-                history.push('/login');
+                history.push('/signup');
             } else {
                 console.error('Failed to add item to cart');
             }

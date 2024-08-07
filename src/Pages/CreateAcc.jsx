@@ -156,7 +156,7 @@ const CreateAcc = () => {
                     {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
                 </form>
                 <div className='mt-3 mb-3 right-12 items-end'>
-                    <Link to="/login" className='text-blue-500 hover:underline'>Login</Link>
+                    <Link to="/login" className='text-blue-500 hover:underline'>Already have a account LogIn</Link>
                 </div>
             </div>
         </div>
