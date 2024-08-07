@@ -19,10 +19,6 @@ const PGRShowProduct = ({ PGRDataProp }) => {
   const [cartData, setCartData] = useState(null);
   const [selectedSize, setSelectedSize] = useState('50 ml');
 
-  const handleBuyNow = (e) => {
-    e.preventDefault()
-    history.push("/BuyNow", { productData })
-  }
 
   const handleIncrement = () => {
     setCount(count + 1);
@@ -33,6 +29,11 @@ const PGRShowProduct = ({ PGRDataProp }) => {
       setCount(count - 1);
     }
   };
+
+  const handleBuyNow = (e) => {
+    e.preventDefault()
+    history.push("/BuyNow", { productData })
+  }
 
   const handleSizeChange = (newSize) => {
     setSelectedSize(newSize);
@@ -60,7 +61,7 @@ const PGRShowProduct = ({ PGRDataProp }) => {
 
   const handleAddToCart = async () => {
     try {
-      const { id, name, price, image } = productData
+      const { id, name, price, image, quantity, productType } = productData
 
       const response = await fetch('http://localhost:8080/cart', {
         method: "POST",
@@ -68,7 +69,13 @@ const PGRShowProduct = ({ PGRDataProp }) => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id, name, price, image, quantity: count
+          id,
+          name,
+          price,
+          image,
+          quantity: count,
+          productType: "plantgrowthregulator" // or any other product type
+
         }),
         credentials: "include"
       })
@@ -91,6 +98,11 @@ const PGRShowProduct = ({ PGRDataProp }) => {
   useEffect(() => {
     handleSizeChange("50 ml")
   }, []);
+
+  useEffect(() => {
+    console.log("Product data updated", productData)
+  }, [productData])
+
 
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">

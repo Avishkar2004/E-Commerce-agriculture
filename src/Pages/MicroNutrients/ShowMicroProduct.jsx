@@ -8,7 +8,7 @@ import StarIcon from "@mui/icons-material/Star";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Description from '../Description';
 
-const ShowMicroProduct = ({ MicroDataProp }) => {
+const ShowMicroProduct = ({ MicroDataProp = {} }) => {
     const history = useHistory();
     const location = useLocation();
     const initialMicroShowProduct = (location.state && location.state.micronutrientProduct) || {};
@@ -56,7 +56,7 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
 
     const handleAddToCart = async () => {
         try {
-            const { id, name, price, image } = productData;
+            const { id, name, price, image, quantity, productType } = productData;
 
             const response = await fetch('http://localhost:8080/cart', {
                 method: 'POST',
@@ -68,7 +68,8 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                     name,
                     price,
                     image,
-                    quantity: count
+                    quantity: count,
+                    productType: "MicroNutrients" // or any other product type
                 }),
                 credentials: 'include' // Include credentials (cookies)
             });
@@ -98,7 +99,6 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                 });
                 setProductData(nextProduct);
                 setSelectedSize("50 ml"); // Reset the size to default
-
             } else {
                 console.error('Failed to fetch next product');
             }
@@ -112,13 +112,8 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
     }, []);
 
     useEffect(() => {
-        console.log("Product data updated", productData)
+        console.log("Product data updated", productData);
     }, [productData]);
-
-
-    useEffect(() => {
-        console.log("Product data updated", productData)
-    }, [productData])
 
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">
@@ -263,7 +258,7 @@ const ShowMicroProduct = ({ MicroDataProp }) => {
                     </div>
                 </div>
             </div>
-            <Description />
+            <Description productData={productData} />
         </div>
     );
 };
