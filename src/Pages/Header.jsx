@@ -48,6 +48,16 @@ const Header = () => {
     handleSearch(query);
   };
 
+
+  const ProfilehandleLogOut = async () => {
+    try {
+      await axios.post('http://localhost:8080/logout');
+      logout(); // This will clear the state in your React app
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+  
   useEffect(() => {
     fetchCartData();
   }, []);
@@ -69,7 +79,7 @@ const Header = () => {
         >
           <option value="user" className="text-gray-600">{authenticatedUser.username}</option>
           <option value="profile" className="text-gray-700 hover:bg-gray-100">Profile</option>
-          <option value="logout" className="text-gray-700 hover:bg-gray-100">Logout</option>
+          <option value="logout" onClick={ProfilehandleLogOut} className="text-gray-700 hover:bg-gray-100">Logout</option>
         </select>
       </div>
     );
