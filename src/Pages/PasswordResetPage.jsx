@@ -83,44 +83,49 @@ const PasswordResetPage = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="bg-white p-8 rounded shadow-md">
-                <h2 className="text-2xl font-bold mb-4">Reset Password</h2>
-                {successMessage && <p className="text-green-500 mb-4">{successMessage}</p>}
-                <form onSubmit={handleResetPassword} className="space-y-4">
-                    {error && <p className="text-red-500 mb-4">{error}</p>}
-                    <p className="text-gray-600">We have sent a otp reset code</p>
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-500 p-4">
+            <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-3xl font-extrabold text-gray-800 mb-6 text-center">Reset Password</h2>
+                {successMessage && <p className="text-green-600 bg-green-100 p-2 rounded mb-4 text-center">{successMessage}</p>}
+                <form onSubmit={handleResetPassword} className="space-y-6">
+                    {error && <p className="text-red-600 bg-red-100 p-2 rounded mb-4 text-center">{error}</p>}
+                    <p className="text-gray-700 text-center">We have sent an OTP reset code to your email.</p>
                     <div className="flex flex-col">
-                        <label htmlFor="resetCode" className="text-sm text-gray-600">Enter code:</label>
+                        <label htmlFor="resetCode" className="text-sm text-gray-600">Enter OTP Code:</label>
                         <input
                             type="text"
                             id="resetCode"
                             value={resetCode}
                             onChange={(e) => setResetCode(e.target.value)}
-                            className="border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:border-blue-500"
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="newPassword" className="text-sm text-gray-600">Enter new password:</label>
+                        <label htmlFor="newPassword" className="text-sm text-gray-600">New Password:</label>
                         <input
                             type="password"
                             id="newPassword"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            className="border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:border-blue-500"
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                     </div>
                     <div className="flex flex-col">
-                        <label htmlFor="confirmPassword" className="text-sm text-gray-600">Confirm new password:</label>
+                        <label htmlFor="confirmPassword" className="text-sm text-gray-600">Confirm New Password:</label>
                         <input
                             type="password"
                             id="confirmPassword"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            className="border border-gray-300 rounded px-3 py-2 mt-1 focus:outline-none focus:border-blue-500"
+                            className="border border-gray-300 rounded px-4 py-2 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                     </div>
-                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Reset my password</button>
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-500 text-white font-bold px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
+                    >
+                        Reset My Password
+                    </button>
                 </form>
             </div>
         </div>

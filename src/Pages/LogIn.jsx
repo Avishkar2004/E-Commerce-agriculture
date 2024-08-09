@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../actions/authContext';
 
 const LogIn = () => {
@@ -57,33 +57,33 @@ const LogIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full p-6 bg-white rounded-md shadow-md">
-        <h2 className="text-2xl font-semibold mb-6">Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-400 p-4">
+      <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-lg">
+        <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Log In</h2>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="username" className="block text-gray-600 text-sm font-medium mb-2">
+            <label htmlFor="username" className="block text-gray-700 text-sm font-medium mb-2">
               Username / Email
             </label>
             <input
               type="text"
               id="username"
               name="username"
-              className="w-full border-gray-300 rounded-md p-2 border"
+              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
-              placeholder='Enter your user name or email'
+              placeholder='Enter your username or email'
               onChange={handleInputChange}
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-600 text-sm font-medium mb-2">
+            <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">
               Password
             </label>
             <input
               type="password"
               id="password"
               name="password"
-              className="w-full border-gray-300 rounded-md p-2 border"
+              className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
               placeholder='Enter your password'
               onChange={handleInputChange}
@@ -91,32 +91,31 @@ const LogIn = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-300"
           >
-            Login
+            Log In
           </button>
           {errorMessage && (
-            <div className="text-red-500 text-sm mb-4">{errorMessage}</div>
+            <div className="text-red-500 text-sm mt-4">{errorMessage}</div>
           )}
           {serverResponse && (
-            <div className="text-green-500 text-sm mb-4">{serverResponse}</div>
+            <div className="text-green-500 text-sm mt-4">{serverResponse}</div>
           )}
         </form>
-        <div className="flex items-center justify-between gap-4 mt-4 mb-4">
+        <div className="flex items-center justify-between gap-4 mt-6">
           <Link
             to="/forgot-password"
-            className="bg-blue-500 text-white py-2 px-4 rounded-md shadow-lg hover:bg-blue-600 transition-colors duration-300"
+            className="w-full text-center bg-blue-500 text-white py-2 px-4 rounded-md shadow-lg hover:bg-blue-600 transition-colors duration-300"
           >
             Forgot Password
           </Link>
           <Link
             to="/signup"
-            className="bg-blue-500 text-white py-2 px-4 rounded-md shadow-lg hover:bg-blue-600 transition-colors duration-300"
+            className="w-full text-center bg-blue-500 text-white py-2 px-4 rounded-md shadow-lg hover:bg-blue-600 transition-colors duration-300"
           >
             Create New Account
           </Link>
         </div>
-
       </div>
     </div>
   );

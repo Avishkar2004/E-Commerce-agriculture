@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 const ForgotPassword = () => {
     const history = useHistory();
     const [email, setEmail] = useState('');
@@ -41,34 +42,41 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="bg-white p-8 rounded shadow-md">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-200 to-gray-500 p-4">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
                 {isEmailSent ? (
-                    <p className="text-green-500">Check your email for the OTP</p>
+                    <p className="text-green-600 bg-green-100 p-4 rounded text-center">
+                        Check your email for the OTP
+                    </p>
                 ) : (
                     <div>
-                        <label className="block mb-2 text-gray-600">Email:</label>
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+                            Forgot Password
+                        </h2>
+                        <label className="block mb-2 text-gray-600 font-medium">Email:</label>
                         <input
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full p-2 border border-gray-300 rounded"
+                            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             defaultValue={email}
                         />
                         {errorMessage && (
-                            <p className="text-red-500">{errorMessage}</p>
+                            <p className="text-red-600 bg-red-100 p-2 rounded mt-2 text-center">
+                                {errorMessage}
+                            </p>
                         )}
                         {isLoading ? (
-                            <div className="flex justify-center mt-4">
+                            <div className="flex justify-center mt-6">
                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                     <CircularProgress color="secondary" />
-                                    <span className="ml-2 text-blue-500">Sending...</span>
+                                    <span className="ml-3 text-blue-500">Sending...</span>
                                 </Box>
                             </div>
                         ) : (
                             <button
                                 onClick={handleEmailSubmit}
-                                className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-300 ease-in-out"
+                                className="w-full mt-6 bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 transition duration-300 ease-in-out"
                             >
                                 Reset my password
                             </button>

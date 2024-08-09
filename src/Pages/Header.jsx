@@ -1,5 +1,7 @@
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -57,33 +59,47 @@ const Header = () => {
       console.error('Error logging out:', error);
     }
   };
-  
+
   useEffect(() => {
     fetchCartData();
   }, []);
 
   const renderUserDropdown = () => {
     return (
-      <div className="relative inline-block text-left ">
-        <select
-          onChange={(e) => {
-            const value = e.target.value;
-            if (value === "profile") {
-              closeDropdown();
-              // Navigate to profile
-            } else if (value === "logout") {
-              handleLogOut();
-            }
-          }}
-          className="text-gray-600 focus:outline-none py-2 px-3 rounded-md"
+      <div className="relative inline-block text-left">
+        <div
+          className="flex items-center gap-2 cursor-pointer py-2 px-3 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors duration-300"
+          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <option value="user" className="text-gray-600">{authenticatedUser.username}</option>
-          <option value="profile" className="text-gray-700 hover:bg-gray-100">Profile</option>
-          <option value="logout" onClick={ProfilehandleLogOut} className="text-gray-700 hover:bg-gray-100">Logout</option>
-        </select>
+          <span className="text-gray-800 font-semibold">{authenticatedUser.username}</span>
+          {isDropdownOpen ? (
+            <KeyboardArrowUpIcon className="text-gray-600" />
+          ) : (
+            <KeyboardArrowDownIcon className="text-gray-600" />
+          )}
+        </div>
+
+        {isDropdownOpen && (
+          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+            <Link
+              to="/profile"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+              onClick={closeDropdown}
+            >
+              Profile
+            </Link>
+            <button
+              onClick={ProfilehandleLogOut}
+              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200"
+            >
+              Logout
+            </button>
+          </div>
+        )}
       </div>
     );
   };
+
 
   return (
     <header className="bg-[#98def5] text-gray-800 py-5">
