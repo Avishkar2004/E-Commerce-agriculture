@@ -63,7 +63,7 @@ const Cart = ({ cartDataPass }) => {
                 {cartData.length} {cartData.length === 1 ? 'item' : 'items'} in your cart
             </p>
 
-            <ul className="grid gap-8">
+            <ul className="grid gap-8 cursor-pointer">
                 {cartData.map(item => (
                     <CartItem key={item.id} item={item} onDelete={handleRemoveFromCart} />
                 ))}
