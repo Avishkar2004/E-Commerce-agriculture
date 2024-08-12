@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BannerFungicide from '../../Components/BestFungicides/BannerFungi.webp';
 import Recentlyviewed from "../Recentlyviewed";
+import Loader from "../Loader";
 
 const BestFungicides = () => {
   const [fungicidesData, setFungicidesData] = useState([]);
@@ -26,10 +27,6 @@ const BestFungicides = () => {
 
     fetchData();
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -92,43 +89,50 @@ const BestFungicides = () => {
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
-            {fungicidesData.map((product) => (
-              <Link
-                to={{
-                  pathname: `/fungicides/${encodeURIComponent(product.name)}`,
-                  state: { productData: product },
-                }}
-                key={product.id}
-                className="border border-x-slate-200 border-solid"
-              >
-                <div className="image-container">
-                  <img
-                    src={`data:image/avif;base64, ${product.image}`}
-                    alt={product.altTag || product.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold font-primary">
-                    {product.name}
-                  </h2>
-                  <p className="text-sm text-gray-600 font-secondary font-semibold">
-                    {product.description}
-                  </p>
-                  <p className="text-red-500 font-secondary">{product.salePrice}</p>
-                  <p className="text-green-600 font-secondary font-medium">
-                    {product.reviews}
-                  </p>
-                  <p className="text-gray-600 font-secondary">
-                    {product.stockStatus}
-                  </p>
-                </div>
-              </Link>
+          {loading ? (
+            <div className="flex justify-center mt-5">
+              <Loader />
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
+              {fungicidesData.map((product) => (
+                <Link
+                  to={{
+                    pathname: `/fungicides/${encodeURIComponent(product.name)}`,
+                    state: { productData: product },
+                  }}
+                  key={product.id}
+                  className="border border-x-slate-200 border-solid"
+                >
+                  <div className="image-container">
+                    <img
+                      src={`data:image/avif;base64, ${product.image}`}
+                      alt={product.altTag || product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold font-primary">
+                      {product.name}
+                    </h2>
+                    <p className="text-sm text-gray-600 font-secondary font-semibold">
+                      {product.description}
+                    </p>
+                    <p className="text-red-500 font-secondary">{product.salePrice}</p>
+                    <p className="text-green-600 font-secondary font-medium">
+                      {product.reviews}
+                    </p>
+                    <p className="text-gray-600 font-secondary">
+                      {product.stockStatus}
+                    </p>
+                  </div>
+                </Link>
 
 
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
+
         </div>
       </div>
       <Recentlyviewed />

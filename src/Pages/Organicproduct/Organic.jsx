@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import OrganicProduct from "../../Components/Banner/orgnicProduct.jpg";
 import Recentlyviewed from "../Recentlyviewed";
+import Loader from "../Loader";
 
 const Organic = () => {
   const [OrganicproductData, setOrganicproductData] = useState([]);
@@ -26,10 +27,6 @@ const Organic = () => {
 
     fetchData();
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -82,7 +79,12 @@ const Organic = () => {
           </div>
           <hr className="mt-5 border-[1px]" />
           {/* if you want to put gap in between components you need gap */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
+          {loading ? (
+             <div className="flex justify-center mt-5">
+             <Loader /> {/* Use a beautiful loader component */}
+           </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
             {OrganicproductData.map((OrganicProduct) => (
               <Link
                 to={{
@@ -117,6 +119,8 @@ const Organic = () => {
               </Link>
             ))}
           </div>
+          )}
+         
         </div>
       </div>
       <Recentlyviewed />

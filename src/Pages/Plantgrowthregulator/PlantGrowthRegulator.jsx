@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import PlantGrowthRegulators from "../../Components/Banner/PlantGrowthRegulator.jpg";
 import Recentlyviewed from '../Recentlyviewed';
+import Loader from '../Loader';
 
 const PlantGrowthRegulator = () => {
   const [PlantgrowthregulatorData, setPlantgrowthregulatorData] = useState([]);
@@ -27,9 +28,6 @@ const PlantGrowthRegulator = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (error) {
     return <p>Error: {error}</p>;
@@ -83,37 +81,47 @@ const PlantGrowthRegulator = () => {
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
-            {PlantgrowthregulatorData.map((PGRProduct) => (
-              <Link
-                to={{
-                  pathname: `/plantgrowthregulator/${PGRProduct.name}`,
-                  state: { PGRProduct: PGRProduct },
-                }}
-                key={PGRProduct.id}
-                className="border border-x-slate-200 border-solid"
-              >
-                <div className="image-container">
-                  <img
-                    src={`data:image/avif;base64, ${PGRProduct.image}`}
-                    alt={PGRProduct.altTag || PGRProduct.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold font-primary">{PGRProduct.name}</h2>
-                  <p className="text-sm text-gray-600 font-secondary font-semibold">{PGRProduct.description}</p>
-                  <p className="text-red-500 font-secondary">{PGRProduct.salePrice}</p>
-                  <p className="text-green-600 font-secondary font-medium">{PGRProduct.reviews}</p>
-                  <p className="text-gray-600 font-secondary">{PGRProduct.stockStatus}</p>
-                  <div className="absolute bottom-4 left-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to Cart</button>
-                    <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
+
+          {loading ? (
+            <div className="flex justify-center mt-5">
+              <Loader /> {/* Use a beautiful loader component */}
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
+
+              {PlantgrowthregulatorData.map((PGRProduct) => (
+                <Link
+                  to={{
+                    pathname: `/plantgrowthregulator/${PGRProduct.name}`,
+                    state: { PGRProduct: PGRProduct },
+                  }}
+                  key={PGRProduct.id}
+                  className="border border-x-slate-200 border-solid"
+                >
+                  <div className="image-container">
+                    <img
+                      src={`data:image/avif;base64, ${PGRProduct.image}`}
+                      alt={PGRProduct.altTag || PGRProduct.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold font-primary">{PGRProduct.name}</h2>
+                    <p className="text-sm text-gray-600 font-secondary font-semibold">{PGRProduct.description}</p>
+                    <p className="text-red-500 font-secondary">{PGRProduct.salePrice}</p>
+                    <p className="text-green-600 font-secondary font-medium">{PGRProduct.reviews}</p>
+                    <p className="text-gray-600 font-secondary">{PGRProduct.stockStatus}</p>
+                    <div className="absolute bottom-4 left-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to Cart</button>
+                      <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+
         </div>
       </div>
       <Recentlyviewed />

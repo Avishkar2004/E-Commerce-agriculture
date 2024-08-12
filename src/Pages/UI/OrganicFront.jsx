@@ -1,6 +1,7 @@
 import EastIcon from "@mui/icons-material/East";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../Loader";
 const OrganicFront = () => {
   const [micronutrientData, setMicronutrientData] = useState([]);
   const [OrganicproductData, setOrganicproductData] = useState([]);
@@ -52,10 +53,6 @@ const OrganicFront = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>
-  }
-
   if (error) {
     return <p>Error : {error}</p>
   }
@@ -76,41 +73,48 @@ const OrganicFront = () => {
         </h1>
       </div>
       {/* if you want space inbetn for this you need gap-1 */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-        {OrganicproductData.map((OrganicProduct) => (
-          <Link
-            to={{
-              pathname: `/organicproduct/${OrganicProduct.name}`,
-              state: { OrganicproductData: OrganicProduct }
-            }}
-            key={OrganicProduct.id}
-            className="border border-x-slate-200 border-solid"
-          >
-            <div className="image-container">
-              <img
-                src={`data:image/avif;base64, ${OrganicProduct.image}`}
-                alt={OrganicProduct.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="text-lg font-semibold font-primary">
-                {OrganicProduct.name}
-              </h2>
-              <p className="text-sm text-gray-600 font-secondary font-semibold">
-                {OrganicProduct.description}
-              </p>
-              <p className="text-red-500 font-secondary">{OrganicProduct.salePrice}</p>
-              <p className="text-green-600 font-secondary font-medium">
-                {OrganicProduct.reviews}
-              </p>
-              <p className="text-gray-800 font-secondary">
-                {OrganicProduct.stockStatus}
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
+      {loading ? (
+        <div className="flex justify-center mt-5">
+          <Loader />
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+          {OrganicproductData.map((OrganicProduct) => (
+            <Link
+              to={{
+                pathname: `/organicproduct/${OrganicProduct.name}`,
+                state: { OrganicproductData: OrganicProduct }
+              }}
+              key={OrganicProduct.id}
+              className="border border-x-slate-200 border-solid"
+            >
+              <div className="image-container">
+                <img
+                  src={`data:image/avif;base64, ${OrganicProduct.image}`}
+                  alt={OrganicProduct.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h2 className="text-lg font-semibold font-primary">
+                  {OrganicProduct.name}
+                </h2>
+                <p className="text-sm text-gray-600 font-secondary font-semibold">
+                  {OrganicProduct.description}
+                </p>
+                <p className="text-red-500 font-secondary">{OrganicProduct.salePrice}</p>
+                <p className="text-green-600 font-secondary font-medium">
+                  {OrganicProduct.reviews}
+                </p>
+                <p className="text-gray-800 font-secondary">
+                  {OrganicProduct.stockStatus}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+      )}
 
       {/* Aries Agro's collection */}
       <hr className=" mt-12 border-[1px] border-gray-600" />
@@ -125,41 +129,49 @@ const OrganicFront = () => {
           View All {isHovered && <EastIcon />}
         </h1>
       </div>
-      <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-        {micronutrientData.map((micronutrientProduct) => (
-          <Link
-            to={{
-              pathname: `/micro-nutrients/${micronutrientProduct.name}`,
-              state: { micronutrientProduct: micronutrientProduct }
-            }}
-            key={micronutrientProduct.id}
-            className="border border-x-slate-200 border-solid"
-          >
-            <div className="image-container">
-              <img
-                src={`data:image/avif;base64, ${micronutrientProduct.image}`}
-                alt={micronutrientProduct.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h2 className="text-lg font-semibold font-primary">
-                {micronutrientProduct.name}
-              </h2>
-              <p className="text-sm text-gray-600 font-secondary font-semibold">
-                {micronutrientProduct.description}
-              </p>
-              <p className="text-red-500 font-secondary">{micronutrientProduct.salePrice}</p>
-              <p className="text-green-600 font-secondary font-medium">
-                {micronutrientProduct.reviews}
-              </p>
-              <p className="text-gray-800 font-secondary">
-                {micronutrientProduct.stockStatus}
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
+
+      {loading ? (
+        <div>
+          <Loader />
+        </div>
+      ) : (
+        <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+          {micronutrientData.map((micronutrientProduct) => (
+            <Link
+              to={{
+                pathname: `/micro-nutrients/${micronutrientProduct.name}`,
+                state: { micronutrientProduct: micronutrientProduct }
+              }}
+              key={micronutrientProduct.id}
+              className="border border-x-slate-200 border-solid"
+            >
+              <div className="image-container">
+                <img
+                  src={`data:image/avif;base64, ${micronutrientProduct.image}`}
+                  alt={micronutrientProduct.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4">
+                <h2 className="text-lg font-semibold font-primary">
+                  {micronutrientProduct.name}
+                </h2>
+                <p className="text-sm text-gray-600 font-secondary font-semibold">
+                  {micronutrientProduct.description}
+                </p>
+                <p className="text-red-500 font-secondary">{micronutrientProduct.salePrice}</p>
+                <p className="text-green-600 font-secondary font-medium">
+                  {micronutrientProduct.reviews}
+                </p>
+                <p className="text-gray-800 font-secondary">
+                  {micronutrientProduct.stockStatus}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+
     </div>
   );
 };

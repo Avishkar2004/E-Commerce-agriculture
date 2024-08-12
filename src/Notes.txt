@@ -1,0 +1,79 @@
+Login work after login it render on the same page :-
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: "include",
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const { error } = await response.json();
+        setErrorMessage(error);
+        setServerResponse('');
+        return;
+      }
+
+      const { success, message, user, token } = await response.json();
+
+      if (success) {
+        localStorage.setItem('authenticatedUser', JSON.stringify({ user, token }));
+        login(user);
+
+        // After successful login
+        const redirectTo = localStorage.getItem('redirectAfterLogin') || '/';
+        localStorage.removeItem('redirectAfterLogin');
+        history.push(redirectTo);
+      } else {
+        setErrorMessage(message);
+        setServerResponse(message);
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setErrorMessage('Internal Server Error');
+      setServerResponse('Internal Server Error');
+    }
+  };
+
+
+  const handleAddToCart = async () => {
+        try {
+            const { id, name, price, image, quantity, productType } = productData;
+
+            const response = await fetch('http://localhost:8080/cart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id,
+                    name,
+                    price,
+                    image,
+                    quantity: count,
+                    productType: "MicroNutrients" // or any other product type
+                }),
+                credentials: 'include' // Include credentials (cookies)
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                setCartData(responseData.cart);
+            } else if (response.status === 401) {
+                alert('You must be logged in to add items to the cart.');
+                // Save the current location before redirecting
+                const redirectTo = location.pathname;
+                localStorage.setItem('redirectAfterLogin', redirectTo);
+                history.push('/signup');
+            } else {
+                console.error('Failed to add item to cart');
+            }
+        } catch (error) {
+            console.error('Error adding item to cart:', error);
+        }
+    };

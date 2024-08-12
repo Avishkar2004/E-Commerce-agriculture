@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import BannerInsecticide from "../../Components/Banner/Insecticide.jpg";
 import Recentlyviewed from "../Recentlyviewed";
+import Loader from "../Loader";
 
 const BestInsecticides = () => {
   const [insecticideData, setInsecticideData] = useState([]);
@@ -27,10 +28,6 @@ const BestInsecticides = () => {
     };
     fetchData();
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (error) {
     return <p>Error : {error}</p>;
@@ -94,7 +91,12 @@ const BestInsecticides = () => {
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
+          {loading ? (
+             <div className="flex justify-center mt-5">
+             <Loader /> {/* Use a beautiful loader component */}
+           </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
             {insecticideData.map((product) => (
               <Link
                 to={{
@@ -129,6 +131,8 @@ const BestInsecticides = () => {
               </Link>
             ))}
           </div>
+          )}
+         
         </div>
       </div>
       <Recentlyviewed />

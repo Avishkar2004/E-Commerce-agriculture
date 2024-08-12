@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MicronutrientsBanner from "../../Components/Banner/Micronutrients.png";
 import Recentlyviewed from '../Recentlyviewed';
+import Loader from "../Loader"; // Assuming you have a Loader component
 
 const Micronutrients = () => {
     const [micronutrientData, setMicronutrientData] = useState([]);
@@ -26,12 +27,8 @@ const Micronutrients = () => {
         fetchData();
     }, []);
 
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-
     if (error) {
-        return <p>Error : {error}</p>;
+        return <p>Error: {error}</p>;
     }
 
     return (
@@ -59,8 +56,8 @@ const Micronutrients = () => {
                     </div>
                     <div className="mt-4 ml-3 space-y-5 font-secondary text-base">
                         <p>
-                            Micro-nutrients is the third most important components that used
-                            for cultivation. Micro-nutrients are used for crop health.
+                            Micro-nutrients is the third most important component used
+                            for cultivation. Micro-nutrients are essential for crop health.
                         </p>
                     </div>
                     <hr className="mt-5 border-[1px]" />
@@ -92,42 +89,47 @@ const Micronutrients = () => {
                         </p>
                     </div>
                     <hr className="mt-5 border-[1px]" />
-                    {/* if you want to put gap inbetn component you need gap */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-                        {micronutrientData.map((micronutrientProduct) => (
-                            <Link
-                                to={{
-                                    pathname: `/micro-nutrients/${micronutrientProduct.name}`,
-                                    state: { micronutrientProduct: micronutrientProduct },
-                                }}
-                                key={micronutrientProduct.id}
-                                className="border border-x-slate-200 border-solid"
-                            >
-                                <div className="image-container">
-                                    <img
-                                        src={`data:image/avif;base64, ${micronutrientProduct.image}`}
-                                        alt={micronutrientProduct.altTag || micronutrientProduct.name}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                                <div className="p-4">
-                                    <h2 className="text-lg font-semibold font-primary">
-                                        {micronutrientProduct.name}
-                                    </h2>
-                                    <p className="text-sm text-gray-600 font-secondary font-semibold">
-                                        {micronutrientProduct.description}
-                                    </p>
-                                    <p className="text-red-500 font-secondary">{micronutrientProduct.salePrice}</p>
-                                    <p className="text-green-600 font-secondary font-medium">
-                                        {micronutrientProduct.reviews}
-                                    </p>
-                                    <p className="text-gray-600 font-secondary">
-                                        {micronutrientProduct.stockStatus}
-                                    </p>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
+                    {loading ? (
+                        <div className="flex justify-center mt-5">
+                            <Loader /> {/* Use a beautiful loader component */}
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
+                            {micronutrientData.map((micronutrientProduct) => (
+                                <Link
+                                    to={{
+                                        pathname: `/micro-nutrients/${micronutrientProduct.name}`,
+                                        state: { micronutrientProduct: micronutrientProduct },
+                                    }}
+                                    key={micronutrientProduct.id}
+                                    className="border border-x-slate-200 border-solid"
+                                >
+                                    <div className="image-container">
+                                        <img
+                                            src={`data:image/avif;base64, ${micronutrientProduct.image}`}
+                                            alt={micronutrientProduct.altTag || micronutrientProduct.name}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div className="p-4">
+                                        <h2 className="text-lg font-semibold font-primary">
+                                            {micronutrientProduct.name}
+                                        </h2>
+                                        <p className="text-sm text-gray-600 font-secondary font-semibold">
+                                            {micronutrientProduct.description}
+                                        </p>
+                                        <p className="text-red-500 font-secondary">{micronutrientProduct.salePrice}</p>
+                                        <p className="text-green-600 font-secondary font-medium">
+                                            {micronutrientProduct.reviews}
+                                        </p>
+                                        <p className="text-gray-600 font-secondary">
+                                            {micronutrientProduct.stockStatus}
+                                        </p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
             <Recentlyviewed />
