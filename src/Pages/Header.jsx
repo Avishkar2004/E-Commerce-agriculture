@@ -152,8 +152,14 @@ const Header = () => {
           <h2 className="text-gray-800 text-xl mb-4">Search Results:</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {searchResults.map((product) => (
-              <div key={product.id} className="border p-4 rounded-lg hover:shadow-md transition-shadow">
-                <img src={`data:image/jpeg;base64,${product.image}`} alt={product.name} className="h-40 object-cover w-full rounded-t-lg mb-4" />
+              <div key={product.id} className="border border-gray-200 p-4 rounded-lg hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                <div className="relative w-full h-64 overflow-hidden rounded-t-lg mb-4">
+                  <img
+                    src={`data:image/jpeg;base64,${product.image}`}
+                    alt={product.name}
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.name}</h3>
                 <p className="text-gray-700 mb-2">{product.description}</p>
                 <p className="text-blue-600 font-bold">Price: ${product.salePrice}</p>
@@ -161,6 +167,8 @@ const Header = () => {
             ))}
           </div>
         </div>
+
+
       )}
     </header>
   );
