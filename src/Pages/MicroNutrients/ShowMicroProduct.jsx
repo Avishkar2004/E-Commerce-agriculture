@@ -56,10 +56,10 @@ const ShowMicroProduct = ({ MicroDataProp = {} }) => {
 
     const handleAddToCart = async () => {
         try {
-            const { id, name, price, image, quantity, productType } = productData;
-
+            const { id, name, price, image, quantity, productType } = productData
+            // Ensure image is base64-encoded if available
             const response = await fetch('http://localhost:8080/cart', {
-                method: 'POST',
+                method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -69,25 +69,26 @@ const ShowMicroProduct = ({ MicroDataProp = {} }) => {
                     price,
                     image,
                     quantity: count,
-                    productType: "MicroNutrients" // or any other product type
+                    productType: "micro_nutrients" // or any other product type
+
                 }),
-                credentials: 'include' // Include credentials (cookies)
-            });
+                credentials: "include"
+            })
 
             if (response.ok) {
-                const responseData = await response.json();
-                setCartData(responseData.cart);
+                const responseData = await response.json()
+                setCartData(responseData.cart)
             } else if (response.status === 401) {
                 alert('You must be logged in to add items to the cart.');
-                history.push('/signup');
+                history.push("/signup")
             } else {
                 console.error('Failed to add item to cart');
             }
         } catch (error) {
-            console.error('Error adding item to cart:', error);
+            console.error("Error adding item to cart:", error)
         }
-    };
-
+    }
+    
     const fetchNextProduct = async () => {
         try {
             const response = await fetch(`http://localhost:8080/products/next/${productData.id}`);

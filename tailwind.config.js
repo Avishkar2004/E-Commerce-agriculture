@@ -10,10 +10,7 @@ module.exports = {
       xl: "1280px",
       xxl: "1436px",
     },
-    fontFamily: {
-      primary: "Orbitron, sans-serif",
-      secondary: "Inter, sans-serif",
-    },
+
     container: {
       padding: {
         DEFAULT: "1.5rem",

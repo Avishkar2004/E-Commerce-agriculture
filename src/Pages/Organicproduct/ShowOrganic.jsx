@@ -61,19 +61,10 @@ const OrganicproductData = ({ OrganicproductData }) => {
 
   const handleAddToCart = async () => {
     try {
-      const { id, name, price, image, quantity } = productData;
-
-      // Ensure price is a valid value and not null
-      if (price == null) {
-        console.error('Product price is null or undefined.');
-        return; // Exit the function to prevent further processing
-      }
-
+      const { id, name, price, image, quantity, productType } = productData
       // Ensure image is base64-encoded if available
-      const base64Image = image ? image.toString('base64') : null;
-
       const response = await fetch('http://localhost:8080/cart', {
-        method: 'POST',
+        method: "POST",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -81,22 +72,27 @@ const OrganicproductData = ({ OrganicproductData }) => {
           id,
           name,
           price,
-          image: base64Image,
-          quantity: count
+          image,
+          quantity: count,
+          productType: "organicproduct" // or any other product type
+
         }),
-      });
+        credentials: "include"
+      })
 
       if (response.ok) {
-        const responseData = await response.json();
-        setCartData(responseData.cart);
-        // console.log('Item added to cart:', responseData);
+        const responseData = await response.json()
+        setCartData(responseData.cart)
+      } else if (response.status === 401) {
+        alert('You must be logged in to add items to the cart.');
+        history.push("/signup")
       } else {
         console.error('Failed to add item to cart');
       }
     } catch (error) {
-      console.error('Error adding item to cart:', error);
+      console.error("Error adding item to cart:", error)
     }
-  };
+  }
 
   useEffect(() => {
     handleSizeChange('50 ml');
@@ -244,9 +240,9 @@ const OrganicproductData = ({ OrganicproductData }) => {
               <span onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded hover:cursor-pointer">
                 Buy Now
               </span>
-              <Link to="/cart" onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
+              <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer" >
                 Add To Cart
-              </Link>
+              </button>
             </div>
           </div>
         </div>
