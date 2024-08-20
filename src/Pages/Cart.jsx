@@ -4,7 +4,7 @@ const Cart = ({ cartDataPass }) => {
     const [cartData, setCartData] = useState([]);
 
     const fetchCartData = () => {
-        fetch("http://localhost:8080/cart")
+        fetch("http://localhost:8080/cart", { credentials: "include" })
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Network error was not ok");

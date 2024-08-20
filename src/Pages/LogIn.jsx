@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../actions/authContext';
 
 const LogIn = () => {
@@ -12,6 +11,7 @@ const LogIn = () => {
     username: '',
     password: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -22,13 +22,14 @@ const LogIn = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch('http://localhost:8080/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: "include",
+        credentials: 'include',
         body: JSON.stringify(formData),
       });
 
@@ -36,13 +37,14 @@ const LogIn = () => {
         const { error } = await response.json();
         setErrorMessage(error);
         setServerResponse('');
+        setIsLoading(false);
         return;
       }
 
-      const { success, message, user, token } = await response.json();
+      const { success, message, user } = await response.json();
 
       if (success) {
-        localStorage.setItem('authenticatedUser', JSON.stringify({ user, token }));
+        localStorage.setItem('authenticatedUser', JSON.stringify({ user }));
         login(user);
         history.push('/');
       } else {
@@ -53,6 +55,8 @@ const LogIn = () => {
       console.error('Error during login:', error);
       setErrorMessage('Internal Server Error');
       setServerResponse('Internal Server Error');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,7 +75,7 @@ const LogIn = () => {
               name="username"
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
-              placeholder='Enter your username or email'
+              placeholder="Enter your username or email"
               onChange={handleInputChange}
             />
           </div>
@@ -85,15 +89,16 @@ const LogIn = () => {
               name="password"
               className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
-              placeholder='Enter your password'
+              placeholder="Enter your password"
               onChange={handleInputChange}
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-300"
+            className={`w-full py-2 px-4 rounded-md ${isLoading ? 'bg-gray-400' : 'bg-blue-600'} text-white transition-colors duration-300`}
+            disabled={isLoading}
           >
-            Log In
+            {isLoading ? 'Logging In...' : 'Log In'}
           </button>
           {errorMessage && (
             <div className="text-red-500 text-sm mt-4">{errorMessage}</div>

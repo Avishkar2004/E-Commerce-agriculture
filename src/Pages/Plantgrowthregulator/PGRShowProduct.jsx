@@ -245,9 +245,9 @@ const PGRShowProduct = ({ PGRDataProp }) => {
               </p>
             </p>
             <div className="flex justify-center content-center min-h-12">
-              <Link to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
+              <button to="/BuyNow" onClick={handleBuyNow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 ml-12 -mt-2 rounded">
                 Buy Now
-              </Link>
+              </button>
               <button onClick={handleAddToCart} className="bg-red-500 hover:bg-red-700 text-white font-bold py-3 px-6 ml-4 -mt-2 rounded hover:cursor-pointer">
                 Add To Cart
               </button>

@@ -25,24 +25,47 @@ const Header = () => {
     logout();
   };
 
-  const fetchCartData = () => {
-    axios.get("http://localhost:8080/cart").then(response => {
-      setCartItemCount(response.data.length);
-    });
+  const fetchCartData = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/cart', {
+        method: 'GET',
+        credentials: 'include', // Include cookies for authentication
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setCartItemCount(data.length);
+    } catch (error) {
+      console.error('Error fetching cart data:', error);
+    }
   };
+
 
   const handleSearch = async (query) => {
     if (query.length > 2) {
       try {
-        const response = await axios.get(`http://localhost:8080/search?q=${query}`);
-        setSearchResults(response.data);
+        const response = await fetch(`http://localhost:8080/search?q=${query}`, {
+          method: 'GET',
+          credentials: 'include', // Include cookies for authentication
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setSearchResults(data);
       } catch (error) {
-        console.error("Error fetching search results:", error);
+        console.error('Error fetching search results:', error);
       }
     } else {
       setSearchResults([]);
     }
   };
+
 
   const handleInputChange = (e) => {
     const query = e.target.value;
@@ -53,12 +76,19 @@ const Header = () => {
 
   const ProfilehandleLogOut = async () => {
     try {
-      await axios.post('http://localhost:8080/logout');
-      logout(); // This will clear the state in your React app
+      const response = await fetch('http://localhost:8080/logout', {
+        method: 'POST',
+        credentials: 'include', // Include cookies for authentication
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      logout(); // Clear the state in your React app
     } catch (error) {
       console.error('Error logging out:', error);
     }
   };
+
 
   useEffect(() => {
     fetchCartData();
@@ -89,7 +119,7 @@ const Header = () => {
               Profile
             </Link>
             <button
-              onClick={handleLogOut}
+              onClick={ProfilehandleLogOut}
               className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors duration-200"
             >
               Logout
