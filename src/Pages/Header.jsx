@@ -20,11 +20,6 @@ const Header = () => {
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
-
-  const handleLogOut = () => {
-    logout();
-  };
-
   const fetchCartData = async () => {
     try {
       const response = await fetch('http://localhost:8080/cart', {
