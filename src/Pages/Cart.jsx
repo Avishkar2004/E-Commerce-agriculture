@@ -2,36 +2,46 @@ import React, { useEffect, useState } from 'react';
 
 const Cart = ({ cartDataPass }) => {
     const [cartData, setCartData] = useState([]);
-
-    const fetchCartData = () => {
-        fetch("http://localhost:8080/cart", { credentials: "include" })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("Network error was not ok");
-                }
-                return response.json();
-            })
-            .then(data => {
-                setCartData(data);
-            })
-            .catch(error => {
-                console.error("Error fetching cart data: ", error);
+    const fetchCartData = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/cart", {
+                credentials: "include" // Ensures cookies are sent with request
             });
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    // Handle unauthorized access (e.g., show a message or redirect)
+                    console.error("Unauthorized access - please log in.");
+                }
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setCartData(data);
+        } catch (error) {
+            console.error("Error fetching cart data:", error);
+        }
     };
+
+
 
 
     const handleRemoveFromCart = async (itemId) => {
         try {
-            const response = await fetch(`http://localhost:8080/cart/${itemId}`, { method: "DELETE" })
+            const response = await fetch(`http://localhost:8080/cart/${itemId}`, {
+                method: "DELETE",
+                credentials: "include" // Ensures cookies are sent with request
+            });
+
             if (response.ok) {
-                setCartData((prevData) => prevData.filter((item) => item.id !== itemId))
+                setCartData((prevData) => prevData.filter((item) => item.id !== itemId));
             } else {
-                console.error("Failed to remove item from cart")
+                console.error("Failed to remove item from cart");
             }
         } catch (error) {
-            console.error("Error removing item from cart:", error)
+            console.error("Error removing item from cart:", error);
         }
-    }
+    };
 
 
     const calculateSubtotal = () => {
