@@ -88,7 +88,7 @@ const ShowMicroProduct = ({ MicroDataProp = {} }) => {
             console.error("Error adding item to cart:", error)
         }
     }
-    
+
     const fetchNextProduct = async () => {
         try {
             const response = await fetch(`http://localhost:8080/products/next/${productData.id}`);
@@ -121,7 +121,7 @@ const ShowMicroProduct = ({ MicroDataProp = {} }) => {
             <div className="space-x-52 ml-12 mt-4 mb-4">
                 <div className="flex text-sm gap-12 text-gray-500 font-secondary">
                     <span className="space-x-2 ml-6">
-                        <Link className="hover:text-blue-500" to="/">
+                        <Link to="/" className="hover:text-blue-500">
                             Home
                         </Link>
                         &gt;
@@ -131,9 +131,9 @@ const ShowMicroProduct = ({ MicroDataProp = {} }) => {
                         &gt;
                         <span className="text-sm">{productData.name}</span>
                     </span>
-                    <span onClick={fetchNextProduct} className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
+                    <button onClick={fetchNextProduct} className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
                         Next &gt;
-                    </span>
+                    </button>
                 </div>
             </div>
 

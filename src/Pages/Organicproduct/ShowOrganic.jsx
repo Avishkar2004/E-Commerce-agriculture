@@ -190,11 +190,11 @@ const OrganicproductData = ({ OrganicproductData }) => {
               {productData.big_100}
             </button>
           </div>
-          <p className="text-[#1e2d7d] mt-5">Expiry Date: <span className="text-black">09-Dec-2024</span></p>
+          <p className="text-[#1e2d7d] mt-5 text-lg font-semibold">Expiry Date: <span className="text-black">09-Dec-2024</span></p>
           <div className="flex gap-6 mt-5">
-            <button className="text-xl text-gray-700 bg-[#f1fdff] border-r-2 border-l-2 border-t-2 border-b-2 border-[#00badb] rounded-md mt-2 ml-2 mb-2 mr-2 cursor-pointer">
+            <span className="text-xl text-gray-700 bg-[#f1fdff] border-2 border-[#00badb] rounded-md py-2 px-4 cursor-pointer">
               09-Dec-2024
-            </button>
+            </span>
           </div>
           <div className="flex justify-between items-center mt-4">
             <div>
