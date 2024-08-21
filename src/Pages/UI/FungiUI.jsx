@@ -84,7 +84,7 @@ const FungiUI = () => {
                   )}
                 </div>
                 <div className="p-4">
-                  <h2 className="text-base font-light font-primary">
+                  <h2 className="text-lg font-semibold font-primary">
                     {product.name}
                   </h2>
                   <p className="text-sm text-gray-600 font-secondary font-semibold">
