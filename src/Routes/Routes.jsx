@@ -28,6 +28,7 @@ import Profile from "../Pages/Profile";
 import ForgotPassword from "../Pages/ForgotPassword";
 import PasswordResetPage from "../Pages/PasswordResetPage";
 import BecomeSeller from "../Pages/Seller/BecomeSeller"
+import Categories from "../Pages/Categories";
 const AppRoutes = () => {
   return (
     <Router>
@@ -58,6 +59,7 @@ const AppRoutes = () => {
         <Route path="/micro-nutrients/:productId" component={ShowMicroProduct} />
         <Route path="/micro-nutrients" component={Micronutrients} />
 
+
         {/* Route for Buy Now */}
         <Route path="/BuyNow" component={BuyNow} />
 
@@ -65,6 +67,10 @@ const AppRoutes = () => {
         <Route path="/Login" component={LogIn} />
         {/* Route for SignUp  */}
         <Route path="/signup" component={CreateAcc} />
+
+
+    <Route path="/categories" component={Categories}/>
+
       </Switch>
 
       {/* Common components rendered only on the home page */}
