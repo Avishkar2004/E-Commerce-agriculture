@@ -117,7 +117,7 @@ const OrganicFront = () => {
       )}
 
       {/* Aries Agro's collection */}
-      <hr className=" mt-12 border-[1px] border-gray-600" />
+      <hr className="mt-12 border-0 h-px bg-gray-300 rounded-full shadow-md" />
       <div className="flex justify-between font-bold">
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary mt-10 mb-5">
           Aries Agro's collection
@@ -171,6 +171,7 @@ const OrganicFront = () => {
           ))}
         </div>
       )}
+      <hr className="mt-12 border-0 h-px bg-gray-300 rounded-full shadow-md" />
 
     </div>
   );

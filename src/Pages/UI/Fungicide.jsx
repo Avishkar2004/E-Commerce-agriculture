@@ -36,7 +36,7 @@ const Fungicides = () => {
     <div className="container mx-auto mt-10 mb-5">
       <div className="flex justify-between font-bold">
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
-          Best Fungicide        
+          Best Fungicide
         </h1>
         <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
           onMouseEnter={handleMouseEnter}
@@ -102,8 +102,7 @@ const Fungicides = () => {
           )}
         </div>
       )}
-
-      <hr className="mt-12 border-[1px] border-gray-600" />
+      <hr className="mt-12 border-0 h-px bg-gray-300 rounded-full shadow-md" />
     </div>)
 }
 

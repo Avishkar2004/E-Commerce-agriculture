@@ -107,8 +107,7 @@ const FungiUI = () => {
           )}
         </div>
       )}
-
-      <hr className="mt-12 border-[1px] border-gray-600" />
+      <hr className="mt-12 border-0 h-px bg-gray-300 rounded-full shadow-md" />
     </div>
   );
 };
