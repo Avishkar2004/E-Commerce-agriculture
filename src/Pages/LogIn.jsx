@@ -77,6 +77,7 @@ const LogIn = () => {
               required
               placeholder="Enter your username or email"
               onChange={handleInputChange}
+              aria-label="Username or Email"
             />
           </div>
           <div className="mb-4">
@@ -91,6 +92,7 @@ const LogIn = () => {
               required
               placeholder="Enter your password"
               onChange={handleInputChange}
+              aria-label="Password"
             />
           </div>
           <button

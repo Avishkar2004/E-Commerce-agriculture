@@ -7,22 +7,28 @@ const CreateAcc = () => {
     const history = useHistory();
     const { login } = useAuth();
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState({});
     const [formData, setFormData] = useState({
         username: "",
         email: "",
         password: "",
         confirmPassword: "",
+        passwordStrength: 0,
     });
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         const transformedValue = name === 'username' ? value.replace(/\s/g, '_') : value;
-        setFormData({
-            ...formData,
+        setFormData((prev) => ({
+            ...prev,
             [name]: transformedValue,
-            passwordStrength: name === 'password' ? zxcvbn(value).score : formData.passwordStrength,
-        });
+            passwordStrength: name === 'password' ? zxcvbn(value).score : prev.passwordStrength,
+        }));
+        setError({});  // Reset error messages on input change
+
+        // Debugging: Log current formData and errors
+        // console.log('Form Data:', formData);
+        // console.log('Error State:', error);
     };
 
     const getPasswordStrengthLabel = (score) => {
@@ -44,10 +50,19 @@ const CreateAcc = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
+
+        // Check if passwords match
         if (formData.password !== formData.confirmPassword) {
-            alert("Passwords do not match");
+            setError({ confirmPassword: "Passwords do not match." });
             return;
         }
+
+        // Check password strength
+        if (formData.passwordStrength < 2) {
+            setError({ password: "Password is too weak. Please choose a stronger password." });
+            return;
+        }
+
         setLoading(true);
         try {
             const response = await fetch("http://localhost:8080/users", {
@@ -60,25 +75,27 @@ const CreateAcc = () => {
                     username: formData.username,
                     email: formData.email,
                     password: formData.password,
-                    confirmPassword: formData.confirmPassword,
+                    confirmPassword: formData.confirmPassword,  // Added confirmPassword here
                 }),
             });
-            const { success, user, token } = await response.json();
-            if (success) {
-                localStorage.setItem('authenticatedUser', JSON.stringify({ user, token }));
-                login(user);
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setError({ form: data.message });
+            } else if (data.success) {
+                localStorage.setItem('authenticatedUser', JSON.stringify({ user: data.user, token: data.token }));
+                login(data.user);
                 history.push('/');
-            } else {
-                setError("Sign up failed. Please try again later.");
-                alert("Username is already taken, please choose another one");
             }
         } catch (error) {
-            setError("Sign up failed. Please try again later.");
+            setError({ form: "Sign up failed. Please try again later." });
             console.error('Signup failed:', error.message);
         } finally {
             setLoading(false);
         }
-    }
+    };
+
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -99,6 +116,7 @@ const CreateAcc = () => {
                             onChange={handleInputChange}
                             placeholder='Enter your username'
                         />
+                        {error.username && <p className="text-red-500 text-sm mt-2">{error.username}</p>}
                     </div>
                     <div className="mb-6">
                         <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">
@@ -114,6 +132,7 @@ const CreateAcc = () => {
                             onChange={handleInputChange}
                             placeholder='Enter your email'
                         />
+                        {error.email && <p className="text-red-500 text-sm mt-2">{error.email}</p>}
                     </div>
                     <div className="mb-6">
                         <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">
@@ -129,6 +148,7 @@ const CreateAcc = () => {
                             onChange={handleInputChange}
                             placeholder='Enter your password'
                         />
+
                         <div className="mt-2 text-sm text-gray-500">
                             Strength: {getPasswordStrengthLabel(formData.passwordStrength)}
                         </div>
@@ -147,14 +167,17 @@ const CreateAcc = () => {
                             onChange={handleInputChange}
                             placeholder='Confirm your password'
                         />
+
+                        {error.confirmPassword && <p className="text-red-500 text-sm mt-2">{error.confirmPassword}</p>}
                     </div>
+                    {error.form && <p className="text-red-500 text-sm mt-4">{error.form}</p>}
                     <button
                         type="submit"
                         className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition-colors duration-300"
+                        disabled={loading}
                     >
                         {loading ? "Loading..." : "Sign Up"}
                     </button>
-                    {error && <p className="text-red-500 text-sm mt-4">{error}</p>}
                 </form>
                 <div className='mt-3 mb-3 text-center'>
                     <Link to="/login" className='text-indigo-500 hover:underline'>Already have an account? Log In</Link>
