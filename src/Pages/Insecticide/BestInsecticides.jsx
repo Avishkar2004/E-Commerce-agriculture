@@ -63,22 +63,22 @@ const BestInsecticides = () => {
             </p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          <div className="flex space-x-12 ml-3 mt-5 font-secondary justify-center gap-24 ">
-            <p>Showing 1 - {insecticideData.length} of {insecticideData.length} products</p>
-            <p>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-12 ml-3 mt-5 font-secondary justify-center sm:gap-24">
+            <p className="text-center sm:text-left">Showing 1 - {insecticideData.length} of {insecticideData.length} products</p>
+            <p className="flex items-center justify-center sm:justify-start">
               <label>
                 Display:
-                <select name="Display">
+                <select name="Display" className="ml-2">
                   <option value="24 per page">24 per page</option>
                   <option value="36 per page">36 per page</option>
                   <option value="48 per page">48 per page</option>
                 </select>
               </label>
             </p>
-            <p>
+            <p className="flex items-center justify-center sm:justify-start">
               <label>
                 Sort By:
-                <select name="Best Selling">
+                <select name="Best Selling" className="ml-2">
                   <option value="apple">Best Selling</option>
                   <option value="banana">Alphabetically, A-Z</option>
                   <option value="orange">Alphabetically, Z-A</option>
@@ -92,47 +92,47 @@ const BestInsecticides = () => {
           </div>
           <hr className="mt-5 border-[1px]" />
           {loading ? (
-             <div className="flex justify-center mt-5">
-             <Loader /> {/* Use a beautiful loader component */}
-           </div>
+            <div className="flex justify-center mt-5">
+              <Loader /> {/* Use a beautiful loader component */}
+            </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 mt-5">
-            {insecticideData.map((product) => (
-              <Link
-                to={{
-                  pathname: `/insecticide/${encodeURIComponent(product.name)}`,
-                  state: { productData: product },
-                }}
-                key={product.id}
-                className="border border-x-slate-200 border-solid"
-              >
-                <div className="image-container">
-                  <img
-                    src={`data:image/avif;base64, ${product.image}`}
-                    alt={product.altTag || product.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h2 className="text-lg font-semibold font-primary">
-                    {product.name}
-                  </h2>
-                  <p className="text-sm text-gray-600 font-secondary font-semibold">
-                    {product.description}
-                  </p>
-                  <p className="text-red-500 font-secondary">{product.salePrice}</p>
-                  <p className="text-green-600 font-secondary font-medium">
-                    {product.reviews}
-                  </p>
-                  <p className="text-gray-600 font-secondary">
-                    {product.stockStatus}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
+              {insecticideData.map((product) => (
+                <Link
+                  to={{
+                    pathname: `/insecticide/${encodeURIComponent(product.name)}`,
+                    state: { productData: product },
+                  }}
+                  key={product.id}
+                  className="border border-x-slate-200 border-solid"
+                >
+                  <div className="image-container">
+                    <img
+                      src={`data:image/avif;base64, ${product.image}`}
+                      alt={product.altTag || product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h2 className="text-lg font-semibold font-primary">
+                      {product.name}
+                    </h2>
+                    <p className="text-sm text-gray-600 font-secondary font-semibold">
+                      {product.description}
+                    </p>
+                    <p className="text-red-500 font-secondary">{product.salePrice}</p>
+                    <p className="text-green-600 font-secondary font-medium">
+                      {product.reviews}
+                    </p>
+                    <p className="text-gray-600 font-secondary">
+                      {product.stockStatus}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           )}
-         
+
         </div>
       </div>
       <Recentlyviewed />

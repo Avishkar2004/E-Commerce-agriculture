@@ -61,22 +61,22 @@ const Micronutrients = () => {
                         </p>
                     </div>
                     <hr className="mt-5 border-[1px]" />
-                    <div className="flex space-x-12 ml-3 mt-5 font-secondary justify-center gap-24 ">
-                        <p>Showing 1 - {micronutrientData.length} of {micronutrientData.length} products</p>
-                        <p>
+                    <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-12 ml-3 mt-5 font-secondary justify-center sm:gap-24">
+                        <p className="text-center sm:text-left">Showing 1 - {micronutrientData.length} of {micronutrientData.length} products</p>
+                        <p className="flex items-center justify-center sm:justify-start">
                             <label>
                                 Display:
-                                <select name="Display">
+                                <select name="Display" className="ml-2">
                                     <option value="24 per page">24 per page</option>
                                     <option value="36 per page">36 per page</option>
                                     <option value="48 per page">48 per page</option>
                                 </select>
                             </label>
                         </p>
-                        <p>
+                        <p className="flex items-center justify-center sm:justify-start">
                             <label>
                                 Sort By:
-                                <select name="Best Selling">
+                                <select name="Best Selling" className="ml-2">
                                     <option value="apple">Best Selling</option>
                                     <option value="banana">Alphabetically, A-Z</option>
                                     <option value="orange">Alphabetically, Z-A</option>

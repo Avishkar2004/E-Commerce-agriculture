@@ -10,7 +10,6 @@ module.exports = {
       xl: "1280px",
       xxl: "1436px",
     },
-
     container: {
       padding: {
         DEFAULT: "1.5rem",

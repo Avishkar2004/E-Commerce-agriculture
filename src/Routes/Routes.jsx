@@ -27,18 +27,30 @@ import CreateAcc from "../Pages/CreateAcc";
 import Profile from "../Pages/Profile";
 import ForgotPassword from "../Pages/ForgotPassword";
 import PasswordResetPage from "../Pages/PasswordResetPage";
-import BecomeSeller from "../Pages/Seller/BecomeSeller"
 import Categories from "../Pages/Categories";
+import SellerHeader from "../Pages/Seller/SellerHeader";
+import Banner from "../Pages/Seller/Banner"
+
 const AppRoutes = () => {
   return (
     <Router>
-      <Header />
-      <Route path="/profile" component={Profile} />
-      <Route path="/forgot-password" component={ForgotPassword} />
-      <Route path="/passwordreset" component={PasswordResetPage} />
-      <Route path="/become-a-seller" component={BecomeSeller} />
+      <Route
+        render={({ location }) => {
+          if (location.pathname === "/become-a-seller") {
+            return <SellerHeader />;
+          } else {
+            return <Header />;
+          }
+        }}
+      />
 
       <Switch>
+        <Route path="/profile" component={Profile} />
+        <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/passwordreset" component={PasswordResetPage} />
+        {/* For Become a seller */}
+        <Route path="/become-a-seller" component={Banner} />
+
         {/* Routes for Plant Growth Regulator */}
         <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />
         <Route path="/plantgrowthregulator" component={PlantGrowthRegulator} />
@@ -59,18 +71,14 @@ const AppRoutes = () => {
         <Route path="/micro-nutrients/:productId" component={ShowMicroProduct} />
         <Route path="/micro-nutrients" component={Micronutrients} />
 
-
         {/* Route for Buy Now */}
         <Route path="/BuyNow" component={BuyNow} />
 
         {/* Route for Log In */}
         <Route path="/Login" component={LogIn} />
-        {/* Route for SignUp  */}
+        {/* Route for SignUp */}
         <Route path="/signup" component={CreateAcc} />
-
-
-    <Route path="/categories" component={Categories}/>
-
+        <Route path="/categories" component={Categories} />
       </Switch>
 
       {/* Common components rendered only on the home page */}

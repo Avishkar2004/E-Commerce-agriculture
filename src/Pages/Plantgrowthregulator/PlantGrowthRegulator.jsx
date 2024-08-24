@@ -28,7 +28,6 @@ const PlantGrowthRegulator = () => {
     fetchData();
   }, []);
 
-
   if (error) {
     return <p>Error: {error}</p>;
   }
@@ -53,22 +52,24 @@ const PlantGrowthRegulator = () => {
             <p>Unlike micro-nutrients, it has side effects if applied frequently or more doses. Before it used, everyone keeps notice of the applicable doses of the products mentioned on the packets. The dose of all the products varies.</p>
           </div>
           <hr className="mt-5 border-[1px]" />
-          <div className="flex space-x-12 ml-3 mt-5 font-secondary justify-center gap-24">
-            <p>Showing 1 - {PlantgrowthregulatorData.length} of {PlantgrowthregulatorData.length} products</p>
-            <p>
+
+          {/* Responsive controls for display and sort */}
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-12 ml-3 mt-5 font-secondary justify-center sm:gap-24">
+            <p className="text-center sm:text-left">Showing 1 - {PlantgrowthregulatorData.length} of {PlantgrowthregulatorData.length} products</p>
+            <p className="flex items-center justify-center sm:justify-start">
               <label>
                 Display:
-                <select name="Display">
+                <select name="Display" className="ml-2">
                   <option value="24 per page">24 per page</option>
                   <option value="36 per page">36 per page</option>
                   <option value="48 per page">48 per page</option>
                 </select>
               </label>
             </p>
-            <p>
+            <p className="flex items-center justify-center sm:justify-start">
               <label>
                 Sort By:
-                <select name="Best Selling">
+                <select name="Best Selling" className="ml-2">
                   <option value="apple">Best Selling</option>
                   <option value="banana">Alphabetically, A-Z</option>
                   <option value="orange">Alphabetically, Z-A</option>
@@ -88,7 +89,6 @@ const PlantGrowthRegulator = () => {
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-
               {PlantgrowthregulatorData.map((PGRProduct) => (
                 <Link
                   to={{
@@ -111,17 +111,11 @@ const PlantGrowthRegulator = () => {
                     <p className="text-red-500 font-secondary">{PGRProduct.salePrice}</p>
                     <p className="text-green-600 font-secondary font-medium">{PGRProduct.reviews}</p>
                     <p className="text-gray-600 font-secondary">{PGRProduct.stockStatus}</p>
-                    <div className="absolute bottom-4 left-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add to Cart</button>
-                      <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Buy Now</button>
-                    </div>
                   </div>
                 </Link>
               ))}
             </div>
           )}
-
-
         </div>
       </div>
       <Recentlyviewed />
