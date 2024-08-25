@@ -92,6 +92,24 @@ const ShowFungicides = ({ productDataProp }) => {
   }
 
 
+  const fetchNextProduct = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/fungicides/next/${productData.id}`);
+      if (response.ok) {
+        const nextProduct = await response.json();
+        history.push({
+          pathname: `/fungicides/${nextProduct.id}`,
+          state: { productData: nextProduct }
+        });
+        setProductData(nextProduct);
+        setSelectedSize("50 ml"); // Reset the size to default
+      } else {
+        console.error('Failed to fetch next product');
+      }
+    } catch (error) {
+      console.error('Error fetching next product:', error);
+    }
+  };
 
   useEffect(() => {
     // Select price by default for 50 ml
@@ -116,9 +134,9 @@ const ShowFungicides = ({ productDataProp }) => {
             &gt;
             <span className="text-sm">{productData.name}</span>
           </span>
-          <Link to='/fungicides/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <button onClick={fetchNextProduct} className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
-          </Link>
+          </button>
         </div>
       </div>
 

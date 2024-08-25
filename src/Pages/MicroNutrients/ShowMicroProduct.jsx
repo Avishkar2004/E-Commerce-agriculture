@@ -91,7 +91,7 @@ const ShowMicroProduct = ({ MicroDataProp = {} }) => {
 
     const fetchNextProduct = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/products/next/${productData.id}`);
+            const response = await fetch(`http://localhost:8080/micro_nutrients/next/${productData.id}`);
             if (response.ok) {
                 const nextProduct = await response.json();
                 history.push({

@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom'; // Import useHistory if you're using React Router
 
-const Cart = ({ cartDataPass }) => {
+const Cart = () => {
     const [cartData, setCartData] = useState([]);
+    const [isAuthenticated, setIsAuthenticated] = useState(true); // Assume user is authenticated initially
+    const history = useHistory();
+
     const fetchCartData = async () => {
         try {
             const response = await fetch("http://localhost:8080/cart", {
@@ -10,8 +14,8 @@ const Cart = ({ cartDataPass }) => {
 
             if (!response.ok) {
                 if (response.status === 401) {
-                    // Handle unauthorized access (e.g., show a message or redirect)
-                    console.error("Unauthorized access - please log in.");
+                    // User is not authenticated
+                    setIsAuthenticated(false);
                 }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -22,9 +26,6 @@ const Cart = ({ cartDataPass }) => {
             console.error("Error fetching cart data:", error);
         }
     };
-
-
-
 
     const handleRemoveFromCart = async (itemId) => {
         try {
@@ -43,27 +44,38 @@ const Cart = ({ cartDataPass }) => {
         }
     };
 
-
     const calculateSubtotal = () => {
         if (cartData.length === 0) {
-            return 0
+            return 0;
         }
         return cartData.reduce((total, item) => total + (item.price * item.quantity), 0);
     };
 
     useEffect(() => {
-        // Empty dependency array to fetch data only once on component mount
         fetchCartData();
     }, []);
-
-
 
     useEffect(() => {
         const subtotal = calculateSubtotal();
         // Update subtotal state if necessary
-    }, [cartData]); // Trigger when cartData changes
+    }, [cartData]);
 
-
+    if (!isAuthenticated) {
+        return (
+            <div className="container mx-auto my-8 text-center">
+                <h2 className="text-3xl font-bold mb-6">Your Cart</h2>
+                <p className="text-lg text-gray-600 mb-4">
+                    Missing cart items? Please log in to see the items you added previously.
+                </p>
+                <button
+                    className="mt-4 bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-700"
+                    onClick={() => history.push('/login')} // Redirect to login page
+                >
+                    Log In
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto my-8">

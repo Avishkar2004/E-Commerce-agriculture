@@ -95,6 +95,25 @@ const PGRShowProduct = ({ PGRDataProp }) => {
   }
 
 
+  const fetchNextProduct = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/plantgrowthregulator/next/${productData.id}`);
+      if (response.ok) {
+        const nextProduct = await response.json();
+        history.push({
+          pathname: `/plantgrowthregulator/${nextProduct.id}`,
+          state: { PGRProduct: nextProduct }
+        });
+        setProductData(nextProduct);
+        setSelectedSize("50 ml"); // Reset the size to default
+      } else {
+        console.error('Failed to fetch next product');
+      }
+    } catch (error) {
+      console.error('Error fetching next product:', error);
+    }
+  };
+
   useEffect(() => {
     handleSizeChange("50 ml")
   }, []);
@@ -122,9 +141,9 @@ const PGRShowProduct = ({ PGRDataProp }) => {
             &gt;
             <span className="text-sm">{productData.name}</span>
           </span>
-          <Link to='/plantgrowthregulator/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <button onClick={fetchNextProduct} className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
-          </Link>
+          </button>
         </div>
       </div>
 

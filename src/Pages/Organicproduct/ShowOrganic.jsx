@@ -94,6 +94,26 @@ const OrganicproductData = ({ OrganicproductData }) => {
     }
   }
 
+
+  const fetchNextProduct = async () => {
+    try {
+      const response = await fetch(`http://localhost:8080/organicproduct/next/${productData.id}`);
+      if (response.ok) {
+        const nextProduct = await response.json();
+        history.push({
+          pathname: `/organicproduct/${nextProduct.id}`,
+          state: { OrganicproductData: nextProduct }
+        });
+        setProductData(nextProduct);
+        setSelectedSize("50 ml"); // Reset the size to default
+      } else {
+        console.error('Failed to fetch next product');
+      }
+    } catch (error) {
+      console.error('Error fetching next product:', error);
+    }
+  };
+
   useEffect(() => {
     handleSizeChange('50 ml');
   }, []);
@@ -115,9 +135,9 @@ const OrganicproductData = ({ OrganicproductData }) => {
             &gt;
             <span className="text-sm">{productData.name}</span>
           </span>
-          <Link to='/organicproduct/Pegasus' className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
+          <button onClick={fetchNextProduct} className="right-12 absolute font-secondary cursor-pointer hover:text-blue-500 text-base">
             Next &gt;
-          </Link>
+          </button>
         </div>
       </div>
 
