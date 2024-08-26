@@ -118,9 +118,6 @@ const PGRShowProduct = ({ PGRDataProp }) => {
     handleSizeChange("50 ml")
   }, []);
 
-  useEffect(() => {
-    console.log("Product data updated", productData)
-  }, [productData])
 
 
   return (

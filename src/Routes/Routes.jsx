@@ -29,7 +29,7 @@ import ForgotPassword from "../Pages/ForgotPassword";
 import PasswordResetPage from "../Pages/PasswordResetPage";
 import Categories from "../Pages/Categories";
 import SellerHeader from "../Pages/Seller/SellerHeader";
-import Banner from "../Pages/Seller/Banner"
+import Whydo from "../Pages/Seller/Whydo";
 
 const AppRoutes = () => {
   return (
@@ -49,7 +49,7 @@ const AppRoutes = () => {
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/passwordreset" component={PasswordResetPage} />
         {/* For Become a seller */}
-        <Route path="/become-a-seller" component={Banner} />
+        <Route path="/become-a-seller" component={Whydo} />
 
         {/* Routes for Plant Growth Regulator */}
         <Route path="/plantgrowthregulator/:productId" component={PGRShowProduct} />
