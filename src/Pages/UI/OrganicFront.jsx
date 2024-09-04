@@ -2,177 +2,107 @@ import EastIcon from "@mui/icons-material/East";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Loader";
+
 const OrganicFront = () => {
-  const [micronutrientData, setMicronutrientData] = useState([]);
-  const [OrganicproductData, setOrganicproductData] = useState([]);
+  const [organicProductData, setOrganicProductData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
+    setIsHovered(true);
+  };
   const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
+    setIsHovered(false);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch("http://localhost:8080/organicproduct");
         if (!response.ok) {
-          throw new Error("Falied to fetch organicproduct data");
+          throw new Error("Failed to fetch organic product data");
         }
         const data = await response.json();
-        setOrganicproductData(data);
+        setOrganicProductData(data);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchData();
-  }, [])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:8080/micro-nutrients");
-        if (!response.ok) {
-          throw new Error("Failed to fetch micro-nutrients data");
-        }
-        const data = await response.json();
-        setMicronutrientData(data);
-      } catch (error) {
-        setError(error.message);
+        console.error("Error fetching data:", error.message);
+        setError("An error occurred while fetching data");
       } finally {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
-  if (error) {
-    return <p>Error : {error}</p>
-  }
-
   return (
-    <div className="container mt-12 min-h-screen mx-auto">
-      {/* Organic Products */}
+    <div className="container mx-auto mt-10 mb-5">
       <div className="flex justify-between font-bold">
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
           Organic Products
         </h1>
-        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
-
+        <h1
+          className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
           View All {isHovered && <EastIcon />}
         </h1>
       </div>
-      {/* if you want space inbetn for this you need gap-1 */}
       {loading ? (
         <div className="flex justify-center mt-5">
           <Loader />
         </div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-          {OrganicproductData.map((OrganicProduct) => (
-            <Link
-              to={{
-                pathname: `/organicproduct/${OrganicProduct.name}`,
-                state: { OrganicproductData: OrganicProduct }
-              }}
-              key={OrganicProduct.id}
-              className="border border-x-slate-200 border-solid"
-            >
-              <div className="image-container">
-                <img
-                  src={`data:image/avif;base64, ${OrganicProduct.image}`}
-                  alt={OrganicProduct.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h2 className="text-lg font-semibold font-primary">
-                  {OrganicProduct.name}
-                </h2>
-                <p className="text-sm text-gray-600 font-secondary font-semibold">
-                  {OrganicProduct.description}
-                </p>
-                <p className="text-red-500 font-secondary">{OrganicProduct.salePrice}</p>
-                <p className="text-green-600 font-secondary font-medium">
-                  {OrganicProduct.reviews}
-                </p>
-                <p className="text-gray-800 font-secondary">
-                  {OrganicProduct.stockStatus}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-      )}
-
-      {/* Aries Agro's collection */}
-      <hr className="mt-12 border-0 h-px bg-gray-300 rounded-full shadow-md" />
-      <div className="flex justify-between font-bold">
-        <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary mt-10 mb-5">
-          Aries Agro's collection
-        </h1>
-        <h1 className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer mt-10"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          View All {isHovered && <EastIcon />}
-        </h1>
-      </div>
-
-      {loading ? (
-        <div>
-          <Loader />
-        </div>
-      ) : (
-        <div className="grid  grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-5">
-          {micronutrientData.map((micronutrientProduct) => (
-            <Link
-              to={{
-                pathname: `/micro-nutrients/${micronutrientProduct.name}`,
-                state: { micronutrientProduct: micronutrientProduct }
-              }}
-              key={micronutrientProduct.id}
-              className="border border-x-slate-200 border-solid"
-            >
-              <div className="image-container">
-                <img
-                  src={`data:image/avif;base64, ${micronutrientProduct.image}`}
-                  alt={micronutrientProduct.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h2 className="text-lg font-semibold font-primary">
-                  {micronutrientProduct.name}
-                </h2>
-                <p className="text-sm text-gray-600 font-secondary font-semibold">
-                  {micronutrientProduct.description}
-                </p>
-                <p className="text-red-500 font-secondary">{micronutrientProduct.salePrice}</p>
-                <p className="text-green-600 font-secondary font-medium">
-                  {micronutrientProduct.reviews}
-                </p>
-                <p className="text-gray-800 font-secondary">
-                  {micronutrientProduct.stockStatus}
-                </p>
-              </div>
-            </Link>
-          ))}
+          {error ? (
+            <p>{<Loader />}</p>
+          ) : Array.isArray(organicProductData) && organicProductData.length > 0 ? (
+            organicProductData.map((organicProduct) => (
+              <Link
+                to={{
+                  pathname: `/organicproduct/${encodeURIComponent(organicProduct.name)}`,
+                  state: { productData: organicProduct },
+                }}
+                key={organicProduct.id}
+                className="border border-x-slate-200 border-solid"
+              >
+                <div className="image-container">
+                  {organicProduct.image && (
+                    <div>
+                      <img
+                        className="w-full h-full object-cover"
+                        src={`data:image/avif;base64,${organicProduct.image}`}
+                        alt={organicProduct.name}
+                      />
+                    </div>
+                  )}
+                </div>
+                <div className="p-4">
+                  <h2 className="text-base font-light font-primary">
+                    {organicProduct.name}
+                  </h2>
+                  <p className="text-sm text-gray-600 font-secondary font-semibold">
+                    {organicProduct.description}
+                  </p>
+                  <p className="text-red-500 font-secondary mt-3 font-medium text-lg">
+                    {organicProduct.salePrice}
+                  </p>
+                  <p className="text-gray-600 font-secondary text-sm mt-2">
+                    {organicProduct.reviews}
+                  </p>
+                  <p className="text-green-600 font-secondary mt-2">
+                    {organicProduct.stockStatus}
+                  </p>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p>No products available</p>
+          )}
         </div>
       )}
       <hr className="mt-12 border-0 h-px bg-gray-300 rounded-full shadow-md" />
-
     </div>
   );
 };

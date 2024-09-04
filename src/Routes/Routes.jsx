@@ -30,6 +30,7 @@ import PasswordResetPage from "../Pages/PasswordResetPage";
 import Categories from "../Pages/Categories";
 import SellerHeader from "../Pages/Seller/SellerHeader";
 import Whydo from "../Pages/Seller/Whydo";
+import MicronutrientUI from "../Pages/UI/MicronutrientUI";
 
 const AppRoutes = () => {
   return (
@@ -91,6 +92,7 @@ const AppRoutes = () => {
                 <Sliders />
                 <FungiUI />
                 <OrganicFront />
+                <MicronutrientUI />
                 <Blogposts />
                 <Fungicides />
                 <Insecticide />
