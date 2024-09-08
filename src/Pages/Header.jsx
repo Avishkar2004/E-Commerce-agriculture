@@ -78,6 +78,7 @@ const Header = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       logout(); // Clear the state in your React app
+      window.location.reload()
     } catch (error) {
       console.error('Error logging out:', error);
     }

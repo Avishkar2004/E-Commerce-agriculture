@@ -47,6 +47,7 @@ const LogIn = () => {
         localStorage.setItem('authenticatedUser', JSON.stringify({ user }));
         login(user);
         history.push('/');
+        window.location.reload()
       } else {
         setErrorMessage(message);
         setServerResponse(message);

@@ -67,6 +67,7 @@ const CreateAcc = () => {
                 localStorage.setItem('authenticatedUser', JSON.stringify({ user: data.user, token: data.token }));
                 login(data.user);
                 history.push('/');
+                window.location.reload()
             }
         } catch (error) {
             setError({ fieldErrors: {}, formError: "Sign up failed. Please try again later." });
