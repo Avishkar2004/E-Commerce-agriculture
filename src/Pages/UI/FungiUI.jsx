@@ -65,7 +65,7 @@ const FungiUI = () => {
             products.map((product) => (
               <Link
                 to={{
-                  pathname: `/fungicides/${product.name}`,
+                  pathname: `/fungicides/${encodeURIComponent(product.name)}`,
                   state: { productData: product }, // Make sure product contains all necessary data
                 }}
                 key={product.id}

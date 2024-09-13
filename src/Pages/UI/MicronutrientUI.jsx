@@ -60,7 +60,7 @@ const MicronutrientUI = () => {
                             <Link
                                 to={{
                                     pathname: `/micro-nutrients/${encodeURIComponent(product.name)}`,
-                                    state: { productData: product },
+                                    state: { micronutrientProduct: product },
                                 }}
                                 key={product.id}
                                 className="border border-x-slate-200 border-solid"
