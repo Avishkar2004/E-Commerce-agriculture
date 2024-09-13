@@ -39,7 +39,7 @@ const OrganicFront = () => {
     <div className="container mx-auto mt-10 mb-5">
       <div className="flex justify-between font-bold">
         <h1 className="text-[#1e2d7d] text-bold text-2xl font-primary">
-          Organic Products
+          Organic skfmposfakj
         </h1>
         <h1
           className="text-[#00badb] transition hover:-translate-x-5 font-[16px] duration-500 cursor-pointer"
@@ -62,7 +62,7 @@ const OrganicFront = () => {
               <Link
                 to={{
                   pathname: `/organicproduct/${encodeURIComponent(organicProduct.name)}`,
-                  state: { productData: organicProduct },
+                  state: { OrganicproductData: organicProduct }, // Pass state with consistent name
                 }}
                 key={organicProduct.id}
                 className="border border-x-slate-200 border-solid"
@@ -79,9 +79,7 @@ const OrganicFront = () => {
                   )}
                 </div>
                 <div className="p-4">
-                  <h2 className="text-base font-light font-primary">
-                    {organicProduct.name}
-                  </h2>
+                  <h2 className="text-base font-light font-primary">{organicProduct.name}</h2>
                   <p className="text-sm text-gray-600 font-secondary font-semibold">
                     {organicProduct.description}
                   </p>
@@ -96,6 +94,7 @@ const OrganicFront = () => {
                   </p>
                 </div>
               </Link>
+
             ))
           ) : (
             <p>No products available</p>
