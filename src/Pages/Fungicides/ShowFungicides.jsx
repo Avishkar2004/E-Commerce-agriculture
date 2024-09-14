@@ -122,7 +122,7 @@ const ShowFungicides = ({ productDataProp }) => {
       <div className="space-x-52 ml-12 mt-4 mb-4">
         <div className="flex text-sm gap-12 text-gray-500 font-secondary">
           <span className="space-x-2 ml-6">
-            <Link className="hover:text-blue-500" to="#">
+            <Link to="/" className="hover:text-blue-500" >
               Home
             </Link>
             &gt;
