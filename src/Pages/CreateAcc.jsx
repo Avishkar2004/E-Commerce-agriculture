@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import zxcvbn from 'zxcvbn';
 import { useAuth } from '../actions/authContext';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const CreateAcc = () => {
     const history = useHistory();
@@ -15,6 +17,8 @@ const CreateAcc = () => {
         confirmPassword: "",
         passwordStrength: 0,
     });
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -67,7 +71,7 @@ const CreateAcc = () => {
                 localStorage.setItem('authenticatedUser', JSON.stringify({ user: data.user, token: data.token }));
                 login(data.user);
                 history.push('/');
-                window.location.reload()
+                window.location.reload();
             }
         } catch (error) {
             setError({ fieldErrors: {}, formError: "Sign up failed. Please try again later." });
@@ -85,11 +89,10 @@ const CreateAcc = () => {
                     {/* Username Input */}
                     <div className="mb-6">
                         <label htmlFor="username" className="block text-gray-700 text-sm font-medium mb-2">Username</label>
-                        <input
-                            type="text"
+                        <TextField
                             id="username"
                             name="username"
-                            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full"
                             required
                             value={formData.username}
                             onChange={handleInputChange}
@@ -101,11 +104,10 @@ const CreateAcc = () => {
                     {/* Email Input */}
                     <div className="mb-6">
                         <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-2">Email</label>
-                        <input
-                            type="email"
+                        <TextField
                             id="email"
                             name="email"
-                            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full"
                             required
                             value={formData.email}
                             onChange={handleInputChange}
@@ -117,15 +119,27 @@ const CreateAcc = () => {
                     {/* Password Input */}
                     <div className="mb-6">
                         <label htmlFor="password" className="block text-gray-700 text-sm font-medium mb-2">Password</label>
-                        <input
-                            type="password"
+                        <TextField
                             id="password"
                             name="password"
-                            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full"
+                            type={showPassword ? "text" : "password"}
                             required
                             value={formData.password}
                             onChange={handleInputChange}
                             placeholder='Enter your password'
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
                         />
                         <div className="mt-2 text-sm text-gray-500">Strength: {getPasswordStrengthLabel(formData.passwordStrength)}</div>
                         {formData.password.length > 0 && formData.password.length < 8 && <p className="text-red-500 text-sm mt-2">Password must be at least 8 characters long.</p>}
@@ -135,15 +149,27 @@ const CreateAcc = () => {
                     {/* Confirm Password Input */}
                     <div className="mb-6">
                         <label htmlFor="confirmPassword" className="block text-gray-700 text-sm font-medium mb-2">Confirm Password</label>
-                        <input
-                            type="password"
+                        <TextField
                             id="confirmPassword"
                             name="confirmPassword"
-                            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            className="w-full"
+                            type={showConfirmPassword ? "text" : "password"}
                             required
                             value={formData.confirmPassword}
                             onChange={handleInputChange}
                             placeholder='Confirm your password'
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                            edge="end"
+                                        >
+                                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
                         />
                         {error.fieldErrors.confirmPassword && <p className="text-red-500 text-sm mt-2">{error.fieldErrors.confirmPassword}</p>}
                     </div>
@@ -161,7 +187,8 @@ const CreateAcc = () => {
                 </form>
 
                 <div className='mt-3 mb-3 text-center'>
-                    <Link to="/login" className='text-indigo-500 hover:underline'>Already have an account? Log In</Link>
+                    <span>Already have an account? </span>
+                    <Link to="/login" className='text-indigo-500 hover:underline'>Log In</Link>
                 </div>
             </div>
         </div>
