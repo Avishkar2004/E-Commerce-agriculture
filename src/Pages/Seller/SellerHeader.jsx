@@ -1,6 +1,6 @@
 import React from 'react';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import Logo from "../Logo.jpeg"
+import Logo from "../Logo.webp"
 import { Link } from 'react-router-dom';
 
 const SellerHeader = () => {
@@ -9,7 +9,7 @@ const SellerHeader = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="text-3xl font-bold text-indigo-600 hover:text-indigo-800 transition-colors duration-300">
-          <img src={Logo} alt="Header" className="w-16 h-12 rounded-md" />
+          <img src={Logo} alt="Header" className="w-16 h-auto rounded-md" />
         </Link>
         {/* Navigation Items */}
         <nav className="flex items-center flex-grow">

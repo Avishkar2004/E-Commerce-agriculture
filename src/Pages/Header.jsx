@@ -5,7 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../actions/authContext";
-import HeaderPhoto from './Logo.jpeg';
+import HeaderPhoto from './Logo.webp';
 
 const Header = () => {
   const inputRef = useRef(null);
@@ -131,7 +131,7 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-2xl font-bold">
           <Link to="/" className="text-blue-600">
-            <img src={HeaderPhoto} alt="Header" className="w-16 h-12 rounded-md" />
+            <img src={HeaderPhoto} alt="Header" className="w-16 h-auto rounded-md" />
           </Link>
         </div>
         <div className="w-full md:w-2/3 relative flex items-center">
