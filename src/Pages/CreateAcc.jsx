@@ -46,7 +46,7 @@ const CreateAcc = () => {
             return;
         }
 
-        if (formData.passwordStrength < 2 || formData.password.length < 8) {
+        if (formData.passwordStrength < 2 || formData.password.length < 6) {
             setError({ fieldErrors: { password: "Password is too weak. Please choose a stronger password of at least 8 characters." }, formError: '' });
             return;
         }

@@ -15,15 +15,15 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-
   const closeDropdown = () => {
     setIsDropdownOpen(false);
   };
+
   const fetchCartData = async () => {
     try {
       const response = await fetch('http://localhost:8080/cart', {
         method: 'GET',
-        credentials: 'include', // Include cookies for authentication
+        credentials: 'include',
       });
 
       if (!response.ok) {
@@ -37,13 +37,12 @@ const Header = () => {
     }
   };
 
-
   const handleSearch = async (query) => {
     if (query.length > 2) {
       try {
         const response = await fetch(`http://localhost:8080/search?q=${query}`, {
           method: 'GET',
-          credentials: 'include', // Include cookies for authentication
+          credentials: 'include',
         });
 
         if (!response.ok) {
@@ -60,30 +59,27 @@ const Header = () => {
     }
   };
 
-
   const handleInputChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
     handleSearch(query);
   };
 
-
   const ProfilehandleLogOut = async () => {
     try {
       const response = await fetch('http://localhost:8080/logout', {
         method: 'POST',
-        credentials: 'include', // Include cookies for authentication
+        credentials: 'include',
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      logout(); // Clear the state in your React app
-      window.location.reload()
+      logout();
+      window.location.reload();
     } catch (error) {
       console.error('Error logging out:', error);
     }
   };
-
 
   useEffect(() => {
     fetchCartData();
@@ -125,59 +121,54 @@ const Header = () => {
     );
   };
 
-
   return (
-    <header className="bg-[#98def5] text-gray-800 py-5">
+    <header className="bg-gradient-to-r from-blue-200 to-blue-100 text-gray-800 py-6 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
-        <div className="text-2xl font-bold">
-          <Link to="/" className="text-blue-600">
-            <img src={HeaderPhoto} alt="Header" className="w-16 h-auto rounded-md" />
+        <div className="flex items-center space-x-4">
+          <Link to="/" className="text-3xl font-bold text-blue-700">
+            <img src={HeaderPhoto} alt="Header" className="w-16 h-auto rounded-lg" />
           </Link>
         </div>
-        <div className="w-full md:w-2/3 relative flex items-center">
-          <div className="flex-1 relative">
+        <div className="flex-grow max-w-3xl mx-4 relative">
+          <div className="relative">
             <input
               ref={inputRef}
               type="text"
-              className="w-full px-5 py-2 pr-16 text-gray-800 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Search..."
+              className="w-full px-5 py-3 text-gray-700 bg-white border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Search products, categories..."
               value={searchQuery}
               onChange={handleInputChange}
             />
-            <SearchIcon className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500" />
+            <SearchIcon className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer" />
           </div>
-          <select className="ml-4 py-2 px-4 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="all">All Categories</option>
-            <option value="category1">Category 1</option>
-            <option value="category2">Category 2</option>
-          </select>
         </div>
         <div className="flex items-center space-x-4">
           {authenticatedUser ? (
             renderUserDropdown()
           ) : (
-            <>
-              <Link to="/login" className="hover:underline text-gray-600">Login</Link>
-              <Link to="/signup" className="hover:underline text-gray-600">Signup</Link>
-            </>
+            <div className="space-x-4">
+              <Link to="/login" className="text-gray-600 hover:underline">Login</Link>
+              <Link to="/signup" className="text-gray-600 hover:underline">Signup</Link>
+            </div>
           )}
-          <Link to="/become-a-seller" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+          <Link to="/become-a-seller" className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors">
             Become a Seller
           </Link>
-        </div>
-        <div>
-          <Link to="/cart" className="text-gray-800 hover:cursor-pointer flex items-center">
+          <Link to="/cart" className="relative text-gray-800 flex items-center">
             <ShoppingCartOutlinedIcon className="h-6 w-6" />
-            <span className="ml-1">{cartItemCount}</span>
+            <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs rounded-full px-2">
+              {cartItemCount}
+            </span>
           </Link>
         </div>
       </div>
+
       {searchResults.length > 0 ? (
         <div className="container mx-auto mt-4 bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-gray-800 text-xl mb-4">Search Results:</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {searchResults.map((product) => (
-              <div key={product.id} className="border border-gray-200 p-4 rounded-lg hover:shadow-lg transition-shadow duration-300 ease-in-out">
+              <div key={product.id} className="border border-gray-200 p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
                 <div className="relative w-full h-64 overflow-hidden rounded-t-lg mb-4">
                   <img
                     src={`data:image/jpeg;base64,${product.image}`}
@@ -193,8 +184,8 @@ const Header = () => {
           </div>
         </div>
       ) : searchQuery.length > 2 && (
-        <div className="container mx-auto mt-4 bg-gradient-to-r from-blue-100 to-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
-          <div className="bg-blue-50 p-6 rounded-full mb-4">
+        <div className="container mx-auto mt-4 bg-gradient-to-r from-blue-50 to-white p-8 rounded-lg shadow-lg flex flex-col items-center text-center">
+          <div className="bg-blue-100 p-6 rounded-full mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -210,28 +201,9 @@ const Header = () => {
               />
             </svg>
           </div>
-          <h2 className="text-gray-800 text-2xl font-semibold mb-2">No Results Found</h2>
-          <p className="text-gray-600 mb-4">
-            Sorry, we couldn’t find any matches for your search. Try refining your search criteria or explore our categories below.
-          </p>
-          <div className="flex space-x-4">
-            <Link
-              to="/categories"
-              className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition-colors duration-300"
-            >
-              Browse Categories
-            </Link>
-            <Link
-              to="/contact-us"
-              className="bg-white text-blue-500 border border-blue-500 px-4 py-2 rounded-full hover:bg-blue-50 transition-colors duration-300"
-            >
-              Contact Us for Help
-            </Link>
-          </div>
+          <h3 className="text-gray-700 text-lg">No results found</h3>
         </div>
-
       )}
-
     </header>
   );
 };
